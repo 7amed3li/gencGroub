@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon, CheckIcon } from "@/components/ui/Icons";
-import { getConstructionProjectStudies } from "@/content/siteData";
+import { getConstructionProjects } from "@/content/siteData";
 import { useLanguage } from "@/context/LanguageContext";
 
 const COPY = {
@@ -42,7 +42,7 @@ const COPY = {
 
 export function ProjectDetailPageClient({ slug }: { slug: string }) {
   const { locale } = useLanguage();
-  const projects = getConstructionProjectStudies(locale);
+  const projects = getConstructionProjects(locale);
   const project = projects.find((p) => p.slug === slug) ?? projects[0];
   const c = COPY[locale];
 

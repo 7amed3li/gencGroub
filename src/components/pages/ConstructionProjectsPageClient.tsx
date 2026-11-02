@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowLeftIcon } from "@/components/ui/Icons";
-import { getConstructionProjectStudies } from "@/content/siteData";
+import { getConstructionProjects } from "@/content/siteData";
 import { ProjectCard } from "@/components/construction/ProjectCard";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -27,7 +27,7 @@ const COPY = {
 
 export function ConstructionProjectsPageClient() {
   const { locale } = useLanguage();
-  const projects = getConstructionProjectStudies(locale);
+  const projects = getConstructionProjects(locale);
   const c = COPY[locale];
 
   return (
