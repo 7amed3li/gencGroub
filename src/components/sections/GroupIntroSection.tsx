@@ -5,15 +5,16 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRightIcon } from "@/components/ui/Icons";
 import { EditorialReveal } from "@/components/ui/StoryScrollArchitecture";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function GroupIntroSection() {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start 85%", "end 25%"],
   });
 
-  // Living vertical architectural axis line that draws down as the user scrolls
   const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
@@ -28,19 +29,18 @@ export function GroupIntroSection() {
           {/* Left Editorial Heading Column */}
           <div className="lg:col-span-4 space-y-5 lg:sticky lg:top-32">
             <p className="text-xs uppercase tracking-[0.22em] text-[#69715F]">
-              Kurumsal Felsefe
+              {t.philosophy.overline}
             </p>
             <EditorialReveal>
               <h2
                 id="group-intro-heading"
                 className="font-display-editorial text-4xl sm:text-5xl text-[#45483F] leading-[1.08]"
               >
-                Ortak Mühendislik ve Zanaat Kültürü.
+                {t.philosophy.headline}
               </h2>
             </EditorialReveal>
             <p className="text-sm text-[#69715F] leading-relaxed pt-1">
-              Her iki uzmanlık alanında da temel ilkemiz; malzemenin doğasına
-              saygı duyan, zamana direnen kalıcı değer üretmektir.
+              {t.philosophy.sideNote}
             </p>
           </div>
 
@@ -54,7 +54,7 @@ export function GroupIntroSection() {
             </div>
           </div>
 
-          {/* Right Narrative Column — Open Editorial Layout, Zero Box Clutter */}
+          {/* Right Narrative Column */}
           <div className="lg:col-span-7 space-y-12">
             <motion.p
               initial={{ opacity: 0, y: 24 }}
@@ -63,9 +63,7 @@ export function GroupIntroSection() {
               transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
               className="font-display-editorial text-2xl sm:text-3xl lg:text-4xl text-[#45483F] leading-[1.28]"
             >
-              Genç Group; otomotiv yüzey restorasyonu ile çağdaş mimari yapı
-              sektörlerini tek bir ilkeyle yönetir: milimetrik özen, doğru
-              malzeme bilgisi ve şeffaf uygulama disiplini.
+              {t.philosophy.leadParagraph}
             </motion.p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 pt-10 border-t border-[#D8D3C7]">
@@ -77,15 +75,13 @@ export function GroupIntroSection() {
                 className="space-y-3"
               >
                 <span className="text-[11px] uppercase tracking-[0.2em] text-[#69715F] block">
-                  01 · Otomotiv Disiplini
+                  {t.philosophy.col1Overline}
                 </span>
                 <h3 className="font-display-editorial text-2xl sm:text-3xl text-[#45483F]">
-                  Yüzey ve Form Bütünlüğü
+                  {t.philosophy.col1Title}
                 </h3>
                 <p className="text-sm text-[#69715F] leading-relaxed">
-                  AutoClub Merter stüdyosunda uygulanan kaporta onarımı, oto
-                  boya ve boyasız göçük düzeltme işlemleri; aracın fabrika çıkış
-                  geometrisini ve optik yüzey berraklığını korumaya odaklanır.
+                  {t.philosophy.col1Body}
                 </p>
               </motion.div>
 
@@ -94,26 +90,24 @@ export function GroupIntroSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-10% 0px" }}
                 transition={{ duration: 0.75, delay: 0.18 }}
-                className="space-y-3 md:border-l md:border-[#D8D3C7] md:pl-10"
+                className="space-y-3 md:border-s md:border-[#D8D3C7] md:ps-10"
               >
                 <span className="text-[11px] uppercase tracking-[0.2em] text-[#69715F] block">
-                  02 · Mimari & Yapı Disiplini
+                  {t.philosophy.col2Overline}
                 </span>
                 <h3 className="font-display-editorial text-2xl sm:text-3xl text-[#45483F]">
-                  Yapısal Güç ve Zamansız Estetik
+                  {t.philosophy.col2Title}
                 </h3>
                 <p className="text-sm text-[#69715F] leading-relaxed">
-                  Genç Group İnşaat; doğal taş, brüt beton ve çağdaş cephe
-                  sistemlerini mühendislik hassasiyetiyle birleştirerek nitelikli
-                  yaşam ve çalışma alanları inşa eder.
+                  {t.philosophy.col2Body}
                 </p>
               </motion.div>
             </div>
 
             <div className="pt-2">
               <Link href="/about" className="link-editorial">
-                <span>Kurumsal Yapıyı İnceleyin</span>
-                <ArrowRightIcon className="h-4 w-4" />
+                <span>{t.philosophy.cta}</span>
+                <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />
               </Link>
             </div>
           </div>

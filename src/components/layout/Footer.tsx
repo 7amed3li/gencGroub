@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import {
@@ -6,11 +8,14 @@ import {
   PhoneIcon,
   MailIcon,
 } from "@/components/ui/Icons";
-import { BRAND_INFO, AUTOMOTIVE_SERVICES } from "@/content/siteData";
+import { BRAND_INFO, getAutomotiveServices } from "@/content/siteData";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const { locale, t } = useLanguage();
   const auto = BRAND_INFO.automotiveDivision;
+  const services = getAutomotiveServices(locale);
 
   return (
     <footer className="bg-[#45483F] text-[#F3F0E8] border-t border-[#69715F]/40">
@@ -22,9 +27,7 @@ export function Footer() {
               {BRAND_INFO.name}
             </p>
             <p className="text-sm text-[#D8D3C7] max-w-sm leading-relaxed">
-              Otomotiv yüzey uzmanlığı ve çağdaş yapı anlayışını tek bir
-              kurumsal çatı altında buluşturan Genç Group; AutoClub Merter ve
-              Genç Group İnşaat markalarıyla faaliyet göstermektedir.
+              {t.footer.description}
             </p>
             <div className="pt-2">
               <a
@@ -45,10 +48,10 @@ export function Footer() {
               AutoClub Merter
             </p>
             <ul className="space-y-2.5 text-sm">
-              {AUTOMOTIVE_SERVICES.map((service) => (
+              {services.map((service) => (
                 <li key={service.id}>
                   <Link
-                    href={`/automotive/services#${service.slug}`}
+                    href={`/automotive#${service.slug}`}
                     className="text-[#D8D3C7] hover:text-[#F3F0E8] transition-colors"
                   >
                     {service.title}
@@ -67,6 +70,7 @@ export function Footer() {
                 <a
                   href={auto.phoneHref}
                   className="text-[#F3F0E8] hover:text-[#D8D3C7]"
+                  dir="ltr"
                 >
                   {auto.phoneDisplay}
                 </a>
@@ -94,7 +98,7 @@ export function Footer() {
                   href="/construction"
                   className="text-[#D8D3C7] hover:text-[#F3F0E8] transition-colors"
                 >
-                  Mimari Yaklaşım
+                  {t.footer.archApproach}
                 </Link>
               </li>
               <li>
@@ -102,7 +106,7 @@ export function Footer() {
                   href="/construction/projects"
                   className="text-[#D8D3C7] hover:text-[#F3F0E8] transition-colors"
                 >
-                  Proje Portfolyosu
+                  {t.footer.projectPortfolio}
                 </Link>
               </li>
             </ul>
@@ -111,7 +115,7 @@ export function Footer() {
           {/* Column 4: Corporate */}
           <div className="lg:col-span-2 space-y-4">
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-[#A5AA98]">
-              Kurumsal
+              {t.footer.corporate}
             </p>
             <ul className="space-y-2.5 text-sm">
               <li>
@@ -119,7 +123,7 @@ export function Footer() {
                   href="/about"
                   className="text-[#D8D3C7] hover:text-[#F3F0E8] transition-colors"
                 >
-                  Hakkımızda
+                  {t.nav.about}
                 </Link>
               </li>
               <li>
@@ -127,7 +131,7 @@ export function Footer() {
                   href="/contact"
                   className="text-[#D8D3C7] hover:text-[#F3F0E8] transition-colors"
                 >
-                  İletişim
+                  {t.nav.contact}
                 </Link>
               </li>
             </ul>

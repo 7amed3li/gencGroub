@@ -6,8 +6,10 @@ import { motion } from "framer-motion";
 import { ArrowRightIcon, WhatsAppIcon } from "@/components/ui/Icons";
 import { EditorialReveal } from "@/components/ui/StoryScrollArchitecture";
 import { BRAND_INFO } from "@/content/siteData";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function ContactCTASection() {
+  const { locale, t } = useLanguage();
   const auto = BRAND_INFO.automotiveDivision;
 
   return (
@@ -26,26 +28,42 @@ export function ContactCTASection() {
         >
           <div className="lg:col-span-7 space-y-5">
             <p className="text-xs uppercase tracking-[0.22em] text-[#69715F]">
-              İletişim & Danışmanlık
+              {t.contactCta.overline}
             </p>
             <EditorialReveal>
               <h2
                 id="contact-cta-heading"
                 className="font-display-editorial text-4xl sm:text-5xl lg:text-6xl text-[#45483F] leading-[1.06]"
               >
-                İlgili Bölümümüzle Doğrudan İletişime Geçin.
+                {t.contactCta.headline}
               </h2>
             </EditorialReveal>
             <p className="text-base sm:text-lg text-[#69715F] max-w-xl font-light leading-relaxed pt-1">
-              Otomotiv restorasyonu ve yüzey koruma randevularınız için{" "}
-              <strong className="text-[#45483F] font-medium">
-                AutoClub Merter
-              </strong>
-              ; mimari proje ve yapı talepleriniz için{" "}
-              <strong className="text-[#45483F] font-medium">
-                Genç Group İnşaat
-              </strong>{" "}
-              ekibimizle doğrudan bağlantı kurabilirsiniz.
+              {locale === "tr" ? (
+                <>
+                  {t.contactCta.bodyPart1}{" "}
+                  <strong className="text-[#45483F] font-medium">
+                    AutoClub Merter
+                  </strong>
+                  ; {t.contactCta.bodyPart2}{" "}
+                  <strong className="text-[#45483F] font-medium">
+                    Genç Group İnşaat
+                  </strong>{" "}
+                  {t.contactCta.bodyPart3}
+                </>
+              ) : (
+                <>
+                  {t.contactCta.bodyPart1}{" "}
+                  <strong className="text-[#45483F] font-medium">
+                    AutoClub Merter
+                  </strong>{" "}
+                  {t.contactCta.bodyPart2}{" "}
+                  <strong className="text-[#45483F] font-medium">
+                    Genç Group İnşaat
+                  </strong>{" "}
+                  {t.contactCta.bodyPart3}
+                </>
+              )}
             </p>
           </div>
 
@@ -60,15 +78,15 @@ export function ContactCTASection() {
                 <WhatsAppIcon className="h-4 w-4" />
                 <span>AutoClub Merter · {auto.phoneDisplay}</span>
               </span>
-              <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
             </a>
 
             <Link
               href="/contact?division=construction"
               className="group flex items-center justify-between border border-[#45483F]/35 bg-[#F3F0E8] px-7 py-4.5 text-xs font-medium uppercase tracking-[0.18em] text-[#45483F] transition-colors hover:bg-[#D8D3C7]"
             >
-              <span>Genç Group İnşaat İletişim</span>
-              <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <span>{t.contactCta.consButton}</span>
+              <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
             </Link>
           </div>
         </motion.div>

@@ -3,8 +3,10 @@
 import React, { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import { CompareSliderIcon } from "@/components/ui/Icons";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function BeforeAfterSlider() {
+  const { t } = useLanguage();
   const [position, setPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -35,26 +37,27 @@ export function BeforeAfterSlider() {
     <div className="space-y-6">
       <div
         ref={containerRef}
+        dir="ltr"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerLeave={handlePointerUp}
         className="relative aspect-[16/10] sm:aspect-[16/9] w-full select-none overflow-hidden border border-[#D8D3C7] bg-[#D8D3C7] cursor-ew-resize touch-pan-y"
         role="group"
-        aria-label="AutoClub Merter Stüdyo Uygulama ve Yüzey Karşılaştırma Modülü"
+        aria-label={t.automotivePage.sliderCaption}
       >
         {/* Base Layer: Gloss Ceramic & Black Pack Finish — Range Rover Vogue */}
         <div className="absolute inset-0">
           <Image
             src="/images/instagram/post-2.jpg"
-            alt="AutoClub Merter — Range Rover Vogue Black Pack ve Seramik Kaplama Finişi"
+            alt="AutoClub Merter — Range Rover Vogue"
             fill
             sizes="(max-width: 1024px) 100vw, 80vw"
             className="object-cover object-center"
             draggable={false}
           />
           <span className="absolute top-4 right-4 z-10 bg-[#F3F0E8]/92 border border-[#D8D3C7] px-3.5 py-1.5 text-[11px] uppercase tracking-[0.14em] text-[#45483F]">
-            Parlak Seramik & Black Pack (Range Rover Vogue)
+            {t.automotivePage.sliderRightLabel}
           </span>
         </div>
 
@@ -65,14 +68,14 @@ export function BeforeAfterSlider() {
         >
           <Image
             src="/images/instagram/post-1.jpg"
-            alt="AutoClub Merter — Opel Frontera Saten Siyah Mat PPF Uygulaması"
+            alt="AutoClub Merter — Opel Frontera"
             fill
             sizes="(max-width: 1024px) 100vw, 80vw"
             className="object-cover object-center"
             draggable={false}
           />
           <span className="absolute top-4 left-4 z-10 bg-[#F3F0E8]/92 border border-[#D8D3C7] px-3.5 py-1.5 text-[11px] uppercase tracking-[0.14em] text-[#45483F]">
-            Saten Siyah Mat PPF (Opel Frontera)
+            {t.automotivePage.sliderLeftLabel}
           </span>
         </div>
 
@@ -87,7 +90,7 @@ export function BeforeAfterSlider() {
         </div>
 
         <label htmlFor="before-after-range" className="sr-only">
-          Mat PPF ve Parlak Seramik finiş karşılaştırma yüzdesi
+          {t.automotivePage.sliderCaption}
         </label>
         <input
           id="before-after-range"
@@ -96,14 +99,16 @@ export function BeforeAfterSlider() {
           max={100}
           value={position}
           onChange={(e) => setPosition(Number(e.target.value))}
-          aria-label="Yüzey Dokusu Karşılaştırma Kaydırıcısı"
+          aria-label={t.automotivePage.sliderCaption}
           className="absolute inset-0 z-30 h-full w-full cursor-ew-resize opacity-0"
         />
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-2 text-xs uppercase tracking-[0.14em] text-[#69715F]">
-        <span>AutoClub Merter Stüdyo Uygulamaları</span>
-        <span>Kaydırıcı: %{position}</span>
+        <span>{t.automotivePage.sliderCaption}</span>
+        <span>
+          {t.automotivePage.sliderValueLabel}: %{position}
+        </span>
       </div>
     </div>
   );

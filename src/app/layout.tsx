@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
+import {
+  Cormorant_Garamond,
+  Plus_Jakarta_Sans,
+  Noto_Kufi_Arabic,
+} from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { LanguageProvider } from "@/context/LanguageContext";
 import { constructMetadata, getOrganizationSchema } from "@/lib/seo";
 
 const cormorant = Cormorant_Garamond({
@@ -17,6 +22,13 @@ const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin", "latin-ext"],
   weight: ["300", "400", "500", "600"],
   variable: "--font-jakarta",
+  display: "swap",
+});
+
+const notoKufiArabic = Noto_Kufi_Arabic({
+  subsets: ["arabic"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-arabic",
   display: "swap",
 });
 
@@ -37,26 +49,23 @@ export default function RootLayout({
   return (
     <html
       lang="tr"
-      className={`${cormorant.variable} ${plusJakarta.variable}`}
+      dir="ltr"
+      className={`${cormorant.variable} ${plusJakarta.variable} ${notoKufiArabic.variable}`}
     >
       <body className="flex min-h-screen flex-col bg-[#F3F0E8] text-[#45483F] antialiased">
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-[#45483F] focus:px-5 focus:py-2.5 focus:text-xs focus:font-medium focus:text-[#F3F0E8]"
-        >
-          Ana İçeriğe Atla
-        </a>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
-          }}
-        />
-        <Navbar />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <LanguageProvider>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(organizationSchema),
+            }}
+          />
+          <Navbar />
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

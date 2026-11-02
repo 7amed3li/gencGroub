@@ -11,36 +11,44 @@ import {
   PhoneIcon,
   ArrowRightIcon,
 } from "@/components/ui/Icons";
-import { BRAND_INFO } from "@/content/siteData";
+import { BRAND_INFO, type Locale } from "@/content/siteData";
+import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 
-const PRIMARY_NAV = [
-  {
-    label: "Otomotiv",
-    sublabel: "AutoClub Merter",
-    href: "/automotive",
-  },
-  {
-    label: "İnşaat",
-    sublabel: "Genç Group İnşaat",
-    href: "/construction",
-  },
-  {
-    label: "Hakkımızda",
-    sublabel: "Kurumsal Yapı",
-    href: "/about",
-  },
-  {
-    label: "İletişim",
-    sublabel: "Bize Ulaşın",
-    href: "/contact",
-  },
+const LOCALES: { code: Locale; label: string }[] = [
+  { code: "tr", label: "TR" },
+  { code: "en", label: "EN" },
+  { code: "ar", label: "AR" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
+  const { locale, setLocale, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [overlayOpen, setOverlayOpen] = useState(false);
+
+  const PRIMARY_NAV = [
+    {
+      label: t.nav.automotive,
+      sublabel: t.nav.automotiveSub,
+      href: "/automotive",
+    },
+    {
+      label: t.nav.construction,
+      sublabel: t.nav.constructionSub,
+      href: "/construction",
+    },
+    {
+      label: t.nav.about,
+      sublabel: t.nav.aboutSub,
+      href: "/about",
+    },
+    {
+      label: t.nav.contact,
+      sublabel: t.nav.contactSub,
+      href: "/contact",
+    },
+  ];
 
   // Full-bleed dark-olive hero pages have light text at top before scroll
   const isHeroPage =
@@ -86,24 +94,24 @@ export function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
           overlayOpen
-            ? "bg-[#45483F] text-[#F3F0E8] border-b border-[#69715F]/40 py-6"
+            ? "bg-[#45483F] text-[#F3F0E8] border-b border-[#69715F]/40 py-5"
             : scrolled
               ? "bg-[#F3F0E8]/95 backdrop-blur-md border-b border-[#D8D3C7] py-4 text-[#45483F]"
               : useLightTextOnHero
-                ? "bg-transparent border-b border-[#D8D3C7]/20 py-6 text-[#F3F0E8]"
-                : "bg-[#F3F0E8]/90 backdrop-blur-sm border-b border-[#D8D3C7] py-6 text-[#45483F]"
+                ? "bg-transparent border-b border-[#D8D3C7]/20 py-5 sm:py-6 text-[#F3F0E8]"
+                : "bg-[#F3F0E8]/90 backdrop-blur-sm border-b border-[#D8D3C7] py-5 sm:py-6 text-[#45483F]"
         )}
       >
-        <div className="container-editorial flex items-center justify-between">
+        <div className="container-editorial flex items-center justify-between gap-4">
           {/* Pure Editorial Wordmark */}
           <Link
             href="/"
-            className="focus:outline-none group"
-            aria-label="Genç Group Ana Sayfa"
+            className="focus:outline-none group shrink-0"
+            aria-label="Genç Group"
           >
             <span
               className={cn(
-                "font-display-editorial text-2xl sm:text-[1.65rem] font-semibold tracking-[0.14em] uppercase transition-colors",
+                "font-display-editorial text-xl sm:text-[1.6rem] font-semibold tracking-[0.14em] uppercase transition-colors",
                 overlayOpen || useLightTextOnHero
                   ? "text-[#F3F0E8]"
                   : "text-[#45483F]"
@@ -115,8 +123,8 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <nav
-            aria-label="Ana Navigasyon"
-            className="hidden lg:flex items-center gap-12"
+            aria-label="Primary Navigation"
+            className="hidden lg:flex items-center gap-10"
           >
             {PRIMARY_NAV.slice(0, 3).map((item) => {
               const isActive =
@@ -154,8 +162,52 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Right Action & Menu Toggle */}
-          <div className="flex items-center gap-6">
+          {/* Right Action, Language Switcher & Menu Toggle */}
+          <div className="flex items-center gap-4 sm:gap-6">
+            {/* Minimal Editorial Language Switcher (TR · EN · AR) */}
+            <div
+              role="group"
+              aria-label="Dil Seçimi / Language Selection"
+              className="inline-flex items-center gap-1.5 text-[11px] font-medium tracking-[0.12em]"
+            >
+              {LOCALES.map((item, idx) => {
+                const active = locale === item.code;
+                return (
+                  <React.Fragment key={item.code}>
+                    <button
+                      type="button"
+                      onClick={() => setLocale(item.code)}
+                      className={cn(
+                        "px-1.5 py-0.5 uppercase transition-colors cursor-pointer",
+                        overlayOpen || useLightTextOnHero
+                          ? active
+                            ? "text-[#F3F0E8] font-bold border-b border-[#F3F0E8]"
+                            : "text-[#D8D3C7]/70 hover:text-[#F3F0E8]"
+                          : active
+                            ? "text-[#45483F] font-bold border-b border-[#45483F]"
+                            : "text-[#69715F]/75 hover:text-[#45483F]"
+                      )}
+                    >
+                      {item.label}
+                    </button>
+                    {idx < LOCALES.length - 1 && (
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "text-[10px]",
+                          overlayOpen || useLightTextOnHero
+                            ? "text-[#D8D3C7]/35"
+                            : "text-[#A5AA98]"
+                        )}
+                      >
+                        ·
+                      </span>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </div>
+
             <Link
               href="/contact"
               className={cn(
@@ -165,8 +217,8 @@ export function Navbar() {
                   : "bg-[#45483F] text-[#F3F0E8] hover:bg-[#69715F]"
               )}
             >
-              <span>İletişim</span>
-              <ArrowRightIcon className="h-3.5 w-3.5" />
+              <span>{t.nav.contact}</span>
+              <ArrowRightIcon className="h-3.5 w-3.5 rtl:rotate-180" />
             </Link>
 
             <button
@@ -174,16 +226,16 @@ export function Navbar() {
               onClick={() => setOverlayOpen((prev) => !prev)}
               aria-expanded={overlayOpen}
               aria-controls="fullscreen-navigation-overlay"
-              aria-label={overlayOpen ? "Menüyü Kapat" : "Menüyü Aç"}
+              aria-label={overlayOpen ? t.nav.close : t.nav.menu}
               className={cn(
-                "lg:hidden inline-flex items-center gap-2.5 py-2 text-xs uppercase tracking-[0.18em] transition-colors",
+                "lg:hidden inline-flex items-center gap-2 py-1.5 text-xs uppercase tracking-[0.18em] transition-colors",
                 overlayOpen || useLightTextOnHero
                   ? "text-[#F3F0E8]"
                   : "text-[#45483F] hover:text-[#69715F]"
               )}
             >
               <span className="hidden sm:inline text-[11px] font-medium">
-                {overlayOpen ? "Kapat" : "Menü"}
+                {overlayOpen ? t.nav.close : t.nav.menu}
               </span>
               {overlayOpen ? (
                 <CloseIcon className="h-5 w-5" />
@@ -202,7 +254,7 @@ export function Navbar() {
             id="fullscreen-navigation-overlay"
             role="dialog"
             aria-modal="true"
-            aria-label="Site Navigasyonu"
+            aria-label="Site Navigation"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -210,14 +262,14 @@ export function Navbar() {
             className="fixed inset-0 z-40 bg-[#45483F] text-[#F3F0E8] pt-28 pb-12 overflow-y-auto"
           >
             <div className="container-editorial min-h-[calc(100vh-10rem)] flex flex-col justify-between">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pt-8">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pt-6">
                 <div className="lg:col-span-7 flex flex-col justify-center divide-y divide-[#A5AA98]/25">
                   {PRIMARY_NAV.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
                       onClick={() => setOverlayOpen(false)}
-                      className="group flex items-baseline justify-between py-7 transition-colors hover:text-[#D8D3C7]"
+                      className="group flex items-baseline justify-between py-6 sm:py-7 transition-colors hover:text-[#D8D3C7]"
                     >
                       <span className="font-display-editorial text-4xl sm:text-6xl font-normal tracking-tight text-[#F3F0E8]">
                         {item.label}
@@ -264,7 +316,7 @@ export function Navbar() {
                       Genç Group İnşaat
                     </h3>
                     <p className="text-sm text-[#D8D3C7] leading-relaxed">
-                      Çağdaş mimari yaklaşım ve nitelikli yapı projeleri.
+                      {t.nav.constructionNote}
                     </p>
                   </div>
                 </div>

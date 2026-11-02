@@ -8,16 +8,20 @@ import {
   ParallaxImageWindow,
   EditorialReveal,
 } from "@/components/ui/StoryScrollArchitecture";
-import { AUTOMOTIVE_SERVICES, BRAND_INFO } from "@/content/siteData";
+import { BRAND_INFO, getAutomotiveServices } from "@/content/siteData";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function DivisionsShowcase() {
+  const { locale, t } = useLanguage();
+  const services = getAutomotiveServices(locale);
+
   return (
     <section
       id="bolum-uzmanlik"
-      aria-label="Genç Group Uzmanlık Alanları"
+      aria-label="Genç Group Divisions"
       className="bg-[#F3F0E8] text-[#45483F]"
     >
-      {/* AUTOMOTIVE DIVISION — Natural Daylight Atelier */}
+      {/* AUTOMOTIVE DIVISION */}
       <div className="section-padding border-b border-[#D8D3C7]">
         <div className="container-editorial">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -29,7 +33,7 @@ export function DivisionsShowcase() {
               className="lg:col-span-5 space-y-6"
             >
               <p className="text-xs uppercase tracking-[0.22em] text-[#69715F]">
-                Otomotiv Atölyesi — Merter, İstanbul
+                {t.divisions.autoOverline}
               </p>
 
               <EditorialReveal>
@@ -39,13 +43,11 @@ export function DivisionsShowcase() {
               </EditorialReveal>
 
               <p className="text-base text-[#69715F] font-light leading-relaxed">
-                Karoser geometrisi, optik renk eşleştirmeli oto boya, boyasız
-                göçük düzeltme ve PPF koruma uygulamalarında aracınızın fabrika
-                çıkış değerini koruyan bütünsel atölye yaklaşımı.
+                {t.divisions.autoBody}
               </p>
 
               <div className="divide-y divide-[#D8D3C7] border-t border-b border-[#D8D3C7]">
-                {AUTOMOTIVE_SERVICES.map((service, idx) => (
+                {services.map((service, idx) => (
                   <motion.div
                     key={service.id}
                     initial={{ opacity: 0, x: -12 }}
@@ -65,7 +67,7 @@ export function DivisionsShowcase() {
                           {service.subtitle}
                         </span>
                       </div>
-                      <ArrowRightIcon className="h-4 w-4 text-[#69715F] transition-transform duration-300 group-hover:translate-x-1.5" />
+                      <ArrowRightIcon className="h-4 w-4 text-[#69715F] transition-transform duration-300 group-hover:translate-x-1.5 rtl:rotate-180" />
                     </Link>
                   </motion.div>
                 ))}
@@ -73,8 +75,8 @@ export function DivisionsShowcase() {
 
               <div className="pt-2 flex flex-wrap items-center gap-8">
                 <Link href="/automotive" className="btn-olive-primary">
-                  <span>Atölyeyi Keşfet</span>
-                  <ArrowRightIcon className="h-4 w-4" />
+                  <span>{t.divisions.autoCta}</span>
+                  <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />
                 </Link>
 
                 <a
@@ -92,7 +94,7 @@ export function DivisionsShowcase() {
             <div className="lg:col-span-7">
               <ParallaxImageWindow
                 src="/images/instagram/post-5.jpg"
-                alt="AutoClub Merter — BMW 5 Serisi Yüzey ve Boya Koruma Uygulaması"
+                alt="AutoClub Merter — BMW 5 Series"
                 aspectClassName="aspect-[16/11]"
                 parallaxStrength={8}
               />
@@ -101,14 +103,14 @@ export function DivisionsShowcase() {
         </div>
       </div>
 
-      {/* CONSTRUCTION DIVISION — Warm Limestone & Stone Studio */}
+      {/* CONSTRUCTION DIVISION */}
       <div className="section-padding bg-[#E8E4DA] text-[#45483F] border-b border-[#D8D3C7]">
         <div className="container-editorial">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-7 order-2 lg:order-1">
               <ParallaxImageWindow
                 src="/images/architecture-limestone.jpg"
-                alt="Genç Group İnşaat Mimari Yaklaşım"
+                alt="Genç Group İnşaat"
                 aspectClassName="aspect-[16/11]"
                 parallaxStrength={8}
               />
@@ -122,7 +124,7 @@ export function DivisionsShowcase() {
               className="lg:col-span-5 order-1 lg:order-2 space-y-6"
             >
               <p className="text-xs uppercase tracking-[0.22em] text-[#69715F]">
-                Mimari & Yapı — Türkiye
+                {t.divisions.consOverline}
               </p>
 
               <EditorialReveal>
@@ -132,23 +134,20 @@ export function DivisionsShowcase() {
               </EditorialReveal>
 
               <p className="text-base text-[#69715F] font-light leading-relaxed">
-                Çağdaş mimari ilkeler, güçlü taşıyıcı sistem mühendisliği ve
-                nitelikli malzeme seçimiyle bulunduğu çevreye kalıcı değer katan
-                konut ve ticari yapılar inşa ediyoruz.
+                {t.divisions.consBody}
               </p>
 
               <p className="text-sm text-[#69715F] leading-relaxed pt-5 border-t border-[#D8D3C7]">
-                Doğal traverten, dokulu brüt beton ve geniş açıklıklı cam cephe
-                detayları; iç ve dış mekân arasında dingin bir süreklilik kurar.
+                {t.divisions.consSubBody}
               </p>
 
               <div className="pt-2 flex flex-wrap items-center gap-8">
                 <Link href="/construction" className="btn-olive-primary">
-                  <span>Yapı Bölümünü Keşfet</span>
-                  <ArrowRightIcon className="h-4 w-4" />
+                  <span>{t.divisions.consCta}</span>
+                  <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />
                 </Link>
                 <Link href="/construction/projects" className="link-editorial">
-                  <span>Mimari Portfolyo</span>
+                  <span>{t.divisions.consSecondaryCta}</span>
                 </Link>
               </div>
             </motion.div>

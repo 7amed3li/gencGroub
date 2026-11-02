@@ -10,12 +10,15 @@ import {
   ParallaxImageWindow,
 } from "@/components/ui/StoryScrollArchitecture";
 import {
-  AUTOMOTIVE_PORTFOLIO_ITEMS,
-  CONSTRUCTION_PROJECT_STUDIES,
+  getAutomotivePortfolio,
+  getConstructionProjects,
 } from "@/content/siteData";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function SelectedWorksSection() {
-  const featuredAutoWorks = AUTOMOTIVE_PORTFOLIO_ITEMS.slice(0, 3);
+  const { locale, t } = useLanguage();
+  const featuredAutoWorks = getAutomotivePortfolio(locale).slice(0, 3);
+  const constructionProjects = getConstructionProjects(locale);
 
   return (
     <section
@@ -28,20 +31,20 @@ export function SelectedWorksSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 lg:pb-16">
           <div>
             <p className="text-xs uppercase tracking-[0.22em] text-[#69715F] mb-3">
-              Seçili Uygulamalar
+              {t.selectedWorks.overline}
             </p>
             <EditorialReveal>
               <h2
                 id="selected-works-heading"
                 className="font-display-editorial text-4xl sm:text-5xl lg:text-6xl text-[#45483F]"
               >
-                Atölye Güncesi ve Mimari Seçki.
+                {t.selectedWorks.headline}
               </h2>
             </EditorialReveal>
           </div>
           <Link href="/automotive#gercek-uygulamalar" className="link-editorial">
-            <span>Tüm Atölye Çalışmaları</span>
-            <ArrowRightIcon className="h-4 w-4" />
+            <span>{t.selectedWorks.allAutoCta}</span>
+            <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />
           </Link>
         </div>
 
@@ -87,33 +90,33 @@ export function SelectedWorksSection() {
                 className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.16em] text-[#45483F] hover:text-[#69715F] transition-colors pt-3 border-t border-[#D8D3C7]"
               >
                 <InstagramIcon className="h-4 w-4" />
-                <span>Uygulama Videosu</span>
+                <span>{t.selectedWorks.videoLink}</span>
               </a>
             </motion.article>
           ))}
         </div>
 
-        {/* Construction Architectural Works — Harmonious Spacing Divider */}
+        {/* Construction Architectural Works */}
         <div className="mt-20 lg:mt-28 pt-16 lg:pt-20 border-t border-[#D8D3C7]">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 lg:mb-14">
             <div>
               <p className="text-xs uppercase tracking-[0.22em] text-[#69715F] mb-3">
-                Genç Group İnşaat
+                {t.selectedWorks.consOverline}
               </p>
               <EditorialReveal>
                 <h3 className="font-display-editorial text-3xl sm:text-4xl lg:text-5xl text-[#45483F]">
-                  Mimari Proje Portfolyosu.
+                  {t.selectedWorks.consHeadline}
                 </h3>
               </EditorialReveal>
             </div>
             <Link href="/construction/projects" className="link-editorial">
-              <span>Tüm İnşaat Projeleri</span>
-              <ArrowRightIcon className="h-4 w-4" />
+              <span>{t.selectedWorks.allConsCta}</span>
+              <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />
             </Link>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            {CONSTRUCTION_PROJECT_STUDIES.map((project, idx) => (
+            {constructionProjects.map((project, idx) => (
               <motion.article
                 key={project.slug}
                 initial={{ opacity: 0, y: 28 }}

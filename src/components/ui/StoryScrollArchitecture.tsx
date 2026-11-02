@@ -9,25 +9,14 @@ import {
   useSpring,
   useInView,
 } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 
-const STORY_CHAPTERS = [
-  { id: "bolum-giris", roman: "I", label: "Köken & Vizyon" },
-  { id: "faaliyet-alanlari", roman: "II", label: "İki Uzmanlık Dünyası" },
-  { id: "otomotiv-montaj-hikayesi", roman: "III", label: "Otomotiv Montaj Kurgusu" },
-  { id: "insaat-montaj-hikayesi", roman: "IV", label: "Mimari İnşa Kurgusu" },
-  { id: "bolum-felsefe", roman: "V", label: "Mühendislik & Zanaat" },
-  { id: "bolum-uzmanlik", roman: "VI", label: "Atölye & Mimari" },
-  { id: "bolum-portfolyo", roman: "VII", label: "Seçili Uygulamalar" },
-  { id: "bolum-manifesto", roman: "VIII", label: "Kurumsal Manifesto" },
-  { id: "bolum-iletisim", roman: "IX", label: "Doğrudan İletişim" },
-];
-
 /**
- * Fixed Top Progress Hairline + Right-Side Interactive Story Chapter Spine
- * Gives the homepage a continuous narrative thread from start to finish.
+ * Fixed Top Progress Hairline + Side Interactive Story Chapter Spine
  */
 export function StoryProgressSpine() {
+  const { t, isRtl } = useLanguage();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 110,
@@ -36,13 +25,14 @@ export function StoryProgressSpine() {
   });
 
   const [activeChapter, setActiveChapter] = useState(0);
+  const chapters = t.storyChapters;
 
   useEffect(() => {
     const handleScroll = () => {
       const viewportMiddle = window.scrollY + window.innerHeight * 0.42;
       let currentIdx = 0;
 
-      STORY_CHAPTERS.forEach((chapter, idx) => {
+      chapters.forEach((chapter, idx) => {
         const el = document.getElementById(chapter.id);
         if (el) {
           const top = el.offsetTop;
@@ -58,29 +48,35 @@ export function StoryProgressSpine() {
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [chapters]);
 
   return (
     <>
       {/* Top Architectural Scroll Progress Line */}
       <motion.div
         style={{ scaleX }}
-        className="fixed top-0 left-0 right-0 z-[60] h-[2px] origin-left bg-[#A5AA98]"
+        className={cn(
+          "fixed top-0 left-0 right-0 z-[60] h-[2px] bg-[#A5AA98]",
+          isRtl ? "origin-right" : "origin-left"
+        )}
         aria-hidden="true"
       />
 
-      {/* Right-Side Editorial Chapter Navigator (Desktop) */}
+      {/* Side Editorial Chapter Navigator (Desktop) */}
       <aside
-        aria-label="Hikaye Akışı Navigasyonu"
-        className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-end gap-3 pointer-events-auto"
+        aria-label="Story Navigation"
+        className={cn(
+          "fixed top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col gap-3 pointer-events-auto",
+          isRtl ? "left-6 items-start" : "right-6 items-end"
+        )}
       >
-        {STORY_CHAPTERS.map((chapter, idx) => {
+        {chapters.map((chapter, idx) => {
           const isActive = activeChapter === idx;
           return (
             <a
               key={chapter.id}
               href={`#${chapter.id}`}
-              aria-label={`Bölüm ${chapter.roman}: ${chapter.label}`}
+              aria-label={`${chapter.roman}: ${chapter.label}`}
               className="group flex items-center gap-3 py-1 focus:outline-none"
             >
               <span
@@ -212,4 +208,3 @@ export function EditorialReveal({
     </div>
   );
 }
-

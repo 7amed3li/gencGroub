@@ -1,14 +1,19 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRightIcon } from "@/components/ui/Icons";
 import type { ConstructionProjectStudy } from "@/content/siteData";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface ProjectCardProps {
   project: ConstructionProjectStudy;
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const { t } = useLanguage();
+
   return (
     <article className="group flex flex-col justify-between">
       <div>
@@ -46,8 +51,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
           href={`/construction/projects/${project.slug}`}
           className="link-editorial"
         >
-          <span>Projeyi İncele</span>
-          <ArrowRightIcon className="h-4 w-4" />
+          <span>{t.selectedWorks.viewProject}</span>
+          <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />
         </Link>
       </div>
     </article>

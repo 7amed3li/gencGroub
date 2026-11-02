@@ -1,8 +1,11 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRightIcon, CheckIcon } from "@/components/ui/Icons";
 import type { AutomotiveService } from "@/content/siteData";
+import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 
 interface ServiceEditorialBlockProps {
@@ -14,6 +17,8 @@ export function ServiceEditorialBlock({
   service,
   reversed = false,
 }: ServiceEditorialBlockProps) {
+  const { t } = useLanguage();
+
   return (
     <article
       id={service.slug}
@@ -74,8 +79,8 @@ export function ServiceEditorialBlock({
               href={`/contact?division=automotive&service=${service.slug}`}
               className="link-editorial"
             >
-              <span>Randevu Alın</span>
-              <ArrowRightIcon className="h-4 w-4" />
+              <span>{t.automotivePage.bookServiceCta}</span>
+              <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />
             </Link>
           </div>
         </div>
