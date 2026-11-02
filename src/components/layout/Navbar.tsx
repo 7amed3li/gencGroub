@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
@@ -10,6 +10,8 @@ import {
   InstagramIcon,
   PhoneIcon,
   ArrowRightIcon,
+  ArrowDownIcon,
+  CheckIcon,
   FlagTrIcon,
   FlagEnIcon,
   FlagArIcon,
@@ -34,6 +36,12 @@ export function Navbar() {
   const { locale, setLocale, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [overlayOpen, setOverlayOpen] = useState(false);
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const langMenuRef = useRef<HTMLDivElement>(null);
+
+  const currentLocaleObj =
+    LOCALES.find((l) => l.code === locale) || LOCALES[0];
+  const ActiveFlag = currentLocaleObj.Flag;
 
   const PRIMARY_NAV = [
     {
@@ -75,12 +83,27 @@ export function Navbar() {
 
   useEffect(() => {
     setOverlayOpen(false);
+    setLangMenuOpen(false);
   }, [pathname]);
 
   useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        langMenuRef.current &&
+        !langMenuRef.current.contains(e.target as Node)
+      ) {
+        setLangMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && overlayOpen) {
+      if (e.key === "Escape") {
         setOverlayOpen(false);
+        setLangMenuOpen(false);
       }
     };
     if (overlayOpen) {
@@ -169,46 +192,79 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Right Action, Flag Language Buttons & Menu Toggle */}
-          <div className="flex items-center gap-2.5 sm:gap-4">
-            {/* Segmented Language Buttons with Vector Flags */}
-            <div
-              dir="ltr"
-              role="group"
-              aria-label="Dil Seçimi / Language Selection"
-              className={cn(
-                "inline-flex items-center p-0.5 border transition-colors",
-                overlayOpen || useLightTextOnHero
-                  ? "border-[#D8D3C7]/35 bg-[#353830]/65 backdrop-blur-sm"
-                  : "border-[#D8D3C7] bg-[#E8E4DA]"
-              )}
-            >
-              {LOCALES.map(({ code, label, fullName, Flag }) => {
-                const active = locale === code;
-                return (
-                  <button
-                    key={code}
-                    type="button"
-                    onClick={() => setLocale(code)}
-                    title={fullName}
-                    aria-label={fullName}
-                    aria-pressed={active}
-                    className={cn(
-                      "inline-flex items-center gap-1.5 px-2 py-1 sm:px-2.5 sm:py-1.5 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.08em] transition-all cursor-pointer",
-                      overlayOpen || useLightTextOnHero
-                        ? active
-                          ? "bg-[#F3F0E8] text-[#45483F] shadow-sm"
-                          : "text-[#D8D3C7] hover:text-[#F3F0E8] hover:bg-[#F3F0E8]/10"
-                        : active
-                          ? "bg-[#45483F] text-[#F3F0E8] shadow-sm"
-                          : "text-[#69715F] hover:text-[#45483F] hover:bg-[#D8D3C7]/50"
-                    )}
+          {/* Right Action, Single Language Switcher Button & Menu Toggle */}
+          <div className="flex items-center gap-3 sm:gap-4">
+            {/* ONE Single Language Button with Dropdown */}
+            <div ref={langMenuRef} dir="ltr" className="relative">
+              <button
+                type="button"
+                onClick={() => setLangMenuOpen((prev) => !prev)}
+                aria-expanded={langMenuOpen}
+                aria-haspopup="listbox"
+                aria-label="Dil Seçimi / Language Selection"
+                className={cn(
+                  "inline-flex items-center gap-2 px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] border transition-colors cursor-pointer",
+                  overlayOpen || useLightTextOnHero
+                    ? "border-[#D8D3C7]/45 bg-[#353830]/75 text-[#F3F0E8] hover:border-[#F3F0E8]"
+                    : "border-[#D8D3C7] bg-[#E8E4DA] text-[#45483F] hover:border-[#45483F]"
+                )}
+              >
+                <ActiveFlag className="h-3.5 w-5 shrink-0 rounded-[1px] shadow-xs" />
+                <span>{currentLocaleObj.label}</span>
+                <ArrowDownIcon
+                  className={cn(
+                    "h-3.5 w-3.5 transition-transform duration-200",
+                    langMenuOpen ? "rotate-180" : ""
+                  )}
+                />
+              </button>
+
+              <AnimatePresence>
+                {langMenuOpen && (
+                  <motion.div
+                    role="listbox"
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 6 }}
+                    transition={{ duration: 0.18 }}
+                    className="absolute right-0 mt-2 w-40 border border-[#D8D3C7] bg-[#F3F0E8] text-[#45483F] shadow-xl py-1 z-50"
                   >
-                    <Flag className="h-3 w-4 sm:h-3.5 sm:w-[1.15rem] shrink-0 rounded-[1px] shadow-xs" />
-                    <span>{label}</span>
-                  </button>
-                );
-              })}
+                    {LOCALES.map(({ code, label, fullName, Flag }) => {
+                      const active = locale === code;
+                      return (
+                        <button
+                          key={code}
+                          type="button"
+                          role="option"
+                          aria-selected={active}
+                          onClick={() => {
+                            setLocale(code);
+                            setLangMenuOpen(false);
+                          }}
+                          className={cn(
+                            "w-full flex items-center justify-between px-3.5 py-2.5 text-xs transition-colors cursor-pointer",
+                            active
+                              ? "bg-[#E8E4DA] text-[#45483F] font-semibold"
+                              : "text-[#69715F] hover:bg-[#E8E4DA]/60 hover:text-[#45483F]"
+                          )}
+                        >
+                          <span className="inline-flex items-center gap-2.5">
+                            <Flag className="h-3.5 w-5 shrink-0 rounded-[1px] shadow-xs" />
+                            <span>{fullName}</span>
+                          </span>
+                          {active ? (
+                            <CheckIcon className="h-3.5 w-3.5 text-[#45483F]" />
+                          ) : (
+                            <span className="text-[10px] uppercase text-[#A5AA98]">
+                              {label}
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             <Link
