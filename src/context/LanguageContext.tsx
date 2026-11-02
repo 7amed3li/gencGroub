@@ -1759,25 +1759,15 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     try {
-      const saved = window.localStorage.getItem(
-        "genc_group_locale"
-      ) as Locale | null;
-      if ((saved === "en" || saved === "ar") && saved !== locale) {
-        setLocaleState(saved);
-      }
+      // Clear any legacy localStorage value so the site always defaults to Turkish ("tr") on entry
+      window.localStorage.removeItem("genc_group_locale");
     } catch {
       // ignore storage errors
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const setLocale = (next: Locale) => {
     setLocaleState(next);
-    try {
-      window.localStorage.setItem("genc_group_locale", next);
-    } catch {
-      // ignore storage errors
-    }
   };
 
   const isRtl = locale === "ar";
