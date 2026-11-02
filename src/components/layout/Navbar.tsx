@@ -10,15 +10,23 @@ import {
   InstagramIcon,
   PhoneIcon,
   ArrowRightIcon,
+  FlagTrIcon,
+  FlagEnIcon,
+  FlagArIcon,
 } from "@/components/ui/Icons";
 import { BRAND_INFO, type Locale } from "@/content/siteData";
 import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 
-const LOCALES: { code: Locale; label: string }[] = [
-  { code: "tr", label: "TR" },
-  { code: "en", label: "EN" },
-  { code: "ar", label: "AR" },
+const LOCALES: {
+  code: Locale;
+  label: string;
+  fullName: string;
+  Flag: React.ComponentType<{ className?: string }>;
+}[] = [
+  { code: "tr", label: "TR", fullName: "Türkçe", Flag: FlagTrIcon },
+  { code: "en", label: "EN", fullName: "English", Flag: FlagEnIcon },
+  { code: "ar", label: "AR", fullName: "العربية", Flag: FlagArIcon },
 ];
 
 export function Navbar() {
@@ -50,7 +58,6 @@ export function Navbar() {
     },
   ];
 
-  // Full-bleed dark-olive hero pages have light text at top before scroll
   const isHeroPage =
     pathname === "/" ||
     pathname === "/automotive" ||
@@ -96,13 +103,13 @@ export function Navbar() {
           overlayOpen
             ? "bg-[#45483F] text-[#F3F0E8] border-b border-[#69715F]/40 py-5"
             : scrolled
-              ? "bg-[#F3F0E8]/95 backdrop-blur-md border-b border-[#D8D3C7] py-4 text-[#45483F]"
+              ? "bg-[#F3F0E8]/95 backdrop-blur-md border-b border-[#D8D3C7] py-3.5 text-[#45483F]"
               : useLightTextOnHero
-                ? "bg-transparent border-b border-[#D8D3C7]/20 py-5 sm:py-6 text-[#F3F0E8]"
-                : "bg-[#F3F0E8]/90 backdrop-blur-sm border-b border-[#D8D3C7] py-5 sm:py-6 text-[#45483F]"
+                ? "bg-transparent border-b border-[#D8D3C7]/20 py-5 text-[#F3F0E8]"
+                : "bg-[#F3F0E8]/90 backdrop-blur-sm border-b border-[#D8D3C7] py-5 text-[#45483F]"
         )}
       >
-        <div className="container-editorial flex items-center justify-between gap-4">
+        <div className="container-editorial flex items-center justify-between gap-3 sm:gap-6">
           {/* Pure Editorial Wordmark */}
           <Link
             href="/"
@@ -162,48 +169,44 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Right Action, Language Switcher & Menu Toggle */}
-          <div className="flex items-center gap-4 sm:gap-6">
-            {/* Minimal Editorial Language Switcher (TR · EN · AR) */}
+          {/* Right Action, Flag Language Buttons & Menu Toggle */}
+          <div className="flex items-center gap-2.5 sm:gap-4">
+            {/* Segmented Language Buttons with Vector Flags */}
             <div
+              dir="ltr"
               role="group"
               aria-label="Dil Seçimi / Language Selection"
-              className="inline-flex items-center gap-1.5 text-[11px] font-medium tracking-[0.12em]"
+              className={cn(
+                "inline-flex items-center p-0.5 border transition-colors",
+                overlayOpen || useLightTextOnHero
+                  ? "border-[#D8D3C7]/35 bg-[#353830]/65 backdrop-blur-sm"
+                  : "border-[#D8D3C7] bg-[#E8E4DA]"
+              )}
             >
-              {LOCALES.map((item, idx) => {
-                const active = locale === item.code;
+              {LOCALES.map(({ code, label, fullName, Flag }) => {
+                const active = locale === code;
                 return (
-                  <React.Fragment key={item.code}>
-                    <button
-                      type="button"
-                      onClick={() => setLocale(item.code)}
-                      className={cn(
-                        "px-1.5 py-0.5 uppercase transition-colors cursor-pointer",
-                        overlayOpen || useLightTextOnHero
-                          ? active
-                            ? "text-[#F3F0E8] font-bold border-b border-[#F3F0E8]"
-                            : "text-[#D8D3C7]/70 hover:text-[#F3F0E8]"
-                          : active
-                            ? "text-[#45483F] font-bold border-b border-[#45483F]"
-                            : "text-[#69715F]/75 hover:text-[#45483F]"
-                      )}
-                    >
-                      {item.label}
-                    </button>
-                    {idx < LOCALES.length - 1 && (
-                      <span
-                        aria-hidden="true"
-                        className={cn(
-                          "text-[10px]",
-                          overlayOpen || useLightTextOnHero
-                            ? "text-[#D8D3C7]/35"
-                            : "text-[#A5AA98]"
-                        )}
-                      >
-                        ·
-                      </span>
+                  <button
+                    key={code}
+                    type="button"
+                    onClick={() => setLocale(code)}
+                    title={fullName}
+                    aria-label={fullName}
+                    aria-pressed={active}
+                    className={cn(
+                      "inline-flex items-center gap-1.5 px-2 py-1 sm:px-2.5 sm:py-1.5 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.08em] transition-all cursor-pointer",
+                      overlayOpen || useLightTextOnHero
+                        ? active
+                          ? "bg-[#F3F0E8] text-[#45483F] shadow-sm"
+                          : "text-[#D8D3C7] hover:text-[#F3F0E8] hover:bg-[#F3F0E8]/10"
+                        : active
+                          ? "bg-[#45483F] text-[#F3F0E8] shadow-sm"
+                          : "text-[#69715F] hover:text-[#45483F] hover:bg-[#D8D3C7]/50"
                     )}
-                  </React.Fragment>
+                  >
+                    <Flag className="h-3 w-4 sm:h-3.5 sm:w-[1.15rem] shrink-0 rounded-[1px] shadow-xs" />
+                    <span>{label}</span>
+                  </button>
                 );
               })}
             </div>
@@ -292,6 +295,7 @@ export function Navbar() {
                     <div className="pt-2 flex flex-col gap-2.5 text-sm">
                       <a
                         href={BRAND_INFO.automotiveDivision.phoneHref}
+                        dir="ltr"
                         className="inline-flex items-center gap-2 text-[#F3F0E8] hover:text-[#D8D3C7]"
                       >
                         <PhoneIcon className="h-4 w-4 text-[#A5AA98]" />
@@ -301,6 +305,7 @@ export function Navbar() {
                         href={BRAND_INFO.automotiveDivision.instagramUrl}
                         target="_blank"
                         rel="noopener noreferrer"
+                        dir="ltr"
                         className="inline-flex items-center gap-2 text-[#D8D3C7] hover:text-[#F3F0E8]"
                       >
                         <InstagramIcon className="h-4 w-4 text-[#A5AA98]" />

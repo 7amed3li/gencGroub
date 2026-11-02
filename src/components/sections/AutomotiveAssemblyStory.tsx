@@ -80,13 +80,13 @@ export function AutomotiveAssemblyStory() {
       {/* Sticky Viewport Stage */}
       <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex items-center pt-16 pb-6 sm:pt-20">
         <div className="container-editorial relative z-20 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
             {/* Narrative Column */}
-            <div className="lg:col-span-5 order-2 lg:order-1 space-y-6">
-              {/* Single Clean 4-Step Progress Bar */}
-              <div className="grid grid-cols-4 gap-2.5">
+            <div className="lg:col-span-5 order-2 lg:order-1 space-y-5 sm:space-y-6">
+              {/* 4-Step Progress Bar — Full Untruncated Text */}
+              <div className="grid grid-cols-4 gap-2 sm:gap-3">
                 {stages.map((stage, idx) => (
-                  <div key={stage.code} className="space-y-2">
+                  <div key={stage.code} className="space-y-1.5">
                     <div
                       className={cn(
                         "h-[2px] w-full transition-colors duration-500",
@@ -95,10 +95,10 @@ export function AutomotiveAssemblyStory() {
                     />
                     <span
                       className={cn(
-                        "block text-[9px] sm:text-[10px] uppercase tracking-[0.14em] truncate",
+                        "block text-[10px] sm:text-[11px] uppercase tracking-[0.08em] leading-snug",
                         idx === activeStage
-                          ? "text-[#F3F0E8] font-medium"
-                          : "text-[#A5AA98]/60"
+                          ? "text-[#F3F0E8] font-semibold"
+                          : "text-[#A5AA98]/65"
                       )}
                     >
                       {stage.shortLabel}
@@ -107,11 +107,11 @@ export function AutomotiveAssemblyStory() {
                 ))}
               </div>
 
-              <div className="space-y-3 sm:space-y-4">
-                <p className="text-[11px] uppercase tracking-[0.22em] text-[#A5AA98]">
+              <div className="space-y-2.5 sm:space-y-4">
+                <p className="text-[11px] uppercase tracking-[0.2em] text-[#A5AA98]">
                   AutoClub Merter · {t.assembly.stageLabel} {currentStage.code}
                 </p>
-                <h2 className="font-display-editorial text-3xl sm:text-4xl lg:text-5xl text-[#F3F0E8] leading-[1.08]">
+                <h2 className="font-display-editorial text-2xl sm:text-4xl lg:text-5xl text-[#F3F0E8] leading-[1.12]">
                   {currentStage.title}
                 </h2>
                 <p className="text-xs sm:text-base text-[#D8D3C7] font-light leading-relaxed max-w-lg">
@@ -119,10 +119,10 @@ export function AutomotiveAssemblyStory() {
                 </p>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-1">
                 <Link
                   href="/automotive"
-                  className="inline-flex items-center gap-2.5 border-b border-[#F3F0E8]/60 pb-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#F3F0E8] hover:border-[#F3F0E8] transition-colors"
+                  className="inline-flex items-center gap-2.5 border-b border-[#F3F0E8]/60 pb-1.5 text-xs font-medium uppercase tracking-[0.16em] text-[#F3F0E8] hover:border-[#F3F0E8] transition-colors"
                 >
                   <span>{t.assembly.autoCta}</span>
                   <ArrowUpRightIcon className="h-4 w-4" />
@@ -248,7 +248,7 @@ export function AutomotiveAssemblyStory() {
                     })}
                   </svg>
 
-                  {/* HTML Target Nodes + Floating Callout Spec Cards */}
+                  {/* HTML Target Nodes + Sleek Floating Pointer Labels */}
                   <div className="pointer-events-none absolute inset-0 z-30">
                     {currentStage.callouts.map((c) => {
                       const badgeLeft =
@@ -278,15 +278,12 @@ export function AutomotiveAssemblyStory() {
                               top: `${c.elbowY}%`,
                             }}
                             className={cn(
-                              "hidden sm:block absolute -translate-y-1/2 bg-[#45483F]/95 backdrop-blur-md border border-[#F3F0E8]/45 px-2.5 py-1.5 shadow-xl max-w-[205px]",
+                              "hidden md:block absolute -translate-y-1/2 bg-[#45483F]/95 backdrop-blur-md border border-[#F3F0E8]/50 px-3 py-1.5 shadow-xl max-w-[230px]",
                               c.cardAlign === "left" ? "-translate-x-full" : ""
                             )}
                           >
-                            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#F3F0E8] leading-tight">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#F3F0E8] leading-snug">
                               {c.num} · {c.title}
-                            </p>
-                            <p className="text-[10px] text-[#D8D3C7] leading-tight mt-0.5">
-                              {c.spec}
                             </p>
                           </motion.div>
                         </React.Fragment>
@@ -296,19 +293,24 @@ export function AutomotiveAssemblyStory() {
                 </motion.div>
               </div>
 
-              {/* Mobile-Specific Callout Legend Strip */}
-              <div className="grid grid-cols-3 gap-2 pt-2.5 sm:hidden">
+              {/* Complete, Untruncated 3-Part Technical Legend Strip (100% Readable on All Devices!) */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-3">
                 {currentStage.callouts.map((c) => (
                   <div
                     key={c.id}
-                    className="bg-[#3A3D35] border border-[#A5AA98]/35 p-2"
+                    className="bg-[#3A3D35] border border-[#A5AA98]/35 px-3.5 py-2.5 flex items-start gap-2.5"
                   >
-                    <span className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[#F3F0E8] block truncate">
-                      {c.num} · {c.title}
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#F3F0E8] text-[#45483F] text-[10px] font-bold">
+                      {c.num}
                     </span>
-                    <span className="text-[9px] text-[#D8D3C7] block truncate mt-0.5">
-                      {c.spec}
-                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-[11px] font-semibold text-[#F3F0E8] leading-snug">
+                        {c.title}
+                      </p>
+                      <p className="text-[10px] text-[#D8D3C7] leading-snug mt-0.5">
+                        {c.spec}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>

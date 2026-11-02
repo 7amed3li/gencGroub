@@ -53,15 +53,15 @@ html {
 }
 
 /* Arabic RTL Typography & Script Continuity */
-html[dir="rtl"] {
+[dir="rtl"] {
   font-family: var(--font-arabic), var(--font-sans);
 }
 
-html[dir="rtl"] * {
+[dir="rtl"] * {
   letter-spacing: 0 !important;
 }
 
-html[dir="rtl"] .font-display-editorial {
+[dir="rtl"] .font-display-editorial {
   font-family: var(--font-arabic), var(--font-serif);
   font-weight: 600;
   line-height: 1.25;

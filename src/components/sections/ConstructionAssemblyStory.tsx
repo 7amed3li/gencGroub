@@ -69,7 +69,7 @@ export function ConstructionAssemblyStory() {
       {/* Sticky Viewport Stage */}
       <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex items-center pt-16 pb-6 sm:pt-20">
         <div className="container-editorial relative z-20 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
             {/* 4K Photorealistic Layered Architectural Stage + Animated SVG Leader Arrows */}
             <div className="lg:col-span-7 order-1">
               <div
@@ -199,7 +199,7 @@ export function ConstructionAssemblyStory() {
                     })}
                   </svg>
 
-                  {/* HTML Target Pins + Floating Callout Cards */}
+                  {/* HTML Target Pins + Sleek Floating Pointer Labels */}
                   <div className="pointer-events-none absolute inset-0 z-30">
                     {currentStage.callouts.map((c) => {
                       const badgeLeft =
@@ -229,15 +229,12 @@ export function ConstructionAssemblyStory() {
                               top: `${c.elbowY}%`,
                             }}
                             className={cn(
-                              "hidden sm:block absolute -translate-y-1/2 bg-[#F3F0E8]/95 backdrop-blur-md border border-[#45483F]/30 px-2.5 py-1.5 shadow-md max-w-[205px]",
+                              "hidden md:block absolute -translate-y-1/2 bg-[#F3F0E8]/95 backdrop-blur-md border border-[#45483F]/35 px-3 py-1.5 shadow-md max-w-[230px]",
                               c.cardAlign === "left" ? "-translate-x-full" : ""
                             )}
                           >
-                            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#45483F] leading-tight">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#45483F] leading-snug">
                               {c.num} · {c.title}
-                            </p>
-                            <p className="text-[10px] text-[#69715F] leading-tight mt-0.5">
-                              {c.spec}
                             </p>
                           </motion.div>
                         </React.Fragment>
@@ -247,30 +244,35 @@ export function ConstructionAssemblyStory() {
                 </motion.div>
               </div>
 
-              {/* Mobile-Specific Callout Legend Strip */}
-              <div className="grid grid-cols-3 gap-2 pt-2.5 sm:hidden">
+              {/* Complete, Untruncated 3-Part Architectural Legend Strip (100% Readable on All Devices!) */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-3">
                 {currentStage.callouts.map((c) => (
                   <div
                     key={c.id}
-                    className="bg-[#F3F0E8] border border-[#D8D3C7] p-2"
+                    className="bg-[#F3F0E8] border border-[#D8D3C7] px-3.5 py-2.5 flex items-start gap-2.5"
                   >
-                    <span className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[#45483F] block truncate">
-                      {c.num} · {c.title}
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#45483F] text-[#F3F0E8] text-[10px] font-bold">
+                      {c.num}
                     </span>
-                    <span className="text-[9px] text-[#69715F] block truncate mt-0.5">
-                      {c.spec}
-                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-[11px] font-semibold text-[#45483F] leading-snug">
+                        {c.title}
+                      </p>
+                      <p className="text-[10px] text-[#69715F] leading-snug mt-0.5">
+                        {c.spec}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Narrative Column */}
-            <div className="lg:col-span-5 order-2 space-y-6">
-              {/* Single Clean 4-Step Progress Bar */}
-              <div className="grid grid-cols-4 gap-2.5">
+            <div className="lg:col-span-5 order-2 space-y-5 sm:space-y-6">
+              {/* 4-Step Progress Bar — Full Untruncated Text */}
+              <div className="grid grid-cols-4 gap-2 sm:gap-3">
                 {stages.map((stage, idx) => (
-                  <div key={stage.code} className="space-y-2">
+                  <div key={stage.code} className="space-y-1.5">
                     <div
                       className={cn(
                         "h-[2px] w-full transition-colors duration-500",
@@ -279,7 +281,7 @@ export function ConstructionAssemblyStory() {
                     />
                     <span
                       className={cn(
-                        "block text-[9px] sm:text-[10px] uppercase tracking-[0.14em] truncate",
+                        "block text-[10px] sm:text-[11px] uppercase tracking-[0.08em] leading-snug",
                         idx === activeStage
                           ? "text-[#45483F] font-semibold"
                           : "text-[#69715F]"
@@ -291,11 +293,11 @@ export function ConstructionAssemblyStory() {
                 ))}
               </div>
 
-              <div className="space-y-3 sm:space-y-4">
-                <p className="text-[11px] uppercase tracking-[0.22em] text-[#69715F]">
+              <div className="space-y-2.5 sm:space-y-4">
+                <p className="text-[11px] uppercase tracking-[0.2em] text-[#69715F]">
                   Genç Group İnşaat · {t.assembly.stageLabel} {currentStage.code}
                 </p>
-                <h2 className="font-display-editorial text-3xl sm:text-4xl lg:text-5xl text-[#45483F] leading-[1.08]">
+                <h2 className="font-display-editorial text-2xl sm:text-4xl lg:text-5xl text-[#45483F] leading-[1.12]">
                   {currentStage.title}
                 </h2>
                 <p className="text-xs sm:text-base text-[#69715F] font-light leading-relaxed max-w-lg">
@@ -303,10 +305,10 @@ export function ConstructionAssemblyStory() {
                 </p>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-1">
                 <Link
                   href="/construction"
-                  className="inline-flex items-center gap-2.5 border-b border-[#45483F]/60 pb-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#45483F] hover:border-[#45483F] transition-colors"
+                  className="inline-flex items-center gap-2.5 border-b border-[#45483F]/60 pb-1.5 text-xs font-medium uppercase tracking-[0.16em] text-[#45483F] hover:border-[#45483F] transition-colors"
                 >
                   <span>{t.assembly.consCta}</span>
                   <ArrowUpRightIcon className="h-4 w-4" />

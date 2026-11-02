@@ -1759,40 +1759,45 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     try {
-      const saved = window.localStorage.getItem("genc_group_locale") as Locale | null;
-      if (saved === "tr" || saved === "en" || saved === "ar") {
+      const saved = window.localStorage.getItem(
+        "genc_group_locale"
+      ) as Locale | null;
+      if ((saved === "en" || saved === "ar") && saved !== locale) {
         setLocaleState(saved);
       }
     } catch {
       // ignore storage errors
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    const isRtl = locale === "ar";
-    document.documentElement.lang = locale;
-    document.documentElement.dir = isRtl ? "rtl" : "ltr";
-    try {
-      window.localStorage.setItem("genc_group_locale", locale);
-    } catch {
-      // ignore storage errors
-    }
-  }, [locale]);
 
   const setLocale = (next: Locale) => {
     setLocaleState(next);
+    try {
+      window.localStorage.setItem("genc_group_locale", next);
+    } catch {
+      // ignore storage errors
+    }
   };
+
+  const isRtl = locale === "ar";
 
   return (
     <LanguageContext.Provider
       value={{
         locale,
         setLocale,
-        isRtl: locale === "ar",
+        isRtl,
         t: UI_DICTIONARY[locale],
       }}
     >
-      {children}
+      <div
+        dir={isRtl ? "rtl" : "ltr"}
+        lang={locale}
+        className="flex min-h-screen flex-col flex-1"
+      >
+        {children}
+      </div>
     </LanguageContext.Provider>
   );
 }
