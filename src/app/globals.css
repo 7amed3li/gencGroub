@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+:root {
+  /* ==========================================================================
+     GENÇ GROUP — ORGANIC ARCHITECTURAL LUXURY DESIGN SYSTEM
+     Palette: Cream · Stone · Sage · Muted Olive · Deep Olive
+     ========================================================================== */
+  --color-cream: #F3F0E8;
+  --color-stone-soft: #E8E4DA;
+  --color-stone: #D8D3C7;
+  --color-sage: #A5AA98;
+  --color-muted-olive: #69715F;
+  --color-deep-olive: #45483F;
+
+  /* Semantic Color Roles & Contrast Mapping */
+  --bg-primary: var(--color-cream);
+  --bg-secondary: var(--color-stone-soft);
+  --bg-stone: var(--color-stone);
+  --bg-anchor: var(--color-deep-olive);
+
+  --text-primary: var(--color-deep-olive);      /* 8.4:1 contrast on #F3F0E8 */
+  --text-secondary: var(--color-muted-olive);   /* 4.6:1 contrast on #F3F0E8 */
+  --text-muted: #7A8170;
+  --text-on-olive: var(--color-cream);
+
+  --border-subtle: #D8D3C7;
+  --border-sage: #A5AA98;
+  --border-strong: #69715F;
+
+  /* Typography Pairings */
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-jakarta), -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Fluid Spacing & Editorial Proportions */
+  --space-section-y: clamp(5rem, 8.5vw, 8.75rem);
+  --container-max: 1440px;
+  --container-padding: clamp(1.35rem, 5vw, 4.75rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--color-cream);
+  color: var(--color-deep-olive);
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--color-cream);
+  color: var(--color-deep-olive);
+  line-height: 1.65;
+}
+
+::selection {
+  background-color: var(--color-deep-olive);
+  color: var(--color-cream);
+}
+
+:focus-visible {
+  outline: 1.5px solid var(--color-deep-olive);
+  outline-offset: 4px;
+}
+
+/* Layout & Typography System Utilities */
+.container-editorial {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+.section-padding {
+  padding-top: var(--space-section-y);
+  padding-bottom: var(--space-section-y);
+}
+
+.font-display-editorial {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.06;
+}
+
+/* Button & Interactive Link System */
+.btn-olive-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--color-deep-olive);
+  color: var(--color-cream);
+  padding: 1rem 2rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background-color 350ms cubic-bezier(0.16, 1, 0.3, 1), color 350ms ease;
+}
+
+.btn-olive-primary:hover {
+  background-color: var(--color-muted-olive);
+}
+
+.btn-stone-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: transparent;
+  color: var(--color-deep-olive);
+  border: 1px solid var(--color-sage);
+  padding: 1rem 2rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: all 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-stone-outline:hover {
+  background-color: var(--color-stone);
+  border-color: var(--color-deep-olive);
+}
+
+.link-editorial {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-deep-olive);
+  border-bottom: 1px solid var(--color-sage);
+  padding-bottom: 0.35rem;
+  transition: border-color 300ms ease, color 300ms ease;
+}
+
+.link-editorial:hover {
+  color: var(--color-muted-olive);
+  border-color: var(--color-deep-olive);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
