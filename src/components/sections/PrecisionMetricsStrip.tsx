@@ -106,37 +106,37 @@ export function PrecisionMetricsStrip() {
       aria-label="Precision Standards"
       className="bg-[#E8E4DA] text-[#45483F] border-b border-[#D8D3C7]"
     >
-      <div className="container-editorial py-12 sm:py-16 lg:py-20">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 sm:gap-x-10 lg:divide-x lg:rtl:divide-x-reverse divide-[#D8D3C7]">
+      <div className="container-editorial py-10 sm:py-14 lg:py-18">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-6">
           {metrics.map((m, idx) => (
             <motion.div
               key={m.index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10% 0px" }}
               transition={{
-                duration: 0.75,
-                delay: idx * 0.1,
+                duration: 0.65,
+                delay: idx * 0.08,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="lg:ps-8 first:lg:ps-0 flex flex-col justify-between"
+              className="bg-[#F3F0E8]/80 border border-[#D8D3C7] p-4 sm:p-6 flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-[#69715F] mb-3">
-                  <span>{m.index}</span>
-                  <span className="text-[#A5AA98]">{m.unit}</span>
+                <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.14em] text-[#69715F] mb-2 sm:mb-3">
+                  <span className="font-semibold text-[#45483F]">{m.index}</span>
+                  <span className="text-[#69715F]">{m.unit}</span>
                 </div>
 
-                <p className="font-display-editorial text-4xl sm:text-5xl lg:text-6xl text-[#45483F] tracking-tight leading-none">
+                <p className="font-display-editorial text-3xl sm:text-5xl text-[#45483F] tracking-tight leading-none">
                   {m.value}
                 </p>
               </div>
 
-              <div className="mt-4 pt-3.5 border-t border-[#D8D3C7]/80">
-                <h3 className="text-xs sm:text-sm font-medium text-[#45483F]">
+              <div className="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-[#D8D3C7]">
+                <h3 className="text-xs sm:text-sm font-medium text-[#45483F] leading-snug">
                   {m.label}
                 </h3>
-                <p className="mt-1 text-[11px] sm:text-xs text-[#69715F] leading-relaxed">
+                <p className="mt-1 text-[10px] sm:text-xs text-[#69715F] leading-relaxed">
                   {m.detail}
                 </p>
               </div>

@@ -20,25 +20,25 @@ export function ContactCTASection() {
     >
       <div className="container-editorial">
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10% 0px" }}
-          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-end"
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-end"
         >
-          <div className="lg:col-span-7 space-y-5">
-            <p className="text-xs uppercase tracking-[0.22em] text-[#69715F]">
+          <div className="lg:col-span-7 space-y-4 sm:space-y-5">
+            <p className="text-[11px] sm:text-xs uppercase tracking-[0.22em] text-[#69715F]">
               {t.contactCta.overline}
             </p>
             <EditorialReveal>
               <h2
                 id="contact-cta-heading"
-                className="font-display-editorial text-4xl sm:text-5xl lg:text-6xl text-[#45483F] leading-[1.06]"
+                className="font-display-editorial text-3xl sm:text-5xl lg:text-6xl text-[#45483F] leading-[1.08]"
               >
                 {t.contactCta.headline}
               </h2>
             </EditorialReveal>
-            <p className="text-base sm:text-lg text-[#69715F] max-w-xl font-light leading-relaxed pt-1">
+            <p className="text-sm sm:text-lg text-[#69715F] max-w-xl font-light leading-relaxed pt-1">
               {locale === "tr" ? (
                 <>
                   {t.contactCta.bodyPart1}{" "}
@@ -67,26 +67,37 @@ export function ContactCTASection() {
             </p>
           </div>
 
-          <div className="lg:col-span-5 flex flex-col gap-4">
+          <div className="lg:col-span-5 flex flex-col gap-3.5 w-full">
             <a
               href={auto.whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-between bg-[#45483F] text-[#F3F0E8] px-7 py-4.5 text-xs font-medium uppercase tracking-[0.18em] transition-colors hover:bg-[#69715F]"
+              className="group flex items-center justify-between gap-3 bg-[#45483F] text-[#F3F0E8] px-5 sm:px-7 py-4 sm:py-4.5 transition-colors hover:bg-[#69715F]"
             >
-              <span className="inline-flex items-center gap-2.5">
-                <WhatsAppIcon className="h-4 w-4" />
-                <span>AutoClub Merter · {auto.phoneDisplay}</span>
+              <span className="inline-flex items-center gap-3 min-w-0">
+                <WhatsAppIcon className="h-4 w-4 shrink-0 text-[#D8D3C7]" />
+                <span className="flex flex-col sm:flex-row sm:items-center sm:gap-2 text-start">
+                  <span className="text-xs font-semibold uppercase tracking-[0.14em] leading-tight">
+                    AutoClub Merter
+                  </span>
+                  <span className="hidden sm:inline text-[#A5AA98]">·</span>
+                  <span
+                    dir="ltr"
+                    className="text-[11px] sm:text-xs font-medium tracking-[0.1em] text-[#D8D3C7] whitespace-nowrap mt-0.5 sm:mt-0"
+                  >
+                    {auto.phoneDisplay}
+                  </span>
+                </span>
               </span>
-              <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
+              <ArrowRightIcon className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
             </a>
 
             <Link
               href="/contact?division=construction"
-              className="group flex items-center justify-between border border-[#45483F]/35 bg-[#F3F0E8] px-7 py-4.5 text-xs font-medium uppercase tracking-[0.18em] text-[#45483F] transition-colors hover:bg-[#D8D3C7]"
+              className="group flex items-center justify-between gap-3 border border-[#45483F]/35 bg-[#F3F0E8] px-5 sm:px-7 py-4 sm:py-4.5 text-xs font-semibold uppercase tracking-[0.14em] text-[#45483F] transition-colors hover:bg-[#D8D3C7]"
             >
-              <span>{t.contactCta.consButton}</span>
-              <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
+              <span className="truncate">{t.contactCta.consButton}</span>
+              <ArrowRightIcon className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
             </Link>
           </div>
         </motion.div>

@@ -32,15 +32,15 @@ export function SelectedWorksSection() {
     >
       <div className="container-editorial">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 lg:pb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-10 lg:pb-16">
           <div>
-            <p className="text-xs uppercase tracking-[0.22em] text-[#69715F] mb-3">
+            <p className="text-[11px] sm:text-xs uppercase tracking-[0.22em] text-[#69715F] mb-2.5 sm:mb-3">
               {t.selectedWorks.overline}
             </p>
             <EditorialReveal>
               <h2
                 id="selected-works-heading"
-                className="font-display-editorial text-4xl sm:text-5xl lg:text-6xl text-[#45483F]"
+                className="font-display-editorial text-3xl sm:text-5xl lg:text-6xl text-[#45483F]"
               >
                 {t.selectedWorks.headline}
               </h2>
@@ -52,26 +52,26 @@ export function SelectedWorksSection() {
           </Link>
         </div>
 
-        {/* Real Automotive Works — Balanced 3-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
+        {/* Real Automotive Works — Framed Architectural Cards on Mobile & Desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
           {featuredAutoWorks.map((item, idx) => (
             <motion.article
               key={item.id}
-              initial={{ opacity: 0, y: 28 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10% 0px" }}
               transition={{
-                duration: 0.8,
-                delay: idx * 0.12,
+                duration: 0.7,
+                delay: idx * 0.1,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="group flex flex-col"
+              className="group flex flex-col bg-[#E8E4DA]/55 border border-[#D8D3C7] p-4 sm:p-5"
             >
               <button
                 type="button"
                 onClick={() => setLightboxIndex(idx)}
                 aria-label={item.title}
-                className="luxury-image-frame is-revealed relative aspect-[4/5] w-full overflow-hidden bg-[#D8D3C7] mb-6 text-left cursor-pointer focus:outline-none"
+                className="luxury-image-frame is-revealed relative aspect-[4/3] sm:aspect-[4/5] w-full overflow-hidden bg-[#D8D3C7] mb-4 sm:mb-5 text-left cursor-pointer focus:outline-none"
               >
                 <ArchitecturalCornerTicks light />
                 <Image
@@ -82,18 +82,17 @@ export function SelectedWorksSection() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
 
-                {/* Subtle Studio Number & Inspect Pill */}
-                <span className="absolute bottom-4 right-4 z-20 inline-flex items-center gap-1.5 bg-[#2C2F28]/75 backdrop-blur-sm text-[#F3F0E8] border border-[#F3F0E8]/25 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] transition-colors group-hover:bg-[#45483F]">
+                <span className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-1.5 bg-[#2C2F28]/80 backdrop-blur-sm text-[#F3F0E8] border border-[#F3F0E8]/25 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] transition-colors group-hover:bg-[#45483F]">
                   <span>{item.code}</span>
                   <span>·</span>
                   <span>+</span>
                 </span>
               </button>
 
-              <p className="text-[11px] uppercase tracking-[0.18em] text-[#69715F] mb-2">
+              <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-[#69715F] mb-1.5">
                 {item.category}
               </p>
-              <h3 className="font-display-editorial text-2xl sm:text-[1.65rem] text-[#45483F] mb-2.5 leading-snug">
+              <h3 className="font-display-editorial text-2xl sm:text-[1.6rem] text-[#45483F] mb-2 leading-snug">
                 <button
                   type="button"
                   onClick={() => setLightboxIndex(idx)}
@@ -102,17 +101,17 @@ export function SelectedWorksSection() {
                   {item.title}
                 </button>
               </h3>
-              <p className="text-sm text-[#69715F] leading-relaxed mb-5 flex-1">
+              <p className="text-xs sm:text-sm text-[#69715F] leading-relaxed mb-4 sm:mb-5 flex-1">
                 {item.summary}
               </p>
 
-              <div className="pt-3.5 border-t border-[#D8D3C7] flex items-center justify-between gap-4">
+              <div className="pt-3.5 border-t border-[#D8D3C7] flex items-center justify-between gap-3">
                 <span className="text-[11px] text-[#69715F] truncate">
-                  {item.operations.slice(0, 2).join(" · ")}
+                  {item.operations[0]}
                 </span>
                 <Link
                   href="/contact?division=automotive"
-                  className="inline-flex items-center gap-1.5 shrink-0 text-xs font-medium uppercase tracking-[0.14em] text-[#45483F] hover:text-[#69715F] transition-colors"
+                  className="inline-flex items-center gap-1.5 shrink-0 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.14em] text-[#45483F] hover:text-[#69715F] transition-colors"
                 >
                   <span>{t.selectedWorks.bookAppointment}</span>
                   <ArrowRightIcon className="h-3.5 w-3.5 rtl:rotate-180" />
@@ -123,10 +122,10 @@ export function SelectedWorksSection() {
         </div>
 
         {/* Construction Architectural Works */}
-        <div className="mt-20 lg:mt-28 pt-16 lg:pt-20 border-t border-[#D8D3C7]">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 lg:mb-14">
+        <div className="mt-16 lg:mt-24 pt-14 lg:pt-20 border-t border-[#D8D3C7]">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6 mb-10 lg:mb-14">
             <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-[#69715F] mb-3">
+              <p className="text-[11px] sm:text-xs uppercase tracking-[0.22em] text-[#69715F] mb-2.5 sm:mb-3">
                 {t.selectedWorks.consOverline}
               </p>
               <EditorialReveal>
@@ -141,18 +140,18 @@ export function SelectedWorksSection() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
             {constructionProjects.map((project, idx) => (
               <motion.article
                 key={project.slug}
-                initial={{ opacity: 0, y: 28 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-10% 0px" }}
-                transition={{ duration: 0.8, delay: idx * 0.14 }}
-                className="group"
+                transition={{ duration: 0.7, delay: idx * 0.12 }}
+                className="group bg-[#E8E4DA]/55 border border-[#D8D3C7] p-4 sm:p-6"
               >
                 <Link href={`/construction/projects/${project.slug}`}>
-                  <div className="mb-6">
+                  <div className="mb-4 sm:mb-5">
                     <ParallaxImageWindow
                       src={project.heroImage}
                       alt={project.title}
@@ -160,13 +159,13 @@ export function SelectedWorksSection() {
                       parallaxStrength={7}
                     />
                   </div>
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-[#69715F] mb-2">
+                  <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-[#69715F] mb-1.5">
                     {project.category}
                   </p>
-                  <h4 className="font-display-editorial text-3xl text-[#45483F] mb-2.5">
+                  <h4 className="font-display-editorial text-2xl sm:text-3xl text-[#45483F] mb-2">
                     {project.title}
                   </h4>
-                  <p className="text-sm text-[#69715F] leading-relaxed max-w-xl">
+                  <p className="text-xs sm:text-sm text-[#69715F] leading-relaxed max-w-xl">
                     {project.editorialSummary}
                   </p>
                 </Link>

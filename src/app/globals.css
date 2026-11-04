@@ -32,9 +32,9 @@
   --font-sans: var(--font-jakarta), -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Fluid Spacing & Editorial Proportions */
-  --space-section-y: clamp(5rem, 8.5vw, 8.75rem);
+  --space-section-y: clamp(3.25rem, 7vw, 8.25rem);
   --container-max: 1440px;
-  --container-padding: clamp(1.35rem, 5vw, 4.75rem);
+  --container-padding: clamp(1.15rem, 4.5vw, 4.75rem);
 }
 
 *,

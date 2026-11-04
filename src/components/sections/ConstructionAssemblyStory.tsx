@@ -31,25 +31,22 @@ export function ConstructionAssemblyStory() {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (typeof window !== "undefined" && window.innerWidth < 1024) return;
     if (latest < 0.24) setActiveStage(0);
     else if (latest < 0.52) setActiveStage(1);
     else if (latest < 0.78) setActiveStage(2);
     else setActiveStage(3);
   });
 
-  // Tier 1: Foundation Plinth & Retaining Wall
   const tier1Y = useTransform(scrollYProgress, [0, 0.16], [45, 0]);
   const tier1Opacity = useTransform(scrollYProgress, [0, 0.1], [0.25, 1]);
 
-  // Tier 2: 4 Stone Walls, Bronze Columns & Glass Facade
   const tier2Y = useTransform(scrollYProgress, [0.18, 0.42], [-65, 0]);
   const tier2Opacity = useTransform(scrollYProgress, [0.18, 0.34], [0, 1]);
 
-  // Tier 3: Cantilever Concrete Slab & Upper Penthouse Volume
   const tier3Y = useTransform(scrollYProgress, [0.46, 0.7], [-85, 0]);
   const tier3Opacity = useTransform(scrollYProgress, [0.46, 0.62], [0, 1]);
 
-  // Stage 4: Subtle luxury zoom
   const stageScale = useTransform(scrollYProgress, [0.74, 0.96], [1, 1.035]);
   const seamLineOpacity = useTransform(
     scrollYProgress,
@@ -64,12 +61,12 @@ export function ConstructionAssemblyStory() {
       id="insaat-montaj-hikayesi"
       ref={containerRef}
       aria-label="Genç Group İnşaat — 4K Architectural Build"
-      className="relative h-[380vh] bg-[#E8E4DA] text-[#45483F] border-b border-[#D8D3C7]"
+      className="relative h-auto py-14 sm:py-20 lg:py-0 lg:h-[270vh] bg-[#E8E4DA] text-[#45483F] border-b border-[#D8D3C7]"
     >
-      {/* Sticky Viewport Stage */}
-      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex items-center pt-16 pb-6 sm:pt-20">
+      {/* Responsive Stage: Natural flow on Mobile, Sticky on Desktop */}
+      <div className="lg:sticky lg:top-0 lg:h-[100dvh] w-full lg:overflow-hidden flex items-center lg:pt-20 lg:pb-6">
         <div className="container-editorial relative z-20 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-12 items-center">
             {/* 4K Photorealistic Layered Architectural Stage + Animated SVG Leader Arrows */}
             <div className="lg:col-span-7 order-1">
               <div
@@ -95,7 +92,8 @@ export function ConstructionAssemblyStory() {
                     style={{
                       y: tier1Y,
                       opacity: tier1Opacity,
-                      clipPath: "polygon(0% 57.5%, 100% 57.5%, 100% 100%, 0% 100%)",
+                      clipPath:
+                        "polygon(0% 57.5%, 100% 57.5%, 100% 100%, 0% 100%)",
                     }}
                     className="absolute inset-0 w-full h-full"
                   >
@@ -113,9 +111,10 @@ export function ConstructionAssemblyStory() {
                   {/* LAYER 2: 4 ASHLAR STONE WALLS, BRONZE COLUMNS & GLASS */}
                   <motion.div
                     style={{
-                      y: tier2Y,
-                      opacity: tier2Opacity,
-                      clipPath: "polygon(0% 36.5%, 100% 36.5%, 100% 58%, 0% 58%)",
+                      y: activeStage >= 1 ? 0 : tier2Y,
+                      opacity: activeStage >= 1 ? 1 : tier2Opacity,
+                      clipPath:
+                        "polygon(0% 36.5%, 100% 36.5%, 100% 58%, 0% 58%)",
                     }}
                     className="absolute inset-0 w-full h-full"
                   >
@@ -133,8 +132,8 @@ export function ConstructionAssemblyStory() {
                   {/* LAYER 3: CANTILEVER SLAB & UPPER PENTHOUSE VOLUME */}
                   <motion.div
                     style={{
-                      y: tier3Y,
-                      opacity: tier3Opacity,
+                      y: activeStage >= 2 ? 0 : tier3Y,
+                      opacity: activeStage >= 2 ? 1 : tier3Opacity,
                       clipPath: "polygon(0% 0%, 100% 0%, 100% 37%, 0% 37%)",
                     }}
                     className="absolute inset-0 w-full h-full"
@@ -244,12 +243,12 @@ export function ConstructionAssemblyStory() {
                 </motion.div>
               </div>
 
-              {/* Complete, Untruncated 3-Part Architectural Legend Strip (100% Readable on All Devices!) */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-3">
+              {/* Complete, Untruncated 3-Part Architectural Legend Strip */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2.5">
                 {currentStage.callouts.map((c) => (
                   <div
                     key={c.id}
-                    className="bg-[#F3F0E8] border border-[#D8D3C7] px-3.5 py-2.5 flex items-start gap-2.5"
+                    className="bg-[#F3F0E8] border border-[#D8D3C7] px-3 py-2 flex items-start gap-2.5"
                   >
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#45483F] text-[#F3F0E8] text-[10px] font-bold">
                       {c.num}
@@ -269,28 +268,43 @@ export function ConstructionAssemblyStory() {
 
             {/* Narrative Column */}
             <div className="lg:col-span-5 order-2 space-y-5 sm:space-y-6">
-              {/* 4-Step Progress Bar — Full Untruncated Text */}
-              <div className="grid grid-cols-4 gap-2 sm:gap-3">
-                {stages.map((stage, idx) => (
-                  <div key={stage.code} className="space-y-1.5">
-                    <div
+              {/* Interactive 4-Step Progress Bar — Tappable on Mobile & Desktop */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+                {stages.map((stage, idx) => {
+                  const isActive = idx === activeStage;
+                  return (
+                    <button
+                      key={stage.code}
+                      type="button"
+                      onClick={() => setActiveStage(idx)}
                       className={cn(
-                        "h-[2px] w-full transition-colors duration-500",
-                        idx <= activeStage ? "bg-[#45483F]" : "bg-[#A5AA98]/40"
-                      )}
-                    />
-                    <span
-                      className={cn(
-                        "block text-[10px] sm:text-[11px] uppercase tracking-[0.08em] leading-snug",
-                        idx === activeStage
-                          ? "text-[#45483F] font-semibold"
-                          : "text-[#69715F]"
+                        "text-start p-2.5 sm:p-0 sm:bg-transparent border sm:border-0 transition-all duration-300 cursor-pointer",
+                        isActive
+                          ? "bg-[#F3F0E8] border-[#45483F]"
+                          : "bg-[#F3F0E8]/60 border-[#D8D3C7] hover:border-[#69715F]"
                       )}
                     >
-                      {stage.shortLabel}
-                    </span>
-                  </div>
-                ))}
+                      <div
+                        className={cn(
+                          "hidden sm:block h-[2px] w-full mb-1.5 transition-colors duration-500",
+                          idx <= activeStage
+                            ? "bg-[#45483F]"
+                            : "bg-[#A5AA98]/40"
+                        )}
+                      />
+                      <span
+                        className={cn(
+                          "block text-[11px] uppercase tracking-[0.06em] leading-snug",
+                          isActive
+                            ? "text-[#45483F] font-semibold"
+                            : "text-[#69715F]"
+                        )}
+                      >
+                        {stage.shortLabel}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
 
               <div className="space-y-2.5 sm:space-y-4">

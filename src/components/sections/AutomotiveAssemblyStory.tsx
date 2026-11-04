@@ -30,13 +30,13 @@ export function AutomotiveAssemblyStory() {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (typeof window !== "undefined" && window.innerWidth < 1024) return;
     if (latest < 0.24) setActiveStage(0);
     else if (latest < 0.52) setActiveStage(1);
     else if (latest < 0.76) setActiveStage(2);
     else setActiveStage(3);
   });
 
-  // Stage 1 -> 2: Lower chassis & upper hood/door exploded layers lock together
   const lowerChassisY = useTransform(scrollYProgress, [0, 0.16], [35, 0]);
   const upperHoodDoorY = useTransform(scrollYProgress, [0.16, 0.42], [-55, 0]);
   const upperHoodDoorOpacity = useTransform(
@@ -45,7 +45,6 @@ export function AutomotiveAssemblyStory() {
     [0.15, 1]
   );
 
-  // Stage 3 (0.50 -> 0.75): Optical LED Laser Scanner Sweeping Across the 4K Car
   const scannerLeft = useTransform(
     scrollYProgress,
     [0.5, 0.75],
@@ -57,7 +56,6 @@ export function AutomotiveAssemblyStory() {
     [0, 1, 1, 0]
   );
 
-  // Stage 4 (0.74 -> 0.92): Smooth Curtain Wipe from Open Exploded 4K Car to Closed Completed 4K Car
   const closedCarClip = useTransform(
     scrollYProgress,
     [0.74, 0.92],
@@ -75,36 +73,51 @@ export function AutomotiveAssemblyStory() {
       id="otomotiv-montaj-hikayesi"
       ref={containerRef}
       aria-label="AutoClub Merter — 4K Automotive Assembly"
-      className="relative h-[380vh] bg-[#45483F] text-[#F3F0E8] border-b border-[#69715F]/40"
+      className="relative h-auto py-14 sm:py-20 lg:py-0 lg:h-[270vh] bg-[#45483F] text-[#F3F0E8] border-b border-[#69715F]/40"
     >
-      {/* Sticky Viewport Stage */}
-      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex items-center pt-16 pb-6 sm:pt-20">
+      {/* Responsive Stage: Natural flow on Mobile, Sticky on Desktop */}
+      <div className="lg:sticky lg:top-0 lg:h-[100dvh] w-full lg:overflow-hidden flex items-center lg:pt-20 lg:pb-6">
         <div className="container-editorial relative z-20 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-12 items-center">
             {/* Narrative Column */}
             <div className="lg:col-span-5 order-2 lg:order-1 space-y-5 sm:space-y-6">
-              {/* 4-Step Progress Bar — Full Untruncated Text */}
-              <div className="grid grid-cols-4 gap-2 sm:gap-3">
-                {stages.map((stage, idx) => (
-                  <div key={stage.code} className="space-y-1.5">
-                    <div
+              {/* Interactive 4-Step Stage Selector (Tappable on Mobile & Desktop) */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+                {stages.map((stage, idx) => {
+                  const isActive = idx === activeStage;
+                  return (
+                    <button
+                      key={stage.code}
+                      type="button"
+                      onClick={() => setActiveStage(idx)}
                       className={cn(
-                        "h-[2px] w-full transition-colors duration-500",
-                        idx <= activeStage ? "bg-[#F3F0E8]" : "bg-[#A5AA98]/25"
-                      )}
-                    />
-                    <span
-                      className={cn(
-                        "block text-[10px] sm:text-[11px] uppercase tracking-[0.08em] leading-snug",
-                        idx === activeStage
-                          ? "text-[#F3F0E8] font-semibold"
-                          : "text-[#A5AA98]/65"
+                        "text-start p-2.5 sm:p-0 sm:bg-transparent border sm:border-0 transition-all duration-300 cursor-pointer",
+                        isActive
+                          ? "bg-[#353830] border-[#F3F0E8]/50"
+                          : "bg-[#3A3D35]/60 border-[#A5AA98]/20 hover:border-[#A5AA98]/50"
                       )}
                     >
-                      {stage.shortLabel}
-                    </span>
-                  </div>
-                ))}
+                      <div
+                        className={cn(
+                          "hidden sm:block h-[2px] w-full mb-1.5 transition-colors duration-500",
+                          idx <= activeStage
+                            ? "bg-[#F3F0E8]"
+                            : "bg-[#A5AA98]/25"
+                        )}
+                      />
+                      <span
+                        className={cn(
+                          "block text-[11px] uppercase tracking-[0.06em] leading-snug",
+                          isActive
+                            ? "text-[#F3F0E8] font-semibold"
+                            : "text-[#D8D3C7]/70"
+                        )}
+                      >
+                        {stage.shortLabel}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
 
               <div className="space-y-2.5 sm:space-y-4">
@@ -190,9 +203,13 @@ export function AutomotiveAssemblyStory() {
                     <div className="h-full w-[2px] bg-[#F3F0E8] shadow-[0_0_20px_#F3F0E8]" />
                   </motion.div>
 
-                  {/* STAGE 4: COMPLETED CLOSED-BODY 4K GRAND TOURER */}
+                  {/* STAGE 4 (or Mobile Tab 4): COMPLETED CLOSED-BODY 4K GRAND TOURER */}
                   <motion.div
-                    style={{ clipPath: closedCarClip }}
+                    style={
+                      activeStage === 3
+                        ? { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)" }
+                        : { clipPath: closedCarClip }
+                    }
                     className="absolute inset-0 z-10 w-full h-full"
                   >
                     <Image
@@ -293,12 +310,12 @@ export function AutomotiveAssemblyStory() {
                 </motion.div>
               </div>
 
-              {/* Complete, Untruncated 3-Part Technical Legend Strip (100% Readable on All Devices!) */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-3">
+              {/* Complete, Untruncated 3-Part Technical Legend Strip */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2.5">
                 {currentStage.callouts.map((c) => (
                   <div
                     key={c.id}
-                    className="bg-[#3A3D35] border border-[#A5AA98]/35 px-3.5 py-2.5 flex items-start gap-2.5"
+                    className="bg-[#3A3D35] border border-[#A5AA98]/35 px-3 py-2 flex items-start gap-2.5"
                   >
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#F3F0E8] text-[#45483F] text-[10px] font-bold">
                       {c.num}

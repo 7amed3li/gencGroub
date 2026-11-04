@@ -33,7 +33,7 @@ export function AutomotivePageClient() {
   return (
     <div className="bg-[#F3F0E8] text-[#45483F]">
       {/* 1. Pure, Breathable Automotive Hero */}
-      <section className="relative min-h-[86vh] flex flex-col justify-between pt-28 pb-10 overflow-hidden bg-[#45483F] text-[#F3F0E8] border-b border-[#D8D3C7]">
+      <section className="relative min-h-[86vh] flex flex-col justify-between pt-24 sm:pt-28 pb-8 sm:pb-10 overflow-hidden bg-[#45483F] text-[#F3F0E8] border-b border-[#D8D3C7]">
         <Image
           src="/images/atelier-daylight.jpg"
           alt="AutoClub Merter"
@@ -47,36 +47,36 @@ export function AutomotivePageClient() {
 
         <div aria-hidden="true" />
 
-        <div className="container-editorial relative z-10 my-auto py-10">
+        <div className="container-editorial relative z-10 my-auto py-8 sm:py-10">
           <div className="max-w-4xl">
-            <p className="text-[11px] sm:text-xs uppercase tracking-[0.24em] text-[#D8D3C7] mb-4 sm:mb-6">
+            <p className="text-[11px] sm:text-xs uppercase tracking-[0.22em] text-[#D8D3C7] mb-3.5 sm:mb-6">
               {t.automotivePage.overline}
             </p>
 
-            <h1 className="font-display-editorial text-4xl sm:text-6xl lg:text-7xl font-medium tracking-tight text-[#F3F0E8] leading-[1.04]">
+            <h1 className="font-display-editorial text-[2.35rem] sm:text-6xl lg:text-7xl font-medium tracking-tight text-[#F3F0E8] leading-[1.06]">
               {t.automotivePage.headline}
             </h1>
 
-            <p className="mt-6 text-sm sm:text-lg text-[#D8D3C7] max-w-xl font-light leading-relaxed">
+            <p className="mt-5 sm:mt-6 text-sm sm:text-lg text-[#D8D3C7] max-w-xl font-light leading-relaxed">
               {t.automotivePage.subheadline}
             </p>
 
-            <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-5 sm:gap-8">
+            <div className="mt-7 sm:mt-10 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
               <a
                 href={auto.whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-[#F3F0E8] text-[#45483F] px-7 py-4 text-xs font-semibold uppercase tracking-[0.18em] transition-colors hover:bg-[#D8D3C7]"
+                className="inline-flex items-center justify-center gap-3 bg-[#F3F0E8] text-[#45483F] px-6 sm:px-7 py-3.5 sm:py-4 text-xs font-semibold uppercase tracking-[0.16em] transition-colors hover:bg-[#D8D3C7]"
               >
-                <WhatsAppIcon className="h-4 w-4" />
-                <span>
+                <WhatsAppIcon className="h-4 w-4 shrink-0" />
+                <span className="whitespace-nowrap">
                   {t.automotivePage.appointmentBtn}: {auto.phoneDisplay}
                 </span>
               </a>
 
               <a
                 href="#gercek-uygulamalar"
-                className="group inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.18em] text-[#F3F0E8] border-b border-[#D8D3C7]/50 pb-1.5 hover:border-[#F3F0E8] transition-colors"
+                className="group inline-flex items-center justify-center sm:justify-start gap-2 text-xs font-medium uppercase tracking-[0.18em] text-[#F3F0E8] border-b border-[#D8D3C7]/50 pb-1.5 self-center sm:self-auto hover:border-[#F3F0E8] transition-colors"
               >
                 <span>{t.automotivePage.galleryLink}</span>
                 <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180" />
@@ -87,10 +87,10 @@ export function AutomotivePageClient() {
 
         {/* Single Clean Bottom Location Strip */}
         <div className="container-editorial relative z-10">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[#D8D3C7]/20 pt-5 text-xs text-[#D8D3C7]/85">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[#D8D3C7]/20 pt-4 sm:pt-5 text-xs text-[#D8D3C7]/85">
             <span className="inline-flex items-center gap-2">
               <MapPinIcon className="h-4 w-4 shrink-0 text-[#A5AA98]" />
-              <span>{auto.address}</span>
+              <span>{auto.region}</span>
             </span>
             <a
               href={auto.instagramUrl}
@@ -121,14 +121,14 @@ export function AutomotivePageClient() {
         className="section-padding bg-[#F3F0E8] border-b border-[#D8D3C7]"
       >
         <div className="container-editorial">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 lg:mb-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-10 lg:mb-16">
             <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-[#69715F] mb-3">
+              <p className="text-[11px] sm:text-xs uppercase tracking-[0.22em] text-[#69715F] mb-2.5 sm:mb-3">
                 {t.automotivePage.portfolioOverline}
               </p>
               <h2
                 id="automotive-portfolio-heading"
-                className="font-display-editorial text-4xl sm:text-5xl lg:text-6xl text-[#45483F]"
+                className="font-display-editorial text-3xl sm:text-5xl lg:text-6xl text-[#45483F]"
               >
                 {t.automotivePage.portfolioHeadline}
               </h2>
@@ -147,14 +147,17 @@ export function AutomotivePageClient() {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
             {portfolioItems.map((item, idx) => (
-              <article key={item.id} className="group flex flex-col">
+              <article
+                key={item.id}
+                className="group flex flex-col bg-[#E8E4DA]/55 border border-[#D8D3C7] p-4 sm:p-5"
+              >
                 <button
                   type="button"
                   onClick={() => setLightboxIndex(idx)}
                   aria-label={item.title}
-                  className="luxury-image-frame is-revealed relative aspect-[4/5] w-full overflow-hidden bg-[#D8D3C7] mb-6 text-left cursor-pointer focus:outline-none"
+                  className="luxury-image-frame is-revealed relative aspect-[4/3] sm:aspect-[4/5] w-full overflow-hidden bg-[#D8D3C7] mb-4 sm:mb-5 text-left cursor-pointer focus:outline-none"
                 >
                   <ArchitecturalCornerTicks light />
                   <Image
@@ -165,17 +168,17 @@ export function AutomotivePageClient() {
                     className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   />
 
-                  <span className="absolute bottom-4 right-4 z-20 inline-flex items-center gap-1.5 bg-[#2C2F28]/75 backdrop-blur-sm text-[#F3F0E8] border border-[#F3F0E8]/25 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] transition-colors group-hover:bg-[#45483F]">
+                  <span className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-1.5 bg-[#2C2F28]/80 backdrop-blur-sm text-[#F3F0E8] border border-[#F3F0E8]/25 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] transition-colors group-hover:bg-[#45483F]">
                     <span>{item.code}</span>
                     <span>·</span>
                     <span>+</span>
                   </span>
                 </button>
 
-                <p className="text-[11px] uppercase tracking-[0.18em] text-[#69715F] mb-2">
+                <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-[#69715F] mb-1.5">
                   {item.category}
                 </p>
-                <h3 className="font-display-editorial text-2xl sm:text-[1.65rem] text-[#45483F] leading-snug mb-3">
+                <h3 className="font-display-editorial text-2xl sm:text-[1.6rem] text-[#45483F] leading-snug mb-2">
                   <button
                     type="button"
                     onClick={() => setLightboxIndex(idx)}
@@ -184,18 +187,18 @@ export function AutomotivePageClient() {
                     {item.title}
                   </button>
                 </h3>
-                <p className="text-sm text-[#69715F] leading-relaxed mb-6 flex-1">
+                <p className="text-xs sm:text-sm text-[#69715F] leading-relaxed mb-4 sm:mb-5 flex-1">
                   {item.summary}
                 </p>
 
-                <div className="pt-4 border-t border-[#D8D3C7] flex items-center justify-between gap-4">
-                  <span className="text-[11px] text-[#69715F]">
-                    {item.operations.slice(0, 2).join(" · ")}
+                <div className="pt-3.5 border-t border-[#D8D3C7] flex items-center justify-between gap-3">
+                  <span className="text-[11px] text-[#69715F] truncate">
+                    {item.operations[0]}
                   </span>
 
                   <Link
                     href="/contact?division=automotive"
-                    className="inline-flex items-center gap-1.5 shrink-0 text-xs font-medium uppercase tracking-[0.14em] text-[#45483F] hover:text-[#69715F]"
+                    className="inline-flex items-center gap-1.5 shrink-0 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.14em] text-[#45483F] hover:text-[#69715F]"
                   >
                     <span>{t.selectedWorks.bookAppointment}</span>
                     <ArrowRightIcon className="h-3.5 w-3.5 rtl:rotate-180" />
@@ -214,17 +217,17 @@ export function AutomotivePageClient() {
         className="section-padding bg-[#E8E4DA]"
       >
         <div className="container-editorial">
-          <div className="max-w-3xl pb-12 border-b border-[#D8D3C7]">
-            <p className="text-xs uppercase tracking-[0.22em] text-[#69715F] mb-3">
+          <div className="max-w-3xl pb-10 sm:pb-12 border-b border-[#D8D3C7]">
+            <p className="text-[11px] sm:text-xs uppercase tracking-[0.22em] text-[#69715F] mb-2.5 sm:mb-3">
               {t.automotivePage.servicesOverline}
             </p>
             <h2
               id="automotive-services-heading"
-              className="font-display-editorial text-4xl sm:text-5xl lg:text-6xl text-[#45483F]"
+              className="font-display-editorial text-3xl sm:text-5xl lg:text-6xl text-[#45483F]"
             >
               {t.automotivePage.servicesHeadline}
             </h2>
-            <p className="mt-4 text-base text-[#69715F] font-light leading-relaxed">
+            <p className="mt-3.5 sm:mt-4 text-sm sm:text-base text-[#69715F] font-light leading-relaxed">
               {t.automotivePage.servicesIntro}
             </p>
           </div>
@@ -247,19 +250,19 @@ export function AutomotivePageClient() {
         className="section-padding bg-[#F3F0E8] border-t border-[#D8D3C7]"
       >
         <div className="container-editorial">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 lg:mb-14">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-10 lg:mb-14">
             <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-[#69715F] mb-3">
+              <p className="text-[11px] sm:text-xs uppercase tracking-[0.22em] text-[#69715F] mb-2.5 sm:mb-3">
                 {t.automotivePage.surfaceOverline}
               </p>
               <h2
                 id="before-after-heading"
-                className="font-display-editorial text-4xl sm:text-5xl text-[#45483F]"
+                className="font-display-editorial text-3xl sm:text-5xl text-[#45483F]"
               >
                 {t.automotivePage.surfaceHeadline}
               </h2>
             </div>
-            <p className="text-sm text-[#69715F] max-w-md leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#69715F] max-w-md leading-relaxed">
               {t.automotivePage.surfaceDesc}
             </p>
           </div>
