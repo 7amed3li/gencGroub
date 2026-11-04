@@ -30,8 +30,8 @@ export function ConstructionAssemblyStory() {
     offset: ["start start", "end end"],
   });
 
+  // Scroll controls stage changes automatically on ALL screens (mobile & desktop)
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (typeof window !== "undefined" && window.innerWidth < 1024) return;
     if (latest < 0.24) setActiveStage(0);
     else if (latest < 0.52) setActiveStage(1);
     else if (latest < 0.78) setActiveStage(2);
@@ -61,13 +61,13 @@ export function ConstructionAssemblyStory() {
       id="insaat-montaj-hikayesi"
       ref={containerRef}
       aria-label="Genç Group İnşaat — 4K Architectural Build"
-      className="relative h-auto py-14 sm:py-20 lg:py-0 lg:h-[270vh] bg-[#E8E4DA] text-[#45483F] border-b border-[#D8D3C7]"
+      className="relative h-[210vh] lg:h-[260vh] bg-[#E8E4DA] text-[#45483F] border-b border-[#D8D3C7]"
     >
-      {/* Responsive Stage: Natural flow on Mobile, Sticky on Desktop */}
-      <div className="lg:sticky lg:top-0 lg:h-[100dvh] w-full lg:overflow-hidden flex items-center lg:pt-20 lg:pb-6">
+      {/* Sticky Viewport: Smooth scroll scrubbing on both mobile and desktop */}
+      <div className="sticky top-14 sm:top-16 lg:top-0 h-[calc(100dvh-3.5rem)] lg:h-[100dvh] w-full overflow-hidden flex items-center py-2 sm:py-4 lg:py-0">
         <div className="container-editorial relative z-20 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-12 items-center">
-            {/* 4K Photorealistic Layered Architectural Stage + Animated SVG Leader Arrows */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-7 lg:gap-12 items-center">
+            {/* 4K Layered Architectural Stage */}
             <div className="lg:col-span-7 order-1">
               <div
                 dir="ltr"
@@ -98,82 +98,79 @@ export function ConstructionAssemblyStory() {
                     className="absolute inset-0 w-full h-full"
                   >
                     <Image
-                      src="/images/exploded-architecture-4k.jpg"
-                      alt="Genç Group İnşaat 4K Foundation"
+                      src="/images/exploded/exploded-arch-base.jpg"
+                      alt="Traverten Kaide ve Radye Temel"
                       fill
-                      priority
                       unoptimized
-                      sizes="(max-width: 1024px) 100vw, 60vw"
+                      priority
                       className="object-cover object-center"
                     />
                   </motion.div>
 
-                  {/* LAYER 2: 4 ASHLAR STONE WALLS, BRONZE COLUMNS & GLASS */}
+                  {/* LAYER 2: BRUT CONCRETE COLUMNS & RESIDENTIAL CORE */}
                   <motion.div
                     style={{
-                      y: activeStage >= 1 ? 0 : tier2Y,
-                      opacity: activeStage >= 1 ? 1 : tier2Opacity,
+                      y: tier2Y,
+                      opacity: tier2Opacity,
                       clipPath:
-                        "polygon(0% 36.5%, 100% 36.5%, 100% 58%, 0% 58%)",
+                        "polygon(0% 31%, 100% 31%, 100% 58.5%, 0% 58.5%)",
                     }}
                     className="absolute inset-0 w-full h-full"
                   >
                     <Image
-                      src="/images/exploded-architecture-4k.jpg"
-                      alt="Genç Group İnşaat 4K Walls"
+                      src="/images/exploded/exploded-arch-base.jpg"
+                      alt="Taşıyıcı Brüt Beton Kolonlar ve Cam Cephe"
                       fill
-                      priority
                       unoptimized
-                      sizes="(max-width: 1024px) 100vw, 60vw"
                       className="object-cover object-center"
                     />
                   </motion.div>
 
-                  {/* LAYER 3: CANTILEVER SLAB & UPPER PENTHOUSE VOLUME */}
+                  {/* LAYER 3: CANTILEVER TERRACE & UPPER ROOF */}
                   <motion.div
                     style={{
-                      y: activeStage >= 2 ? 0 : tier3Y,
-                      opacity: activeStage >= 2 ? 1 : tier3Opacity,
-                      clipPath: "polygon(0% 0%, 100% 0%, 100% 37%, 0% 37%)",
+                      y: tier3Y,
+                      opacity: tier3Opacity,
+                      clipPath: "polygon(0% 0%, 100% 0%, 100% 32%, 0% 32%)",
                     }}
                     className="absolute inset-0 w-full h-full"
                   >
                     <Image
-                      src="/images/exploded-architecture-4k.jpg"
-                      alt="Genç Group İnşaat 4K Roof Slab"
+                      src="/images/exploded/exploded-arch-base.jpg"
+                      alt="Konsol Teras ve Üst Çatı Döşemesi"
                       fill
-                      priority
                       unoptimized
-                      sizes="(max-width: 1024px) 100vw, 60vw"
                       className="object-cover object-center"
                     />
                   </motion.div>
 
-                  {/* Architectural Datum Separation Hairlines */}
+                  {/* TECHNICAL ALIGNMENT GUIDES */}
                   <motion.div
                     style={{ opacity: seamLineOpacity }}
                     className="pointer-events-none absolute inset-0 z-10"
                   >
-                    <div className="absolute top-[36.8%] left-0 right-0 border-t border-dashed border-[#45483F]/60" />
-                    <div className="absolute top-[57.8%] left-0 right-0 border-t border-dashed border-[#45483F]/60" />
+                    <div className="absolute top-[32%] left-0 right-0 border-b border-dashed border-[#45483F]/50" />
+                    <div className="absolute top-[58%] left-0 right-0 border-b border-dashed border-[#45483F]/50" />
                   </motion.div>
 
-                  {/* ANIMATED SVG CALLOUT ARROWS */}
+                  {/* Dynamic SVG Leader Arrows */}
                   <svg
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 z-20 h-full w-full"
                     viewBox="0 0 100 100"
                     preserveAspectRatio="none"
-                    className="pointer-events-none absolute inset-0 z-20 h-full w-full"
                   >
                     <defs>
                       <marker
                         id="archArrowHead"
-                        markerWidth="4"
-                        markerHeight="4"
-                        refX="2.5"
-                        refY="2"
-                        orient="auto"
+                        viewBox="0 0 10 10"
+                        refX="6"
+                        refY="5"
+                        markerWidth="6"
+                        markerHeight="6"
+                        orient="auto-start-reverse"
                       >
-                        <path d="M0,0 L4,2 L0,4 Z" fill="#45483F" />
+                        <path d="M 0 1 L 8 5 L 0 9 z" fill="#45483F" />
                       </marker>
                     </defs>
 
@@ -198,7 +195,7 @@ export function ConstructionAssemblyStory() {
                     })}
                   </svg>
 
-                  {/* HTML Target Pins + Sleek Floating Pointer Labels */}
+                  {/* HTML Target Pins */}
                   <div className="pointer-events-none absolute inset-0 z-30">
                     {currentStage.callouts.map((c) => {
                       const badgeLeft =
@@ -243,8 +240,8 @@ export function ConstructionAssemblyStory() {
                 </motion.div>
               </div>
 
-              {/* Complete, Untruncated 3-Part Architectural Legend Strip */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2.5">
+              {/* Complete 3-Part Architectural Legend Strip (Desktop) */}
+              <div className="hidden sm:grid grid-cols-3 gap-2 pt-2.5">
                 {currentStage.callouts.map((c) => (
                   <div
                     key={c.id}
@@ -264,37 +261,46 @@ export function ConstructionAssemblyStory() {
                   </div>
                 ))}
               </div>
+
+              {/* Mobile Compact Callout Badges (Single sleek row) */}
+              <div className="sm:hidden flex items-center justify-between gap-1.5 pt-2">
+                {currentStage.callouts.map((c) => (
+                  <div
+                    key={c.id}
+                    className="flex-1 bg-[#F3F0E8] border border-[#D8D3C7] px-2 py-1.5 flex items-center gap-1.5 min-w-0"
+                  >
+                    <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#45483F] text-[#F3F0E8] text-[9px] font-bold">
+                      {c.num}
+                    </span>
+                    <p className="text-[10px] font-semibold text-[#45483F] leading-tight truncate">
+                      {c.title}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Narrative Column */}
-            <div className="lg:col-span-5 order-2 space-y-5 sm:space-y-6">
-              {/* Interactive 4-Step Progress Bar — Tappable on Mobile & Desktop */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+            <div className="lg:col-span-5 order-2 space-y-3 sm:space-y-5">
+              {/* Sleek 4-Step Progress Indicator (Synchronized with scroll automatically) */}
+              <div className="grid grid-cols-4 gap-2 sm:gap-3">
                 {stages.map((stage, idx) => {
                   const isActive = idx === activeStage;
+                  const isPassed = idx <= activeStage;
                   return (
-                    <button
+                    <div
                       key={stage.code}
-                      type="button"
-                      onClick={() => setActiveStage(idx)}
-                      className={cn(
-                        "text-start p-2.5 sm:p-0 sm:bg-transparent border sm:border-0 transition-all duration-300 cursor-pointer",
-                        isActive
-                          ? "bg-[#F3F0E8] border-[#45483F]"
-                          : "bg-[#F3F0E8]/60 border-[#D8D3C7] hover:border-[#69715F]"
-                      )}
+                      className="text-start transition-all duration-300"
                     >
                       <div
                         className={cn(
-                          "hidden sm:block h-[2px] w-full mb-1.5 transition-colors duration-500",
-                          idx <= activeStage
-                            ? "bg-[#45483F]"
-                            : "bg-[#A5AA98]/40"
+                          "h-[2px] w-full mb-1 sm:mb-1.5 transition-colors duration-500",
+                          isPassed ? "bg-[#45483F]" : "bg-[#A5AA98]/40"
                         )}
                       />
                       <span
                         className={cn(
-                          "block text-[11px] uppercase tracking-[0.06em] leading-snug",
+                          "block text-[10px] sm:text-[11px] uppercase tracking-[0.06em] leading-tight truncate",
                           isActive
                             ? "text-[#45483F] font-semibold"
                             : "text-[#69715F]"
@@ -302,30 +308,30 @@ export function ConstructionAssemblyStory() {
                       >
                         {stage.shortLabel}
                       </span>
-                    </button>
+                    </div>
                   );
                 })}
               </div>
 
-              <div className="space-y-2.5 sm:space-y-4">
-                <p className="text-[11px] uppercase tracking-[0.2em] text-[#69715F]">
+              <div className="space-y-1.5 sm:space-y-3">
+                <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-[#69715F]">
                   Genç Group İnşaat · {t.assembly.stageLabel} {currentStage.code}
                 </p>
-                <h2 className="font-display-editorial text-2xl sm:text-4xl lg:text-5xl text-[#45483F] leading-[1.12]">
+                <h2 className="font-display-editorial text-xl sm:text-3xl lg:text-5xl text-[#45483F] leading-[1.12]">
                   {currentStage.title}
                 </h2>
-                <p className="text-xs sm:text-base text-[#69715F] font-light leading-relaxed max-w-lg">
+                <p className="text-xs sm:text-base text-[#69715F] font-light leading-relaxed max-w-lg line-clamp-3 sm:line-clamp-none">
                   {currentStage.description}
                 </p>
               </div>
 
-              <div className="pt-1">
+              <div className="pt-0.5 sm:pt-2">
                 <Link
                   href="/construction"
-                  className="inline-flex items-center gap-2.5 border-b border-[#45483F]/60 pb-1.5 text-xs font-medium uppercase tracking-[0.16em] text-[#45483F] hover:border-[#45483F] transition-colors"
+                  className="inline-flex items-center gap-2 border-b border-[#45483F]/60 pb-1 text-[11px] sm:text-xs font-medium uppercase tracking-[0.16em] text-[#45483F] hover:border-[#45483F] transition-colors"
                 >
                   <span>{t.assembly.consCta}</span>
-                  <ArrowUpRightIcon className="h-4 w-4" />
+                  <ArrowUpRightIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 </Link>
               </div>
             </div>

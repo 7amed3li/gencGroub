@@ -29,8 +29,8 @@ export function AutomotiveAssemblyStory() {
     offset: ["start start", "end end"],
   });
 
+  // Scroll controls stage changes automatically on ALL screens (mobile & desktop)
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (typeof window !== "undefined" && window.innerWidth < 1024) return;
     if (latest < 0.24) setActiveStage(0);
     else if (latest < 0.52) setActiveStage(1);
     else if (latest < 0.76) setActiveStage(2);
@@ -73,174 +73,163 @@ export function AutomotiveAssemblyStory() {
       id="otomotiv-montaj-hikayesi"
       ref={containerRef}
       aria-label="AutoClub Merter — 4K Automotive Assembly"
-      className="relative h-auto py-14 sm:py-20 lg:py-0 lg:h-[270vh] bg-[#45483F] text-[#F3F0E8] border-b border-[#69715F]/40"
+      className="relative h-[210vh] lg:h-[260vh] bg-[#45483F] text-[#F3F0E8] border-b border-[#69715F]/40"
     >
-      {/* Responsive Stage: Natural flow on Mobile, Sticky on Desktop */}
-      <div className="lg:sticky lg:top-0 lg:h-[100dvh] w-full lg:overflow-hidden flex items-center lg:pt-20 lg:pb-6">
+      {/* Sticky Viewport: Smooth scroll scrubbing on both mobile and desktop */}
+      <div className="sticky top-14 sm:top-16 lg:top-0 h-[calc(100dvh-3.5rem)] lg:h-[100dvh] w-full overflow-hidden flex items-center py-2 sm:py-4 lg:py-0">
         <div className="container-editorial relative z-20 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-7 lg:gap-12 items-center">
             {/* Narrative Column */}
-            <div className="lg:col-span-5 order-2 lg:order-1 space-y-5 sm:space-y-6">
-              {/* Interactive 4-Step Stage Selector (Tappable on Mobile & Desktop) */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+            <div className="lg:col-span-5 order-2 lg:order-1 space-y-3 sm:space-y-5">
+              {/* Sleek 4-Step Progress Indicator (Synchronized with scroll automatically) */}
+              <div className="grid grid-cols-4 gap-2 sm:gap-3">
                 {stages.map((stage, idx) => {
                   const isActive = idx === activeStage;
+                  const isPassed = idx <= activeStage;
                   return (
-                    <button
+                    <div
                       key={stage.code}
-                      type="button"
-                      onClick={() => setActiveStage(idx)}
-                      className={cn(
-                        "text-start p-2.5 sm:p-0 sm:bg-transparent border sm:border-0 transition-all duration-300 cursor-pointer",
-                        isActive
-                          ? "bg-[#353830] border-[#F3F0E8]/50"
-                          : "bg-[#3A3D35]/60 border-[#A5AA98]/20 hover:border-[#A5AA98]/50"
-                      )}
+                      className="text-start transition-all duration-300"
                     >
                       <div
                         className={cn(
-                          "hidden sm:block h-[2px] w-full mb-1.5 transition-colors duration-500",
-                          idx <= activeStage
-                            ? "bg-[#F3F0E8]"
-                            : "bg-[#A5AA98]/25"
+                          "h-[2px] w-full mb-1 sm:mb-1.5 transition-colors duration-500",
+                          isPassed ? "bg-[#F3F0E8]" : "bg-[#A5AA98]/25"
                         )}
                       />
                       <span
                         className={cn(
-                          "block text-[11px] uppercase tracking-[0.06em] leading-snug",
+                          "block text-[10px] sm:text-[11px] uppercase tracking-[0.06em] leading-tight truncate",
                           isActive
                             ? "text-[#F3F0E8] font-semibold"
-                            : "text-[#D8D3C7]/70"
+                            : "text-[#A5AA98]"
                         )}
                       >
                         {stage.shortLabel}
                       </span>
-                    </button>
+                    </div>
                   );
                 })}
               </div>
 
-              <div className="space-y-2.5 sm:space-y-4">
-                <p className="text-[11px] uppercase tracking-[0.2em] text-[#A5AA98]">
+              <div className="space-y-1.5 sm:space-y-3">
+                <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-[#A5AA98]">
                   AutoClub Merter · {t.assembly.stageLabel} {currentStage.code}
                 </p>
-                <h2 className="font-display-editorial text-2xl sm:text-4xl lg:text-5xl text-[#F3F0E8] leading-[1.12]">
+                <h2 className="font-display-editorial text-xl sm:text-3xl lg:text-5xl text-[#F3F0E8] leading-[1.12]">
                   {currentStage.title}
                 </h2>
-                <p className="text-xs sm:text-base text-[#D8D3C7] font-light leading-relaxed max-w-lg">
+                <p className="text-xs sm:text-base text-[#D8D3C7] font-light leading-relaxed max-w-lg line-clamp-3 sm:line-clamp-none">
                   {currentStage.description}
                 </p>
               </div>
 
-              <div className="pt-1">
+              <div className="pt-0.5 sm:pt-2">
                 <Link
                   href="/automotive"
-                  className="inline-flex items-center gap-2.5 border-b border-[#F3F0E8]/60 pb-1.5 text-xs font-medium uppercase tracking-[0.16em] text-[#F3F0E8] hover:border-[#F3F0E8] transition-colors"
+                  className="inline-flex items-center gap-2 border-b border-[#F3F0E8]/40 pb-1 text-[11px] sm:text-xs font-medium uppercase tracking-[0.16em] text-[#F3F0E8] hover:border-[#F3F0E8] transition-colors"
                 >
                   <span>{t.assembly.autoCta}</span>
-                  <ArrowUpRightIcon className="h-4 w-4" />
+                  <ArrowUpRightIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 </Link>
               </div>
             </div>
 
-            {/* 4K Photorealistic Exploded-to-Assembled Car Stage + Animated SVG Leader Arrows */}
+            {/* 4K Layered Automotive Stage */}
             <div className="lg:col-span-7 order-1 lg:order-2">
               <div
                 dir="ltr"
-                className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden border border-[#A5AA98]/40 bg-[#353830] shadow-2xl"
+                className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden border border-[#69715F]/40 bg-[#353830] shadow-xl"
               >
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 opacity-20"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(to right, #A5AA98 1px, transparent 1px), linear-gradient(to bottom, #A5AA98 1px, transparent 1px)",
+                    backgroundSize: "2.5rem 2.5rem",
+                  }}
+                />
+
                 <motion.div
                   style={{ scale: imageZoom }}
                   className="relative w-full h-full"
                 >
-                  {/* BASE LAYER (Stages 1-3): 4K EXPLODED AUTOMOTIVE ANATOMY */}
+                  {/* LAYER 1: BASE CHASSIS */}
                   <motion.div
-                    style={{
-                      y: lowerChassisY,
-                      clipPath:
-                        "polygon(0% 45%, 100% 45%, 100% 100%, 0% 100%)",
-                    }}
+                    style={{ y: lowerChassisY }}
                     className="absolute inset-0 w-full h-full"
                   >
                     <Image
-                      src="/images/exploded-automotive-4k.jpg"
-                      alt="AutoClub Merter 4K Chassis"
+                      src="/images/exploded/exploded-auto-base.jpg"
+                      alt="Otomotiv Şasi ve Altyapı"
                       fill
-                      priority
                       unoptimized
-                      sizes="(max-width: 1024px) 100vw, 60vw"
+                      priority
                       className="object-cover object-center"
                     />
                   </motion.div>
 
+                  {/* LAYER 2: UPPER PANELS & DOORS */}
                   <motion.div
                     style={{
                       y: upperHoodDoorY,
                       opacity: upperHoodDoorOpacity,
-                      clipPath: "polygon(0% 0%, 100% 0%, 100% 46%, 0% 46%)",
                     }}
                     className="absolute inset-0 w-full h-full"
                   >
                     <Image
-                      src="/images/exploded-automotive-4k.jpg"
-                      alt="AutoClub Merter 4K Bodywork"
+                      src="/images/exploded/exploded-auto-base.jpg"
+                      alt="Kaporta ve Gövde Panelleri"
                       fill
-                      priority
                       unoptimized
-                      sizes="(max-width: 1024px) 100vw, 60vw"
                       className="object-cover object-center"
                     />
                   </motion.div>
 
-                  {/* STAGE 3: OPTICAL LED LASER BEAM SWEEPING ACROSS CAR */}
+                  {/* STAGE 3 SCANNER HUD BEAM */}
                   <motion.div
                     style={{
                       left: scannerLeft,
                       opacity: scannerOpacity,
                     }}
-                    className="pointer-events-none absolute top-0 bottom-0 z-15 w-20 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#F3F0E8]/45 to-transparent flex items-center justify-center"
+                    className="pointer-events-none absolute top-0 bottom-0 w-16 bg-gradient-to-r from-transparent via-[#E8E4DA]/40 to-transparent z-20"
                   >
-                    <div className="h-full w-[2px] bg-[#F3F0E8] shadow-[0_0_20px_#F3F0E8]" />
+                    <div className="h-full w-[2px] bg-[#F3F0E8] mx-auto shadow-[0_0_15px_#F3F0E8]" />
                   </motion.div>
 
-                  {/* STAGE 4 (or Mobile Tab 4): COMPLETED CLOSED-BODY 4K GRAND TOURER */}
+                  {/* STAGE 4 COMPLETE ASSEMBLED CAR */}
                   <motion.div
-                    style={
-                      activeStage === 3
-                        ? { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)" }
-                        : { clipPath: closedCarClip }
-                    }
-                    className="absolute inset-0 z-10 w-full h-full"
+                    style={{ clipPath: closedCarClip }}
+                    className="absolute inset-0 w-full h-full z-10"
                   >
                     <Image
-                      src="/images/atelier-daylight.jpg"
-                      alt="AutoClub Merter 4K Completed Finish"
+                      src="/images/exploded/auto-closed-complete.jpg"
+                      alt="AutoClub Merter Kusursuz Teslimat"
                       fill
-                      priority
                       unoptimized
-                      sizes="(max-width: 1024px) 100vw, 60vw"
                       className="object-cover object-center"
                     />
                   </motion.div>
 
-                  <div className="pointer-events-none absolute inset-0 z-15 bg-gradient-to-t from-[#262822]/45 via-transparent to-[#262822]/30" />
-
-                  {/* ANIMATED SVG CALLOUT ARROWS */}
+                  {/* Dynamic SVG Leader Arrows */}
                   <svg
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 z-20 h-full w-full"
                     viewBox="0 0 100 100"
                     preserveAspectRatio="none"
-                    className="pointer-events-none absolute inset-0 z-20 h-full w-full"
                   >
                     <defs>
                       <marker
-                        id="autoArrowHead"
-                        markerWidth="4"
-                        markerHeight="4"
-                        refX="2.5"
-                        refY="2"
-                        orient="auto"
+                        id="arrowHead"
+                        viewBox="0 0 10 10"
+                        refX="6"
+                        refY="5"
+                        markerWidth="6"
+                        markerHeight="6"
+                        orient="auto-start-reverse"
                       >
-                        <path d="M0,0 L4,2 L0,4 Z" fill="#F3F0E8" />
+                        <path d="M 0 1 L 8 5 L 0 9 z" fill="#F3F0E8" />
                       </marker>
                     </defs>
 
@@ -257,15 +246,15 @@ export function AutomotiveAssemblyStory() {
                             points={`${endX},${c.elbowY} ${c.elbowX},${c.elbowY} ${c.targetX},${c.targetY}`}
                             fill="none"
                             stroke="#F3F0E8"
-                            strokeWidth="0.5"
-                            markerEnd="url(#autoArrowHead)"
+                            strokeWidth="0.45"
+                            markerEnd="url(#arrowHead)"
                           />
                         </g>
                       );
                     })}
                   </svg>
 
-                  {/* HTML Target Nodes + Sleek Floating Pointer Labels */}
+                  {/* HTML Target Pins */}
                   <div className="pointer-events-none absolute inset-0 z-30">
                     {currentStage.callouts.map((c) => {
                       const badgeLeft =
@@ -280,7 +269,7 @@ export function AutomotiveAssemblyStory() {
                               left: `${c.targetX}%`,
                               top: `${c.targetY}%`,
                             }}
-                            className="absolute -translate-x-1/2 -translate-y-1/2 flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-[#F3F0E8] text-[#45483F] text-[9px] sm:text-[10px] font-bold shadow-lg ring-4 ring-[#45483F]/75"
+                            className="absolute -translate-x-1/2 -translate-y-1/2 flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-[#F3F0E8] text-[#45483F] text-[9px] sm:text-[10px] font-semibold shadow-md ring-4 ring-[#45483F]/70"
                           >
                             {c.num}
                           </motion.div>
@@ -295,7 +284,7 @@ export function AutomotiveAssemblyStory() {
                               top: `${c.elbowY}%`,
                             }}
                             className={cn(
-                              "hidden md:block absolute -translate-y-1/2 bg-[#45483F]/95 backdrop-blur-md border border-[#F3F0E8]/50 px-3 py-1.5 shadow-xl max-w-[230px]",
+                              "hidden md:block absolute -translate-y-1/2 bg-[#353830]/95 backdrop-blur-md border border-[#F3F0E8]/35 px-3 py-1.5 shadow-md max-w-[230px]",
                               c.cardAlign === "left" ? "-translate-x-full" : ""
                             )}
                           >
@@ -310,24 +299,41 @@ export function AutomotiveAssemblyStory() {
                 </motion.div>
               </div>
 
-              {/* Complete, Untruncated 3-Part Technical Legend Strip */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2.5">
+              {/* Complete 3-Part Automotive Legend Strip (Desktop) */}
+              <div className="hidden sm:grid grid-cols-3 gap-2 pt-2.5">
                 {currentStage.callouts.map((c) => (
                   <div
                     key={c.id}
-                    className="bg-[#3A3D35] border border-[#A5AA98]/35 px-3 py-2 flex items-start gap-2.5"
+                    className="bg-[#353830] border border-[#69715F]/40 px-3 py-2 flex items-start gap-2.5"
                   >
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#F3F0E8] text-[#45483F] text-[10px] font-bold">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#E8E4DA] text-[#45483F] text-[10px] font-bold">
                       {c.num}
                     </span>
                     <div className="min-w-0 flex-1">
                       <p className="text-[11px] font-semibold text-[#F3F0E8] leading-snug">
                         {c.title}
                       </p>
-                      <p className="text-[10px] text-[#D8D3C7] leading-snug mt-0.5">
+                      <p className="text-[10px] text-[#A5AA98] leading-snug mt-0.5">
                         {c.spec}
                       </p>
                     </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Mobile Compact Callout Badges (Single sleek row) */}
+              <div className="sm:hidden flex items-center justify-between gap-1.5 pt-2">
+                {currentStage.callouts.map((c) => (
+                  <div
+                    key={c.id}
+                    className="flex-1 bg-[#353830] border border-[#69715F]/40 px-2 py-1.5 flex items-center gap-1.5 min-w-0"
+                  >
+                    <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#E8E4DA] text-[#45483F] text-[9px] font-bold">
+                      {c.num}
+                    </span>
+                    <p className="text-[10px] font-semibold text-[#F3F0E8] leading-tight truncate">
+                      {c.title}
+                    </p>
                   </div>
                 ))}
               </div>
