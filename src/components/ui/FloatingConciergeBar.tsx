@@ -8,27 +8,28 @@ import {
   CloseIcon,
   PhoneIcon,
   WhatsAppIcon,
+  GencGroupMark,
 } from "@/components/ui/Icons";
 import { BRAND_INFO } from "@/content/siteData";
 import { useLanguage } from "@/context/LanguageContext";
 
 const CONCIERGE_COPY = {
   tr: {
-    pillLabel: "Hızlı İletişim",
-    title: "Genç Group Danışmanlık",
+    pillLabel: "Danışmanlık & İletişim",
+    title: "Genç Group Doğrudan Hat",
     autoLabel: "AutoClub Merter WhatsApp",
     autoPhone: "Atölye Telefon",
     consLabel: "Genç Group İnşaat Talebi",
   },
   en: {
-    pillLabel: "Quick Concierge",
+    pillLabel: "Concierge & Direct Line",
     title: "Genç Group Direct Line",
     autoLabel: "AutoClub Merter WhatsApp",
     autoPhone: "Atelier Direct Call",
     consLabel: "Genç Group İnşaat Inquiry",
   },
   ar: {
-    pillLabel: "تواصل سريع",
+    pillLabel: "الخط المباشر والاستشارة",
     title: "الخط المباشر — Genç Group",
     autoLabel: "واتساب AutoClub Merter",
     autoPhone: "اتصال هاتفي بالمركز",
@@ -70,7 +71,7 @@ export function FloatingConciergeBar() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.96 }}
                 transition={{ duration: 0.25 }}
-                className="mb-3 w-72 bg-[#F3F0E8] text-[#45483F] border border-[#D8D3C7] shadow-xl p-4 space-y-2.5"
+                className="mb-3 w-72 bg-[#F3F0E8] text-[#45483F] border border-[#D8D3C7] shadow-2xl p-4 space-y-2.5"
               >
                 <div className="flex items-center justify-between pb-2 border-b border-[#D8D3C7]">
                   <span className="text-[10px] uppercase tracking-[0.18em] text-[#69715F] font-semibold">
@@ -80,7 +81,7 @@ export function FloatingConciergeBar() {
                     type="button"
                     onClick={() => setOpen(false)}
                     aria-label="Close"
-                    className="text-[#69715F] hover:text-[#45483F]"
+                    className="text-[#69715F] hover:text-[#45483F] transition-colors"
                   >
                     <CloseIcon className="h-3.5 w-3.5" />
                   </button>
@@ -90,7 +91,7 @@ export function FloatingConciergeBar() {
                   href={auto.whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between px-3.5 py-2.5 bg-[#45483F] text-[#F3F0E8] text-xs hover:bg-[#69715F] transition-colors"
+                  className="flex items-center justify-between px-3.5 py-2.5 bg-[#45483F] text-[#F3F0E8] text-xs hover:bg-[#353830] transition-colors"
                 >
                   <span className="inline-flex items-center gap-2 font-medium">
                     <WhatsAppIcon className="h-4 w-4" />
@@ -123,21 +124,18 @@ export function FloatingConciergeBar() {
             )}
           </AnimatePresence>
 
+          {/* Luxury Monogram Concierge Button (Pure Architectural Identity - Zero AI Generic Dots) */}
           <button
             type="button"
             onClick={() => setOpen((prev) => !prev)}
-            className="group inline-flex items-center gap-2.5 bg-[#45483F]/95 hover:bg-[#45483F] text-[#F3F0E8] border border-[#D8D3C7]/45 backdrop-blur-md px-4 py-3 text-[11px] font-medium uppercase tracking-[0.16em] shadow-lg transition-all duration-300"
+            aria-label={c.pillLabel}
+            className="group inline-flex items-center gap-2.5 bg-[#45483F] hover:bg-[#353830] text-[#F3F0E8] border border-[#D8D3C7]/40 shadow-2xl px-4 py-3 text-[11px] font-medium uppercase tracking-[0.16em] transition-all duration-300"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#A5AA98] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F3F0E8]" />
-            </span>
-            <WhatsAppIcon className="h-3.5 w-3.5" />
-            <span>{c.pillLabel}</span>
+            <GencGroupMark className="h-4 w-4 text-[#D8D3C7] group-hover:scale-110 transition-transform" />
+            <span className="font-sans font-medium">{c.pillLabel}</span>
           </button>
         </motion.div>
       )}
     </AnimatePresence>
   );
 }
-

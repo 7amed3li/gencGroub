@@ -11,6 +11,7 @@ import {
   ParallaxImageWindow,
 } from "@/components/ui/StoryScrollArchitecture";
 import { LuxuryLightboxModal } from "@/components/ui/LuxuryLightboxModal";
+import { CreativePerspectiveCard } from "@/components/ui/CreativePerspectiveCard";
 import {
   getAutomotivePortfolio,
   getConstructionProjects,
@@ -55,7 +56,7 @@ export function SelectedWorksSection() {
         {/* Real Automotive Works — Framed Architectural Cards on Mobile & Desktop */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
           {featuredAutoWorks.map((item, idx) => (
-            <motion.article
+            <motion.div
               key={item.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -65,59 +66,61 @@ export function SelectedWorksSection() {
                 delay: idx * 0.1,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="group flex flex-col bg-[#E8E4DA]/55 border border-[#D8D3C7] p-4 sm:p-5"
+              className="h-full"
             >
-              <button
-                type="button"
-                onClick={() => setLightboxIndex(idx)}
-                aria-label={item.title}
-                className="luxury-image-frame is-revealed relative aspect-[4/3] sm:aspect-[4/5] w-full overflow-hidden bg-[#D8D3C7] mb-4 sm:mb-5 text-left cursor-pointer focus:outline-none"
-              >
-                <ArchitecturalCornerTicks light />
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-
-                <span className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-1.5 bg-[#2C2F28]/80 backdrop-blur-sm text-[#F3F0E8] border border-[#F3F0E8]/25 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] transition-colors group-hover:bg-[#45483F]">
-                  <span>{item.code}</span>
-                  <span>·</span>
-                  <span>+</span>
-                </span>
-              </button>
-
-              <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-[#69715F] mb-1.5">
-                {item.category}
-              </p>
-              <h3 className="font-display-editorial text-2xl sm:text-[1.6rem] text-[#45483F] mb-2 leading-snug">
+              <CreativePerspectiveCard tiltIntensity={5} className="group flex flex-col bg-[#E8E4DA]/55 border border-[#D8D3C7] p-4 sm:p-5 shadow-sm hover:shadow-xl">
                 <button
                   type="button"
                   onClick={() => setLightboxIndex(idx)}
-                  className="text-start hover:text-[#69715F] transition-colors"
+                  aria-label={item.title}
+                  className="luxury-image-frame is-revealed relative aspect-[4/3] sm:aspect-[4/5] w-full overflow-hidden bg-[#D8D3C7] mb-4 sm:mb-5 text-left cursor-pointer focus:outline-none"
                 >
-                  {item.title}
-                </button>
-              </h3>
-              <p className="text-xs sm:text-sm text-[#69715F] leading-relaxed mb-4 sm:mb-5 flex-1">
-                {item.summary}
-              </p>
+                  <ArchitecturalCornerTicks light />
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
 
-              <div className="pt-3.5 border-t border-[#D8D3C7] flex items-center justify-between gap-3">
-                <span className="text-[11px] text-[#69715F] truncate">
-                  {item.operations[0]}
-                </span>
-                <Link
-                  href="/contact?division=automotive"
-                  className="inline-flex items-center gap-1.5 shrink-0 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.14em] text-[#45483F] hover:text-[#69715F] transition-colors"
-                >
-                  <span>{t.selectedWorks.bookAppointment}</span>
-                  <ArrowRightIcon className="h-3.5 w-3.5 rtl:rotate-180" />
-                </Link>
-              </div>
-            </motion.article>
+                  <span className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-1.5 bg-[#2C2F28]/80 backdrop-blur-sm text-[#F3F0E8] border border-[#F3F0E8]/25 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] transition-colors group-hover:bg-[#45483F]">
+                    <span>{item.code}</span>
+                    <span>·</span>
+                    <span>+</span>
+                  </span>
+                </button>
+
+                <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-[#69715F] mb-1.5">
+                  {item.category}
+                </p>
+                <h3 className="font-display-editorial text-2xl sm:text-[1.6rem] text-[#45483F] mb-2 leading-snug">
+                  <button
+                    type="button"
+                    onClick={() => setLightboxIndex(idx)}
+                    className="text-start hover:text-[#69715F] transition-colors"
+                  >
+                    {item.title}
+                  </button>
+                </h3>
+                <p className="text-xs sm:text-sm text-[#69715F] leading-relaxed mb-4 sm:mb-5 flex-1">
+                  {item.summary}
+                </p>
+
+                <div className="pt-3.5 border-t border-[#D8D3C7] flex items-center justify-between gap-3">
+                  <span className="text-[11px] text-[#69715F] truncate">
+                    {item.operations[0]}
+                  </span>
+                  <Link
+                    href="/contact?division=automotive"
+                    className="inline-flex items-center gap-1.5 shrink-0 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.14em] text-[#45483F] hover:text-[#69715F] transition-colors"
+                  >
+                    <span>{t.selectedWorks.bookAppointment}</span>
+                    <ArrowRightIcon className="h-3.5 w-3.5 rtl:rotate-180" />
+                  </Link>
+                </div>
+              </CreativePerspectiveCard>
+            </motion.div>
           ))}
         </div>
 
@@ -142,34 +145,36 @@ export function SelectedWorksSection() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
             {constructionProjects.map((project, idx) => (
-              <motion.article
+              <motion.div
                 key={project.slug}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-10% 0px" }}
                 transition={{ duration: 0.7, delay: idx * 0.12 }}
-                className="group bg-[#E8E4DA]/55 border border-[#D8D3C7] p-4 sm:p-6"
+                className="h-full"
               >
-                <Link href={`/construction/projects/${project.slug}`}>
-                  <div className="mb-4 sm:mb-5">
-                    <ParallaxImageWindow
-                      src={project.heroImage}
-                      alt={project.title}
-                      aspectClassName="aspect-[16/10]"
-                      parallaxStrength={7}
-                    />
-                  </div>
-                  <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-[#69715F] mb-1.5">
-                    {project.category}
-                  </p>
-                  <h4 className="font-display-editorial text-2xl sm:text-3xl text-[#45483F] mb-2">
-                    {project.title}
-                  </h4>
-                  <p className="text-xs sm:text-sm text-[#69715F] leading-relaxed max-w-xl">
-                    {project.editorialSummary}
-                  </p>
-                </Link>
-              </motion.article>
+                <CreativePerspectiveCard tiltIntensity={4} className="group bg-[#E8E4DA]/55 border border-[#D8D3C7] p-4 sm:p-6 shadow-sm hover:shadow-xl">
+                  <Link href={`/construction/projects/${project.slug}`}>
+                    <div className="mb-4 sm:mb-5">
+                      <ParallaxImageWindow
+                        src={project.heroImage}
+                        alt={project.title}
+                        aspectClassName="aspect-[16/10]"
+                        parallaxStrength={7}
+                      />
+                    </div>
+                    <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-[#69715F] mb-1.5">
+                      {project.category}
+                    </p>
+                    <h4 className="font-display-editorial text-2xl sm:text-3xl text-[#45483F] mb-2">
+                      {project.title}
+                    </h4>
+                    <p className="text-xs sm:text-sm text-[#69715F] leading-relaxed max-w-xl">
+                      {project.editorialSummary}
+                    </p>
+                  </Link>
+                </CreativePerspectiveCard>
+              </motion.div>
             ))}
           </div>
         </div>
