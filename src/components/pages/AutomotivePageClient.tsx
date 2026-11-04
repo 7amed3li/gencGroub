@@ -6,13 +6,14 @@ import Link from "next/link";
 import {
   ArrowRightIcon,
   InstagramIcon,
+  WhatsAppIcon,
+  MapPinIcon,
 } from "@/components/ui/Icons";
 import {
   BRAND_INFO,
   getAutomotivePortfolio,
   getAutomotiveServices,
 } from "@/content/siteData";
-import { LedTunnelHero } from "@/components/automotive/LedTunnelHero";
 import { ServiceEditorialBlock } from "@/components/automotive/ServiceEditorialBlock";
 import { BeforeAfterSlider } from "@/components/automotive/BeforeAfterSlider";
 import { AutomotiveAssemblyStory } from "@/components/sections/AutomotiveAssemblyStory";
@@ -26,8 +27,78 @@ export function AutomotivePageClient() {
 
   return (
     <div className="bg-[#F3F0E8] text-[#45483F]">
-      {/* 1. Real LED Light-Tunnel Hero (mobile-first) */}
-      <LedTunnelHero />
+      {/* 1. Pure, Breathable Automotive Hero */}
+      <section className="relative min-h-[86vh] flex flex-col justify-between pt-28 pb-10 overflow-hidden bg-[#45483F] text-[#F3F0E8] border-b border-[#D8D3C7]">
+        <Image
+          src="/images/atelier-daylight.jpg"
+          alt="AutoClub Merter"
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+          className="object-cover object-center opacity-70"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#353830]/95 via-[#45483F]/55 to-[#353830]/60" />
+
+        <div aria-hidden="true" />
+
+        <div className="container-editorial relative z-10 my-auto py-10">
+          <div className="max-w-4xl">
+            <p className="text-[11px] sm:text-xs uppercase tracking-[0.24em] text-[#D8D3C7] mb-4 sm:mb-6">
+              {t.automotivePage.overline}
+            </p>
+
+            <h1 className="font-display-editorial text-4xl sm:text-6xl lg:text-7xl font-medium tracking-tight text-[#F3F0E8] leading-[1.04]">
+              {t.automotivePage.headline}
+            </h1>
+
+            <p className="mt-6 text-sm sm:text-lg text-[#D8D3C7] max-w-xl font-light leading-relaxed">
+              {t.automotivePage.subheadline}
+            </p>
+
+            <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-5 sm:gap-8">
+              <a
+                href={auto.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-[#F3F0E8] text-[#45483F] px-7 py-4 text-xs font-semibold uppercase tracking-[0.18em] transition-colors hover:bg-[#D8D3C7]"
+              >
+                <WhatsAppIcon className="h-4 w-4" />
+                <span>
+                  {t.automotivePage.appointmentBtn}: {auto.phoneDisplay}
+                </span>
+              </a>
+
+              <a
+                href="#gercek-uygulamalar"
+                className="group inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.18em] text-[#F3F0E8] border-b border-[#D8D3C7]/50 pb-1.5 hover:border-[#F3F0E8] transition-colors"
+              >
+                <span>{t.automotivePage.galleryLink}</span>
+                <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Single Clean Bottom Location Strip */}
+        <div className="container-editorial relative z-10">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[#D8D3C7]/20 pt-5 text-xs text-[#D8D3C7]/85">
+            <span className="inline-flex items-center gap-2">
+              <MapPinIcon className="h-4 w-4 shrink-0 text-[#A5AA98]" />
+              <span>{auto.address}</span>
+            </span>
+            <a
+              href={auto.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 uppercase tracking-[0.16em] text-[#F3F0E8] hover:text-[#D8D3C7] transition-colors"
+            >
+              <InstagramIcon className="h-4 w-4" />
+              <span>{auto.instagramHandle}</span>
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* 2. Interactive 4K Step-by-Step Automotive Assembly */}
       <AutomotiveAssemblyStory />
