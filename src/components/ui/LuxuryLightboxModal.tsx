@@ -228,3 +228,4 @@ export function LuxuryLightboxModal({
     </AnimatePresence>
   );
 }
+
