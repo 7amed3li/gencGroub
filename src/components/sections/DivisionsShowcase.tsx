@@ -93,8 +93,8 @@ export function DivisionsShowcase() {
 
             <div className="lg:col-span-7">
               <ParallaxImageWindow
-                src="/images/instagram/post-5.jpg"
-                alt="AutoClub Merter — BMW 5 Series"
+                src="/images/atelier/amg-gle-coupe-landscape.jpg"
+                alt="AutoClub Merter — Mercedes-AMG GLE Coupe LED Studio"
                 aspectClassName="aspect-[16/11]"
                 parallaxStrength={8}
               />
