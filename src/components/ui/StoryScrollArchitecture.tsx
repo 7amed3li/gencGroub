@@ -13,6 +13,51 @@ import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 
 /**
+ * Precision 4-Corner Architectural Hairline Ticks
+ */
+export function ArchitecturalCornerTicks({
+  light = true,
+}: {
+  light?: boolean;
+}) {
+  const borderColor = light
+    ? "border-[#F3F0E8]/65 group-hover:border-[#F3F0E8]"
+    : "border-[#45483F]/45 group-hover:border-[#45483F]";
+
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-2.5 z-20 transition-all duration-500 group-hover:inset-3.5"
+    >
+      <span
+        className={cn(
+          "absolute top-0 left-0 h-2.5 w-2.5 border-t border-l transition-colors duration-500",
+          borderColor
+        )}
+      />
+      <span
+        className={cn(
+          "absolute top-0 right-0 h-2.5 w-2.5 border-t border-r transition-colors duration-500",
+          borderColor
+        )}
+      />
+      <span
+        className={cn(
+          "absolute bottom-0 left-0 h-2.5 w-2.5 border-b border-l transition-colors duration-500",
+          borderColor
+        )}
+      />
+      <span
+        className={cn(
+          "absolute bottom-0 right-0 h-2.5 w-2.5 border-b border-r transition-colors duration-500",
+          borderColor
+        )}
+      />
+    </div>
+  );
+}
+
+/**
  * Fixed Top Progress Hairline + Side Interactive Story Chapter Spine
  */
 export function StoryProgressSpine() {
@@ -146,7 +191,8 @@ export function ParallaxImageWindow({
     <div
       ref={containerRef}
       className={cn(
-        "relative w-full overflow-hidden bg-[#D8D3C7]",
+        "group luxury-image-frame relative w-full overflow-hidden bg-[#D8D3C7]",
+        isInView && "is-revealed",
         aspectClassName,
         className
       )}
@@ -160,6 +206,9 @@ export function ParallaxImageWindow({
         className="pointer-events-none absolute inset-0 z-20 bg-[#D8D3C7]"
       />
 
+      {/* Architectural 4-Corner Ticks */}
+      <ArchitecturalCornerTicks light />
+
       <motion.div style={{ y, scale }} className="absolute inset-0 h-full w-full">
         <Image
           src={src}
@@ -168,7 +217,7 @@ export function ParallaxImageWindow({
           priority={priority}
           unoptimized
           sizes={sizes}
-          className="object-cover object-center"
+          className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
         />
       </motion.div>
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -17,6 +17,10 @@ import {
 import { ServiceEditorialBlock } from "@/components/automotive/ServiceEditorialBlock";
 import { BeforeAfterSlider } from "@/components/automotive/BeforeAfterSlider";
 import { AutomotiveAssemblyStory } from "@/components/sections/AutomotiveAssemblyStory";
+import { PrecisionMetricsStrip } from "@/components/sections/PrecisionMetricsStrip";
+import { LuxuryMarqueeStrip } from "@/components/ui/LuxuryMarqueeStrip";
+import { LuxuryLightboxModal } from "@/components/ui/LuxuryLightboxModal";
+import { ArchitecturalCornerTicks } from "@/components/ui/StoryScrollArchitecture";
 import { useLanguage } from "@/context/LanguageContext";
 
 export function AutomotivePageClient() {
@@ -24,6 +28,7 @@ export function AutomotivePageClient() {
   const auto = BRAND_INFO.automotiveDivision;
   const portfolioItems = getAutomotivePortfolio(locale);
   const services = getAutomotiveServices(locale);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   return (
     <div className="bg-[#F3F0E8] text-[#45483F]">
@@ -100,10 +105,16 @@ export function AutomotivePageClient() {
         </div>
       </section>
 
+      {/* Luxury Studio Marquee Ribbon */}
+      <LuxuryMarqueeStrip variant="stone" />
+
       {/* 2. Interactive 4K Step-by-Step Automotive Assembly */}
       <AutomotiveAssemblyStory />
 
-      {/* 3. Real Workshop Portfolio from @autoclubmerter */}
+      {/* Precision Atelier Metrics Bar */}
+      <PrecisionMetricsStrip />
+
+      {/* 3. Real Workshop Portfolio from AutoClub Merter Studio */}
       <section
         id="gercek-uygulamalar"
         aria-labelledby="automotive-portfolio-heading"
@@ -137,9 +148,15 @@ export function AutomotivePageClient() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16">
-            {portfolioItems.map((item) => (
+            {portfolioItems.map((item, idx) => (
               <article key={item.id} className="group flex flex-col">
-                <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#D8D3C7] mb-6">
+                <button
+                  type="button"
+                  onClick={() => setLightboxIndex(idx)}
+                  aria-label={item.title}
+                  className="luxury-image-frame is-revealed relative aspect-[4/5] w-full overflow-hidden bg-[#D8D3C7] mb-6 text-left cursor-pointer focus:outline-none"
+                >
+                  <ArchitecturalCornerTicks light />
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -147,13 +164,25 @@ export function AutomotivePageClient() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   />
-                </div>
+
+                  <span className="absolute bottom-4 right-4 z-20 inline-flex items-center gap-1.5 bg-[#2C2F28]/75 backdrop-blur-sm text-[#F3F0E8] border border-[#F3F0E8]/25 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] transition-colors group-hover:bg-[#45483F]">
+                    <span>{item.code}</span>
+                    <span>·</span>
+                    <span>+</span>
+                  </span>
+                </button>
 
                 <p className="text-[11px] uppercase tracking-[0.18em] text-[#69715F] mb-2">
                   {item.category}
                 </p>
                 <h3 className="font-display-editorial text-2xl sm:text-[1.65rem] text-[#45483F] leading-snug mb-3">
-                  {item.title}
+                  <button
+                    type="button"
+                    onClick={() => setLightboxIndex(idx)}
+                    className="text-start hover:text-[#69715F] transition-colors"
+                  >
+                    {item.title}
+                  </button>
                 </h3>
                 <p className="text-sm text-[#69715F] leading-relaxed mb-6 flex-1">
                   {item.summary}
@@ -238,7 +267,14 @@ export function AutomotivePageClient() {
           <BeforeAfterSlider />
         </div>
       </section>
+
+      {/* Fullscreen Studio Lightbox Inspector */}
+      <LuxuryLightboxModal
+        items={portfolioItems}
+        activeIndex={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onSelectIndex={(i) => setLightboxIndex(i)}
+      />
     </div>
   );
 }
-

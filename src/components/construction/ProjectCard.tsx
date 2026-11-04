@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRightIcon } from "@/components/ui/Icons";
+import { ArchitecturalCornerTicks } from "@/components/ui/StoryScrollArchitecture";
 import type { ConstructionProjectStudy } from "@/content/siteData";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -18,7 +19,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
     <article className="group flex flex-col justify-between">
       <div>
         <Link href={`/construction/projects/${project.slug}`}>
-          <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#D8D3C7] mb-6">
+          <div className="luxury-image-frame is-revealed relative aspect-[16/10] w-full overflow-hidden bg-[#D8D3C7] mb-6">
+            <ArchitecturalCornerTicks light />
             <Image
               src={project.heroImage}
               alt={project.title}

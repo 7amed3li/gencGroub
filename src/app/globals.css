@@ -165,6 +165,97 @@ body {
   border-color: var(--color-deep-olive);
 }
 
+/* ==========================================================================
+   LUXURY ARCHITECTURAL FRAMES, CORNER TICKS & SILK SHIMMER
+   ========================================================================== */
+
+.luxury-image-frame {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Inner architectural hairline border */
+.luxury-image-frame::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(243, 240, 232, 0.28);
+  pointer-events: none;
+  z-index: 15;
+  transition: inset 500ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 500ms ease;
+}
+
+.group:hover .luxury-image-frame::before,
+.luxury-image-frame:hover::before {
+  inset: 14px;
+  border-color: rgba(243, 240, 232, 0.55);
+}
+
+/* Silk light sweep across photography */
+@keyframes luxury-sheen-sweep {
+  0% {
+    transform: translateX(-140%) skewX(-18deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  65% {
+    transform: translateX(220%) skewX(-18deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(220%) skewX(-18deg);
+    opacity: 0;
+  }
+}
+
+.luxury-image-frame::after {
+  content: "";
+  position: absolute;
+  top: -15%;
+  bottom: -15%;
+  left: 0;
+  width: 45%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(243, 240, 232, 0.08) 35%,
+    rgba(243, 240, 232, 0.26) 50%,
+    rgba(243, 240, 232, 0.08) 65%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 14;
+  transform: translateX(-140%) skewX(-18deg);
+}
+
+.luxury-image-frame.is-revealed::after,
+.group:hover .luxury-image-frame::after {
+  animation: luxury-sheen-sweep 1.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Marquee Ribbon Animation */
+@keyframes luxury-marquee {
+  0% {
+    transform: translate3d(0%, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-luxury-marquee {
+  display: flex;
+  width: max-content;
+  animation: luxury-marquee 38s linear infinite;
+}
+
+.animate-luxury-marquee:hover {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

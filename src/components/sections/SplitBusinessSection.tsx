@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRightIcon } from "@/components/ui/Icons";
+import { ArchitecturalCornerTicks } from "@/components/ui/StoryScrollArchitecture";
 import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 
@@ -50,7 +51,7 @@ export function SplitBusinessSection() {
           onMouseEnter={() => setActiveSide("automotive")}
           onFocus={() => setActiveSide("automotive")}
           className={cn(
-            "group relative flex flex-col justify-end overflow-hidden p-7 sm:p-12 lg:p-16 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] border-b lg:border-b-0 lg:border-e border-[#F3F0E8]/15 aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto",
+            "group luxury-image-frame is-revealed relative flex flex-col justify-end overflow-hidden p-7 sm:p-12 lg:p-16 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] border-b lg:border-b-0 lg:border-e border-[#F3F0E8]/15 aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto",
             activeSide === "automotive"
               ? "lg:flex-[1.45]"
               : activeSide === "construction"
@@ -58,6 +59,7 @@ export function SplitBusinessSection() {
                 : "lg:flex-1"
           )}
         >
+          <ArchitecturalCornerTicks light />
           <Image
             src="/images/atelier-daylight.jpg"
             alt="AutoClub Merter"
@@ -92,7 +94,7 @@ export function SplitBusinessSection() {
           onMouseEnter={() => setActiveSide("construction")}
           onFocus={() => setActiveSide("construction")}
           className={cn(
-            "group relative flex flex-col justify-end overflow-hidden p-7 sm:p-12 lg:p-16 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto",
+            "group luxury-image-frame is-revealed relative flex flex-col justify-end overflow-hidden p-7 sm:p-12 lg:p-16 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto",
             activeSide === "construction"
               ? "lg:flex-[1.45]"
               : activeSide === "automotive"
@@ -100,6 +102,7 @@ export function SplitBusinessSection() {
                 : "lg:flex-1"
           )}
         >
+          <ArchitecturalCornerTicks light />
           <Image
             src="/images/architecture-limestone.jpg"
             alt="Genç Group İnşaat"

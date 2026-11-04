@@ -7,6 +7,7 @@ import {
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { FloatingConciergeBar } from "@/components/ui/FloatingConciergeBar";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { constructMetadata, getOrganizationSchema } from "@/lib/seo";
 
@@ -64,6 +65,7 @@ export default function RootLayout({
           <main id="main-content" className="flex-1">
             {children}
           </main>
+          <FloatingConciergeBar />
           <Footer />
         </LanguageProvider>
       </body>

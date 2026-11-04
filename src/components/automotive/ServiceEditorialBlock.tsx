@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRightIcon, CheckIcon } from "@/components/ui/Icons";
+import { ArchitecturalCornerTicks } from "@/components/ui/StoryScrollArchitecture";
 import type { AutomotiveService } from "@/content/siteData";
 import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
@@ -22,7 +23,7 @@ export function ServiceEditorialBlock({
   return (
     <article
       id={service.slug}
-      className="scroll-mt-28 py-16 lg:py-24 border-b border-[#D8D3C7] last:border-b-0"
+      className="group scroll-mt-28 py-16 lg:py-24 border-b border-[#D8D3C7] last:border-b-0"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         <div
@@ -31,13 +32,14 @@ export function ServiceEditorialBlock({
             reversed ? "lg:order-2" : "lg:order-1"
           )}
         >
-          <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#D8D3C7]">
+          <div className="luxury-image-frame is-revealed relative aspect-[16/11] w-full overflow-hidden bg-[#D8D3C7]">
+            <ArchitecturalCornerTicks light />
             <Image
               src={service.image}
               alt={service.imageAlt}
               fill
               sizes="(max-width: 1024px) 100vw, 60vw"
-              className="object-cover"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
           </div>
         </div>
@@ -50,7 +52,7 @@ export function ServiceEditorialBlock({
         >
           <div className="space-y-2">
             <p className="text-xs uppercase tracking-[0.18em] text-[#69715F]">
-              {service.titleEn}
+              {service.index} · {service.titleEn}
             </p>
             <h2 className="font-display-editorial text-4xl sm:text-5xl text-[#45483F]">
               {service.title}

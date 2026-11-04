@@ -1,9 +1,11 @@
 import React from "react";
 import { StoryProgressSpine } from "@/components/ui/StoryScrollArchitecture";
+import { LuxuryMarqueeStrip } from "@/components/ui/LuxuryMarqueeStrip";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { SplitBusinessSection } from "@/components/sections/SplitBusinessSection";
 import { AutomotiveAssemblyStory } from "@/components/sections/AutomotiveAssemblyStory";
 import { ConstructionAssemblyStory } from "@/components/sections/ConstructionAssemblyStory";
+import { PrecisionMetricsStrip } from "@/components/sections/PrecisionMetricsStrip";
 import { GroupIntroSection } from "@/components/sections/GroupIntroSection";
 import { DivisionsShowcase } from "@/components/sections/DivisionsShowcase";
 import { SelectedWorksSection } from "@/components/sections/SelectedWorksSection";
@@ -19,6 +21,9 @@ export default function HomePage() {
       {/* Chapter I: Origin & Vision — Cinematic Multi-Depth Parallax Hero */}
       <HeroSection />
 
+      {/* Quiet Luxury Signature Marquee Ribbon */}
+      <LuxuryMarqueeStrip variant="stone" />
+
       {/* Chapter II: Dual Worlds — Interactive Split-Screen Selection */}
       <SplitBusinessSection />
 
@@ -27,6 +32,9 @@ export default function HomePage() {
 
       {/* Chapter IV: Brick-by-Brick & Wall-by-Wall Building Assembly (Foundation -> 4 Walls -> Roof & Glass) */}
       <ConstructionAssemblyStory />
+
+      {/* Precision Engineering & Atelier Standards Strip */}
+      <PrecisionMetricsStrip />
 
       {/* Chapter V: Philosophy — Scroll-Linked Central Spine & Narrative */}
       <GroupIntroSection />

@@ -1,14 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRightIcon } from "@/components/ui/Icons";
 import {
+  ArchitecturalCornerTicks,
   EditorialReveal,
   ParallaxImageWindow,
 } from "@/components/ui/StoryScrollArchitecture";
+import { LuxuryLightboxModal } from "@/components/ui/LuxuryLightboxModal";
 import {
   getAutomotivePortfolio,
   getConstructionProjects,
@@ -17,8 +19,10 @@ import { useLanguage } from "@/context/LanguageContext";
 
 export function SelectedWorksSection() {
   const { locale, t } = useLanguage();
-  const featuredAutoWorks = getAutomotivePortfolio(locale).slice(0, 3);
+  const allAutoWorks = getAutomotivePortfolio(locale);
+  const featuredAutoWorks = allAutoWorks.slice(0, 3);
   const constructionProjects = getConstructionProjects(locale);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   return (
     <section
@@ -63,7 +67,13 @@ export function SelectedWorksSection() {
               }}
               className="group flex flex-col"
             >
-              <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#D8D3C7] mb-6">
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(idx)}
+                aria-label={item.title}
+                className="luxury-image-frame is-revealed relative aspect-[4/5] w-full overflow-hidden bg-[#D8D3C7] mb-6 text-left cursor-pointer focus:outline-none"
+              >
+                <ArchitecturalCornerTicks light />
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -71,13 +81,26 @@ export function SelectedWorksSection() {
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-              </div>
+
+                {/* Subtle Studio Number & Inspect Pill */}
+                <span className="absolute bottom-4 right-4 z-20 inline-flex items-center gap-1.5 bg-[#2C2F28]/75 backdrop-blur-sm text-[#F3F0E8] border border-[#F3F0E8]/25 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] transition-colors group-hover:bg-[#45483F]">
+                  <span>{item.code}</span>
+                  <span>·</span>
+                  <span>+</span>
+                </span>
+              </button>
 
               <p className="text-[11px] uppercase tracking-[0.18em] text-[#69715F] mb-2">
                 {item.category}
               </p>
               <h3 className="font-display-editorial text-2xl sm:text-[1.65rem] text-[#45483F] mb-2.5 leading-snug">
-                {item.title}
+                <button
+                  type="button"
+                  onClick={() => setLightboxIndex(idx)}
+                  className="text-start hover:text-[#69715F] transition-colors"
+                >
+                  {item.title}
+                </button>
               </h3>
               <p className="text-sm text-[#69715F] leading-relaxed mb-5 flex-1">
                 {item.summary}
@@ -152,6 +175,14 @@ export function SelectedWorksSection() {
           </div>
         </div>
       </div>
+
+      {/* Fullscreen Studio Lightbox Inspector */}
+      <LuxuryLightboxModal
+        items={allAutoWorks}
+        activeIndex={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onSelectIndex={(i) => setLightboxIndex(i)}
+      />
     </section>
   );
 }
