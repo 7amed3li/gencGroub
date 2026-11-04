@@ -93,3 +93,4 @@ export function AboutPageClient() {
     </div>
   );
 }
+
