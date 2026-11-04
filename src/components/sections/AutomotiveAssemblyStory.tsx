@@ -161,7 +161,7 @@ export function AutomotiveAssemblyStory() {
                     className="absolute inset-0 w-full h-full"
                   >
                     <Image
-                      src="/images/exploded/exploded-auto-base.jpg"
+                      src="/images/exploded-automotive-4k.jpg"
                       alt="Otomotiv Şasi ve Altyapı"
                       fill
                       unoptimized
@@ -179,7 +179,7 @@ export function AutomotiveAssemblyStory() {
                     className="absolute inset-0 w-full h-full"
                   >
                     <Image
-                      src="/images/exploded/exploded-auto-base.jpg"
+                      src="/images/exploded-automotive-4k.jpg"
                       alt="Kaporta ve Gövde Panelleri"
                       fill
                       unoptimized
@@ -204,7 +204,7 @@ export function AutomotiveAssemblyStory() {
                     className="absolute inset-0 w-full h-full z-10"
                   >
                     <Image
-                      src="/images/exploded/auto-closed-complete.jpg"
+                      src="/images/hero-automotive.png"
                       alt="AutoClub Merter Kusursuz Teslimat"
                       fill
                       unoptimized

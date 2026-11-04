@@ -98,7 +98,7 @@ export function ConstructionAssemblyStory() {
                     className="absolute inset-0 w-full h-full"
                   >
                     <Image
-                      src="/images/exploded/exploded-arch-base.jpg"
+                      src="/images/exploded-architecture-4k.jpg"
                       alt="Traverten Kaide ve Radye Temel"
                       fill
                       unoptimized
@@ -118,7 +118,7 @@ export function ConstructionAssemblyStory() {
                     className="absolute inset-0 w-full h-full"
                   >
                     <Image
-                      src="/images/exploded/exploded-arch-base.jpg"
+                      src="/images/exploded-architecture-4k.jpg"
                       alt="Taşıyıcı Brüt Beton Kolonlar ve Cam Cephe"
                       fill
                       unoptimized
@@ -136,7 +136,7 @@ export function ConstructionAssemblyStory() {
                     className="absolute inset-0 w-full h-full"
                   >
                     <Image
-                      src="/images/exploded/exploded-arch-base.jpg"
+                      src="/images/exploded-architecture-4k.jpg"
                       alt="Konsol Teras ve Üst Çatı Döşemesi"
                       fill
                       unoptimized
