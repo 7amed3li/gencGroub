@@ -159,20 +159,14 @@ export function AutomotivePageClient() {
                   {item.summary}
                 </p>
 
-                <div className="pt-4 border-t border-[#D8D3C7] flex items-center justify-between">
-                  <a
-                    href={item.instagramPostUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.16em] text-[#45483F] hover:text-[#69715F]"
-                  >
-                    <InstagramIcon className="h-4 w-4" />
-                    <span>{t.selectedWorks.videoLink}</span>
-                  </a>
+                <div className="pt-4 border-t border-[#D8D3C7] flex items-center justify-between gap-4">
+                  <span className="text-[11px] text-[#69715F]">
+                    {item.operations.slice(0, 2).join(" · ")}
+                  </span>
 
                   <Link
                     href="/contact?division=automotive"
-                    className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.14em] text-[#69715F] hover:text-[#45483F]"
+                    className="inline-flex items-center gap-1.5 shrink-0 text-xs font-medium uppercase tracking-[0.14em] text-[#45483F] hover:text-[#69715F]"
                   >
                     <span>{t.selectedWorks.bookAppointment}</span>
                     <ArrowRightIcon className="h-3.5 w-3.5 rtl:rotate-180" />

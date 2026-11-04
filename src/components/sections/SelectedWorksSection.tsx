@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRightIcon, InstagramIcon } from "@/components/ui/Icons";
+import { ArrowRightIcon } from "@/components/ui/Icons";
 import {
   EditorialReveal,
   ParallaxImageWindow,
@@ -83,15 +83,18 @@ export function SelectedWorksSection() {
                 {item.summary}
               </p>
 
-              <a
-                href={item.instagramPostUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.16em] text-[#45483F] hover:text-[#69715F] transition-colors pt-3 border-t border-[#D8D3C7]"
-              >
-                <InstagramIcon className="h-4 w-4" />
-                <span>{t.selectedWorks.videoLink}</span>
-              </a>
+              <div className="pt-3.5 border-t border-[#D8D3C7] flex items-center justify-between gap-4">
+                <span className="text-[11px] text-[#69715F] truncate">
+                  {item.operations.slice(0, 2).join(" · ")}
+                </span>
+                <Link
+                  href="/contact?division=automotive"
+                  className="inline-flex items-center gap-1.5 shrink-0 text-xs font-medium uppercase tracking-[0.14em] text-[#45483F] hover:text-[#69715F] transition-colors"
+                >
+                  <span>{t.selectedWorks.bookAppointment}</span>
+                  <ArrowRightIcon className="h-3.5 w-3.5 rtl:rotate-180" />
+                </Link>
+              </div>
             </motion.article>
           ))}
         </div>
