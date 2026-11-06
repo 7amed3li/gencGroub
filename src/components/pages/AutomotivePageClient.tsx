@@ -39,7 +39,6 @@ export function AutomotivePageClient() {
           alt="AutoClub Merter"
           fill
           priority
-          unoptimized
           sizes="100vw"
           className="object-cover object-center opacity-70"
         />
@@ -49,13 +48,13 @@ export function AutomotivePageClient() {
 
         <div className="container-editorial relative z-10 my-auto py-8 sm:py-10">
           <div className="max-w-4xl">
-            <p className="text-[11px] sm:text-xs uppercase tracking-[0.22em] text-[#D8D3C7] mb-3.5 sm:mb-6">
+            <h1 className="text-[11px] sm:text-xs uppercase tracking-[0.22em] text-[#D8D3C7] mb-3.5 sm:mb-6 font-normal leading-relaxed">
               {t.automotivePage.overline}
-            </p>
-
-            <h1 className="font-display-editorial text-[2.35rem] sm:text-6xl lg:text-7xl font-medium tracking-tight text-[#F3F0E8] leading-[1.06]">
-              {t.automotivePage.headline}
             </h1>
+
+            <p className="font-display-editorial text-[2.35rem] sm:text-6xl lg:text-7xl font-medium tracking-tight text-[#F3F0E8] leading-[1.06]">
+              {t.automotivePage.headline}
+            </p>
 
             <p className="mt-5 sm:mt-6 text-sm sm:text-lg text-[#D8D3C7] max-w-xl font-light leading-relaxed">
               {t.automotivePage.subheadline}

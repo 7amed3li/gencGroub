@@ -65,7 +65,7 @@ export function DivisionsShowcase() {
                     transition={{ duration: 0.5, delay: idx * 0.07 }}
                   >
                     <Link
-                      href={`/automotive#${service.slug}`}
+                      href={`/automotive/services/${service.slug}`}
                       className="group flex items-center justify-between gap-4 py-3.5 sm:py-4 transition-colors hover:text-[#69715F]"
                     >
                       <div className="min-w-0">

@@ -9,6 +9,12 @@ import type { AutomotiveService } from "@/content/siteData";
 import { useLanguage } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 
+const DETAIL_LABEL = {
+  tr: "Hizmet Detayları",
+  en: "Service Details",
+  ar: "تفاصيل الخدمة",
+} as const;
+
 interface ServiceEditorialBlockProps {
   service: AutomotiveService;
   reversed?: boolean;
@@ -18,7 +24,7 @@ export function ServiceEditorialBlock({
   service,
   reversed = false,
 }: ServiceEditorialBlockProps) {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   return (
     <article
@@ -76,7 +82,23 @@ export function ServiceEditorialBlock({
             ))}
           </ul>
 
-          <div className="pt-4">
+          <div className="pt-4 flex flex-wrap gap-x-8 gap-y-3">
+            <Link
+              href={`/automotive/services/${service.slug}`}
+              className="link-editorial"
+            >
+              <span>{DETAIL_LABEL[locale]}</span>
+              <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />
+            </Link>
+            {service.slug === "oto-boya" && (
+              <Link
+                href="/automotive/services/ppf-seramik-kaplama"
+                className="link-editorial"
+              >
+                <span>PPF & Seramik Kaplama</span>
+                <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />
+              </Link>
+            )}
             <Link
               href={`/contact?division=automotive&service=${service.slug}`}
               className="link-editorial"

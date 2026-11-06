@@ -39,7 +39,6 @@ export function HeroSection() {
             alt="Genç Group — Otomotiv ve Mimari Yapı"
             fill
             priority
-            unoptimized
             sizes="100vw"
             className="object-cover object-center opacity-70"
           />
@@ -56,23 +55,14 @@ export function HeroSection() {
         className="container-editorial relative z-10 my-auto py-8 sm:py-10"
       >
         <div className="max-w-4xl">
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[11px] sm:text-xs uppercase text-[#D8D3C7] tracking-[0.22em] mb-3.5 sm:mb-6"
-          >
+          {/* SEO: descriptive H1 rendered visible in the initial HTML (no entrance opacity). */}
+          <h1 className="text-[11px] sm:text-xs uppercase text-[#D8D3C7] tracking-[0.22em] mb-3.5 sm:mb-6 font-normal leading-relaxed">
             {t.hero.overline}
-          </motion.p>
+          </h1>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display-editorial text-[2.35rem] sm:text-6xl lg:text-[5.25rem] font-medium tracking-tight text-[#F3F0E8] leading-[1.06]"
-          >
+          <p className="font-display-editorial text-[2.35rem] sm:text-6xl lg:text-[5.25rem] font-medium tracking-tight text-[#F3F0E8] leading-[1.06]">
             {t.hero.headline}
-          </motion.h1>
+          </p>
 
           <motion.p
             initial={{ opacity: 0, y: 18 }}

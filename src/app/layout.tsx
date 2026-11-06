@@ -9,7 +9,12 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingConciergeBar } from "@/components/ui/FloatingConciergeBar";
 import { LanguageProvider } from "@/context/LanguageContext";
-import { constructMetadata, getOrganizationSchema } from "@/lib/seo";
+import {
+  constructMetadata,
+  getAutoClubSchema,
+  getOrganizationSchema,
+} from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin", "latin-ext"],
@@ -34,9 +39,9 @@ const notoKufiArabic = Noto_Kufi_Arabic({
 });
 
 export const metadata: Metadata = constructMetadata({
-  title: "Genç Group — Otomotiv & İnşaat",
+  title: "Genç Group | Merter Oto Kaporta, Boya & PPF · Genç Group İnşaat",
   description:
-    "Genç Group; AutoClub Merter ile kaporta onarımı, oto boya ve boyasız göçük düzeltme hizmetlerinde, Genç Group İnşaat ile modern yapı ve mimari çözümlerde faaliyet gösterir.",
+    "Genç Group; Merter / Güngören'deki AutoClub Merter atölyesinde kaporta, oto boya, boyasız göçük düzeltme ve PPF hizmetleri, Genç Group İnşaat ile yapı çözümleri sunar.",
   path: "/",
 });
 
@@ -45,7 +50,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const organizationSchema = getOrganizationSchema();
 
   return (
     <html
@@ -55,12 +59,8 @@ export default function RootLayout({
     >
       <body className="flex min-h-screen flex-col bg-[#F3F0E8] text-[#45483F] antialiased">
         <LanguageProvider>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify(organizationSchema),
-            }}
-          />
+          {/* Footer on every page shows AutoClub Merter NAP, so the entity is site-wide. */}
+          <JsonLd data={[getOrganizationSchema(), getAutoClubSchema()]} />
           <Navbar />
           <main id="main-content" className="flex-1">
             {children}

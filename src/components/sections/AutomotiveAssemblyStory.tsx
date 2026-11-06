@@ -164,7 +164,6 @@ export function AutomotiveAssemblyStory() {
                       src="/images/exploded-automotive-4k.jpg"
                       alt="Otomotiv Şasi ve Altyapı"
                       fill
-                      unoptimized
                       priority
                       className="object-cover object-center"
                     />
@@ -182,7 +181,6 @@ export function AutomotiveAssemblyStory() {
                       src="/images/exploded-automotive-4k.jpg"
                       alt="Kaporta ve Gövde Panelleri"
                       fill
-                      unoptimized
                       className="object-cover object-center"
                     />
                   </motion.div>
@@ -207,7 +205,6 @@ export function AutomotiveAssemblyStory() {
                       src="/images/hero-automotive.png"
                       alt="AutoClub Merter Kusursuz Teslimat"
                       fill
-                      unoptimized
                       className="object-cover object-center"
                     />
                   </motion.div>

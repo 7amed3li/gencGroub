@@ -101,7 +101,6 @@ export function ConstructionAssemblyStory() {
                       src="/images/exploded-architecture-4k.jpg"
                       alt="Traverten Kaide ve Radye Temel"
                       fill
-                      unoptimized
                       priority
                       className="object-cover object-center"
                     />
@@ -121,7 +120,6 @@ export function ConstructionAssemblyStory() {
                       src="/images/exploded-architecture-4k.jpg"
                       alt="Taşıyıcı Brüt Beton Kolonlar ve Cam Cephe"
                       fill
-                      unoptimized
                       className="object-cover object-center"
                     />
                   </motion.div>
@@ -139,7 +137,6 @@ export function ConstructionAssemblyStory() {
                       src="/images/exploded-architecture-4k.jpg"
                       alt="Konsol Teras ve Üst Çatı Döşemesi"
                       fill
-                      unoptimized
                       className="object-cover object-center"
                     />
                   </motion.div>

@@ -215,7 +215,6 @@ export function ParallaxImageWindow({
           alt={alt}
           fill
           priority={priority}
-          unoptimized
           sizes={sizes}
           className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
         />

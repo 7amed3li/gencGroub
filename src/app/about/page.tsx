@@ -4,7 +4,7 @@ import { constructMetadata } from "@/lib/seo";
 import { AboutPageClient } from "@/components/pages/AboutPageClient";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Hakkımızda — Kurumsal Yapı ve Faaliyet Alanları",
+  title: "Hakkımızda — AutoClub Merter ve Genç Group İnşaat | Genç Group",
   description:
     "Genç Group; otomotiv sektöründe AutoClub Merter ve yapı sektöründe Genç Group İnşaat markalarıyla faaliyet gösteren kurumsal yapıdır.",
   path: "/about",

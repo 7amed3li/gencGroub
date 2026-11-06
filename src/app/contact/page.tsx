@@ -4,7 +4,7 @@ import { constructMetadata } from "@/lib/seo";
 import { ContactPageClient } from "@/components/pages/ContactPageClient";
 
 export const metadata: Metadata = constructMetadata({
-  title: "İletişim — AutoClub Merter & Genç Group İnşaat",
+  title: "İletişim ve Randevu — AutoClub Merter & Genç Group İnşaat",
   description:
     "Genç Group Otomotiv (AutoClub Merter — 0543 819 30 24, Merter / Güngören) ve Genç Group İnşaat bölümleri için doğrudan iletişim kanalları.",
   path: "/contact",

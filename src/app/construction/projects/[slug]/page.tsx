@@ -23,17 +23,20 @@ export async function generateMetadata({
 
   if (!project) {
     return constructMetadata({
-      title: "Proje Bulunamadı",
+      title: "Proje Bulunamadı | Genç Group İnşaat",
       description: "Aradığınız proje bulunamadı.",
       path: "/construction/projects",
+      noIndex: true,
     });
   }
 
   return constructMetadata({
-    title: `${project.title} — Genç Group İnşaat`,
+    title: `${project.title} | Genç Group İnşaat`,
     description: project.editorialSummary,
     path: `/construction/projects/${project.slug}`,
     ogImage: project.heroImage,
+    // Concept study (no verified location/year/area) — noindex until real data exists.
+    noIndex: true,
   });
 }
 

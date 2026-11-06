@@ -64,7 +64,6 @@ export function SplitBusinessSection() {
             src="/images/atelier-daylight.jpg"
             alt="AutoClub Merter"
             fill
-            unoptimized
             sizes="(max-width: 1024px) 100vw, 60vw"
             className="object-cover object-center transition-transform duration-1000 group-hover:scale-105"
           />
@@ -107,7 +106,6 @@ export function SplitBusinessSection() {
             src="/images/architecture-limestone.jpg"
             alt="Genç Group İnşaat"
             fill
-            unoptimized
             sizes="(max-width: 1024px) 100vw, 60vw"
             className="object-cover object-center transition-transform duration-1000 group-hover:scale-105"
           />

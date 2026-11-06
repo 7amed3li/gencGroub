@@ -1,30 +1,32 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/lib/seo";
-import { CONSTRUCTION_PROJECT_STUDIES } from "@/content/siteData";
+import { CONTENT_LAST_UPDATED, SITE_URL } from "@/lib/seo";
+import { AUTOMOTIVE_SERVICE_PAGES } from "@/content/automotiveServicePages";
 
+/**
+ * Only indexable, canonical URLs on the official domain.
+ * Construction project pages are intentionally excluded (noindex) until
+ * verified project data (location, year, scope, original photos) is provided.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = [
-    "",
-    "/automotive",
-    "/automotive/services",
-    "/construction",
-    "/construction/projects",
-    "/about",
-    "/contact",
-  ].map((route) => ({
-    url: `${SITE_URL}${route}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: route === "" ? 1 : 0.8,
-  }));
+  const lastModified = new Date(CONTENT_LAST_UPDATED);
 
-  const projectRoutes = CONSTRUCTION_PROJECT_STUDIES.map((project) => ({
-    url: `${SITE_URL}/construction/projects/${project.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
+  const routes: { path: string; priority: number }[] = [
+    { path: "/", priority: 1 },
+    { path: "/automotive", priority: 0.9 },
+    { path: "/automotive/services", priority: 0.8 },
+    ...AUTOMOTIVE_SERVICE_PAGES.map((p) => ({
+      path: `/automotive/services/${p.slug}`,
+      priority: 0.8,
+    })),
+    { path: "/construction", priority: 0.8 },
+    { path: "/about", priority: 0.5 },
+    { path: "/contact", priority: 0.7 },
+  ];
 
-  return [...staticRoutes, ...projectRoutes];
+  return routes.map(({ path, priority }) => ({
+    url: `${SITE_URL}${path}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority,
+  }));
 }
-

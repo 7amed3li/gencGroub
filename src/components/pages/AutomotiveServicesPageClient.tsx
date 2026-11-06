@@ -6,6 +6,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@/components/ui/Icons";
 import { getAutomotiveServices } from "@/content/siteData";
 import { ServiceEditorialBlock } from "@/components/automotive/ServiceEditorialBlock";
 import { useLanguage } from "@/context/LanguageContext";
+import { AUTOMOTIVE_SERVICE_PAGES } from "@/content/automotiveServicePages";
 
 const COPY = {
   tr: {
@@ -56,6 +57,22 @@ export function AutomotiveServicesPageClient() {
               {c.subheadline}
             </p>
           </div>
+
+          <nav aria-label="Hizmet sayfaları" className="mt-10">
+            <ul className="flex flex-wrap gap-3">
+              {AUTOMOTIVE_SERVICE_PAGES.map((p) => (
+                <li key={p.slug}>
+                  <Link
+                    href={`/automotive/services/${p.slug}`}
+                    className="inline-flex items-center gap-2 border border-[#A5AA98] px-4 py-2.5 text-xs uppercase tracking-[0.14em] text-[#45483F] hover:bg-[#45483F] hover:text-[#F3F0E8] transition-colors"
+                  >
+                    <span>{p.name}</span>
+                    <ArrowRightIcon className="h-3.5 w-3.5 rtl:rotate-180" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </section>
 

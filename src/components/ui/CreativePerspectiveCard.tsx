@@ -80,3 +80,4 @@ export function CreativePerspectiveCard({
     </motion.div>
   );
 }
+

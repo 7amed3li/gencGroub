@@ -10,6 +10,20 @@ import {
   SendIcon,
 } from "@/components/ui/Icons";
 import { useLanguage } from "@/context/LanguageContext";
+import { BRAND_INFO } from "@/content/siteData";
+
+/**
+ * There is no server-side mail backend yet. Previously the form only simulated
+ * a submission and every lead was lost. Until an email/CRM endpoint is set up,
+ * the form hands the request off to the real WhatsApp business line.
+ */
+const WHATSAPP_NUMBER = BRAND_INFO.automotiveDivision.whatsappHref.replace(/\D/g, "");
+
+const HANDOFF_NOTE = {
+  tr: "Mesajınız WhatsApp'ta hazırlandı. Talebinizin bize ulaşması için WhatsApp penceresinde \"Gönder\"e dokunun. WhatsApp açılmadıysa bizi 0543 819 30 24 numarasından arayabilirsiniz.",
+  en: "Your message has been prepared in WhatsApp. Tap \"Send\" in the WhatsApp window so your request reaches us. If WhatsApp did not open, call us at +90 543 819 30 24.",
+  ar: "تم تجهيز رسالتك في واتساب. اضغط \"إرسال\" في نافذة واتساب لتصلنا رسالتك. إذا لم يفتح واتساب، اتصل بنا على ‎+90 543 819 30 24.",
+} as const;
 
 const contactSchema = z.object({
   fullName: z.string().min(2),
@@ -31,7 +45,7 @@ export function ContactForm({
   defaultDivision = "automotive",
   defaultService = "",
 }: ContactFormProps) {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const [submittedData, setSubmittedData] = useState<ContactFormValues | null>(
     null
   );
@@ -56,7 +70,9 @@ export function ContactForm({
             ? "Oto Boya & Yüzey Koruma"
             : defaultService === "boyasiz-gocuk-duzeltme"
               ? "Boyasız Göçük Düzeltme"
-              : "",
+              : defaultService === "ppf-seramik-kaplama"
+                ? "PPF & Seramik Kaplama"
+                : "",
       message: "",
     },
   });
@@ -64,7 +80,24 @@ export function ContactForm({
   const selectedDivision = watch("division");
 
   const onSubmit = async (values: ContactFormValues) => {
-    await new Promise((resolve) => setTimeout(resolve, 600));
+    const divisionLabel =
+      values.division === "automotive" ? "AutoClub Merter" : "Genç Group İnşaat";
+    const text = [
+      `Web sitesi iletişim formu — ${divisionLabel}`,
+      `Ad Soyad: ${values.fullName}`,
+      `Telefon: ${values.phone}`,
+      values.email ? `E-posta: ${values.email}` : null,
+      `Konu: ${values.subject}`,
+      "",
+      values.message,
+    ]
+      .filter((line) => line !== null)
+      .join("\n");
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
     setSubmittedData(values);
   };
 
@@ -92,7 +125,7 @@ export function ContactForm({
               ? "AutoClub Merter"
               : "Genç Group İnşaat"}
           </strong>{" "}
-          — {t.contactPage.successBody}
+          — {HANDOFF_NOTE[locale]}
         </p>
 
         <button
