@@ -69,7 +69,9 @@ export function Navbar() {
   const isHeroPage =
     pathname === "/" ||
     pathname === "/automotive" ||
-    pathname === "/construction";
+    pathname === "/construction" ||
+    pathname.startsWith("/construction/case-study") ||
+    pathname === "/case-study";
   const useLightTextOnHero = isHeroPage && !scrolled && !overlayOpen;
 
   useEffect(() => {

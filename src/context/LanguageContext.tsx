@@ -1217,7 +1217,10 @@ export const UI_DICTIONARY = {
         "Otomotiv yüzey uzmanlığı ve çağdaş yapı anlayışını tek bir kurumsal çatı altında buluşturan Genç Group; AutoClub Merter ve Genç Group İnşaat markalarıyla faaliyet göstermektedir.",
       archApproach: "Mimari Yaklaşım",
       projectPortfolio: "Proje Portfolyosu",
+      caseStudy: "Vaka Çalışması: 3D/AI Konsept",
       corporate: "Kurumsal",
+      devLabel: "Tasarım & Geliştirme:",
+      devName: "Hamed Mohamed",
     },
     automotivePage: {
       overline: "AutoClub Merter — Merter / Güngören Kaporta, Oto Boya, Boyasız Göçük Düzeltme & PPF",
@@ -1428,7 +1431,10 @@ export const UI_DICTIONARY = {
         "Uniting automotive surface mastery and contemporary architectural construction under one corporate roof, Genç Group operates through AutoClub Merter and Genç Group İnşaat.",
       archApproach: "Architectural Approach",
       projectPortfolio: "Project Portfolio",
+      caseStudy: "Case Study: 3D/AI Concept",
       corporate: "Corporate",
+      devLabel: "Design & Development:",
+      devName: "Hamed Mohamed",
     },
     automotivePage: {
       overline: "Genç Group Automotive Atelier — Merter, Istanbul",
@@ -1639,7 +1645,10 @@ export const UI_DICTIONARY = {
         "تجمع مجموعة Genç Group بين خبرة العناية الفائقة بالسيارات والعمارة الحديثة تحت مظلة مؤسسية واحدة عبر علامتي AutoClub Merter و Genç Group İnşaat.",
       archApproach: "النهج المعماري",
       projectPortfolio: "محفظة المشاريع",
+      caseStudy: "دراسة حالة: تصوّر 3D/AI",
       corporate: "المؤسسة",
+      devLabel: "برمجة وتصميم:",
+      devName: "حامد محمد",
     },
     automotivePage: {
       overline: "أتلييه مجموعة Genç Group للسيارات — مرتر، إسطنبول",

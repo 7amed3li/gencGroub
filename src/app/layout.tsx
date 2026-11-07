@@ -55,6 +55,7 @@ export default function RootLayout({
     <html
       lang="tr"
       dir="ltr"
+      suppressHydrationWarning
       className={`${cormorant.variable} ${plusJakarta.variable} ${notoKufiArabic.variable}`}
     >
       <body className="flex min-h-screen flex-col bg-[#F3F0E8] text-[#45483F] antialiased">

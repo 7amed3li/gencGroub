@@ -17,6 +17,8 @@ const COPY = {
     specsTitle: "Teknik Özellikler ve İlkeler",
     ctaTitle: "Yapı Projeleriniz İçin Bizimle İletişime Geçin",
     ctaBtn: "İletişime Geçin",
+    interactiveStudy: "İnteraktif 3D / AI Konsept Stüdyosunu Başlat",
+    interactiveDesc: "Bu çalışmanın kütle, cephe malzemeleri ve ışık senaryolarını interaktif olarak deneyimleyin.",
   },
   en: {
     allProjects: "All Projects",
@@ -27,6 +29,8 @@ const COPY = {
     specsTitle: "Technical Specifications & Principles",
     ctaTitle: "Contact Us For Your Architectural & Building Projects",
     ctaBtn: "Get in Touch",
+    interactiveStudy: "Launch Interactive 3D / AI Concept Studio",
+    interactiveDesc: "Interactively explore massing, material palettes, and lighting scenarios for this study.",
   },
   ar: {
     allProjects: "جميع المشاريع",
@@ -37,6 +41,8 @@ const COPY = {
     specsTitle: "المواصفات الفنية والمبادئ",
     ctaTitle: "تواصل معنا لمشاريعك المعمارية والإنشائية",
     ctaBtn: "تواصل معنا",
+    interactiveStudy: "تشغيل استوديو التصوّر التفاعلي 3D / AI",
+    interactiveDesc: "اختبر بدائل الكتل والمواد وإضاءة الواجهات لهذا المشروع بشكل تفاعلي ومباشر.",
   },
 } as const;
 
@@ -107,6 +113,29 @@ export function ProjectDetailPageClient({ slug }: { slug: string }) {
               className="object-cover"
             />
           </div>
+
+          {slug === "ticari-ve-kurumsal-yapi-yaklasimi" && (
+            <div className="mt-8 p-6 sm:p-8 bg-[#45483F] text-[#F3F0E8] border border-[#69715F]/40 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div className="space-y-1.5 max-w-xl">
+                <span className="text-[11px] uppercase tracking-[0.18em] text-[#A5AA98] font-semibold">
+                  3D & AI STUDIO
+                </span>
+                <p className="font-display-editorial text-2xl text-[#F3F0E8]">
+                  {c.interactiveStudy}
+                </p>
+                <p className="text-sm text-[#D8D3C7]">
+                  {c.interactiveDesc}
+                </p>
+              </div>
+              <Link
+                href="/construction/case-study"
+                className="btn-editorial bg-[#F3F0E8] text-[#45483F] hover:bg-[#E8E4DA] border-0 shrink-0"
+              >
+                <span>{c.interactiveStudy}</span>
+                <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 

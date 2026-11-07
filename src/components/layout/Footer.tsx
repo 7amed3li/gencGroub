@@ -109,6 +109,14 @@ export function Footer() {
                   {t.footer.projectPortfolio}
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/construction/case-study"
+                  className="text-[#D8D3C7] hover:text-[#F3F0E8] transition-colors"
+                >
+                  {t.footer.caseStudy}
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -140,7 +148,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-[#69715F]/40 py-6">
-        <div className="container-editorial flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#A5AA98]">
+        <div className="container-editorial flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#A5AA98]">
           <p>© {currentYear} Genç Group.</p>
           <div className="flex items-center gap-8">
             <Link
@@ -156,6 +164,15 @@ export function Footer() {
               Genç Group İnşaat
             </Link>
           </div>
+          <p className="flex items-center gap-1.5 text-xs text-[#A5AA98]">
+            <span>{t.footer.devLabel}</span>
+            <Link
+              href="/construction/case-study"
+              className="text-[#F3F0E8] hover:text-white underline underline-offset-4 font-medium transition-colors"
+            >
+              {t.footer.devName}
+            </Link>
+          </p>
         </div>
       </div>
     </footer>
