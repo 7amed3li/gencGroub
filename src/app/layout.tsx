@@ -12,6 +12,7 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import {
   constructMetadata,
   getAutoClubSchema,
+  getGencInsaatSchema,
   getOrganizationSchema,
 } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -60,8 +61,8 @@ export default function RootLayout({
     >
       <body className="flex min-h-screen flex-col bg-[#F3F0E8] text-[#45483F] antialiased">
         <LanguageProvider>
-          {/* Footer on every page shows AutoClub Merter NAP, so the entity is site-wide. */}
-          <JsonLd data={[getOrganizationSchema(), getAutoClubSchema()]} />
+          {/* Structured data: Organization, AutoClub Merter, and Genç İnşaat entities */}
+          <JsonLd data={[getOrganizationSchema(), getAutoClubSchema(), getGencInsaatSchema()]} />
           <Navbar />
           <main id="main-content" className="flex-1">
             {children}

@@ -4,9 +4,9 @@ import { constructMetadata } from "@/lib/seo";
 import { CaseStudyView } from "@/components/case-study/CaseStudyView";
 
 export const metadata: Metadata = constructMetadata({
-  title: "İşinize Yön Veren Mimari — Mimari Vaka Çalışması | Genç Group İnşaat",
+  title: "Hamed Mohamed — 3D & AI Dijital Mimari Vaka Çalışması | Creative Dev",
   description:
-    "Genç Group İnşaat için ticari yapı konseptini 3D ve AI destekli görsel keşiflerle anlatan mimari vaka çalışması.",
+    "Yazılım mühendisi Hamed Mohamed tarafından geliştirilen etkileşimli 3D ve AI destekli mekânsal mimari konsept stüdyosu ve web teknolojileri vaka çalışması.",
   path: "/case-study",
   ogImage: "/images/hero-construction.png",
 });

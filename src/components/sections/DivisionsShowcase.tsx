@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRightIcon, InstagramIcon } from "@/components/ui/Icons";
+import { ArrowRightIcon, ArrowUpRightIcon, InstagramIcon } from "@/components/ui/Icons";
 import {
   ParallaxImageWindow,
   EditorialReveal,
@@ -95,10 +95,12 @@ export function DivisionsShowcase() {
                   href={BRAND_INFO.automotiveDivision.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center sm:justify-start gap-2 py-2 text-xs uppercase tracking-[0.14em] text-[#69715F] hover:text-[#45483F] transition-colors"
+                  aria-label="AutoClub Merter Instagram"
+                  className="inline-flex items-center justify-center sm:justify-start gap-1.5 py-2 text-xs uppercase tracking-[0.14em] text-[#69715F] hover:text-[#45483F] transition-colors"
                 >
                   <InstagramIcon className="h-4 w-4" />
-                  <span>{BRAND_INFO.automotiveDivision.instagramHandle}</span>
+                  <span>Instagram</span>
+                  <ArrowUpRightIcon className="h-3.5 w-3.5" />
                 </a>
               </div>
             </motion.div>

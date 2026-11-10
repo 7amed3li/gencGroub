@@ -55,9 +55,14 @@ export function ConstructionProjectsPageClient() {
 
       <section className="section-padding bg-[#F3F0E8]">
         <div className="container-editorial">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {projects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+            {projects.map((project, idx) => (
+              <div
+                key={project.slug}
+                className={idx === 0 ? "lg:col-span-2" : "lg:col-span-1"}
+              >
+                <ProjectCard project={project} />
+              </div>
             ))}
           </div>
         </div>

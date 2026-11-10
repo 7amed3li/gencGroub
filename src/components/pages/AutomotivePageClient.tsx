@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRightIcon,
+  ArrowUpRightIcon,
   InstagramIcon,
   WhatsAppIcon,
   MapPinIcon,
@@ -21,6 +22,7 @@ import { PrecisionMetricsStrip } from "@/components/sections/PrecisionMetricsStr
 import { LuxuryMarqueeStrip } from "@/components/ui/LuxuryMarqueeStrip";
 import { LuxuryLightboxModal } from "@/components/ui/LuxuryLightboxModal";
 import { ArchitecturalCornerTicks } from "@/components/ui/StoryScrollArchitecture";
+import { MarketingLocationMap } from "@/components/ui/MarketingLocationMap";
 import { useLanguage } from "@/context/LanguageContext";
 
 export function AutomotivePageClient() {
@@ -87,18 +89,29 @@ export function AutomotivePageClient() {
         {/* Single Clean Bottom Location Strip */}
         <div className="container-editorial relative z-10">
           <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[#D8D3C7]/20 pt-4 sm:pt-5 text-xs text-[#D8D3C7]/85">
-            <span className="inline-flex items-center gap-2">
-              <MapPinIcon className="h-4 w-4 shrink-0 text-[#A5AA98]" />
-              <span>{auto.region}</span>
-            </span>
+            <a
+              href={auto.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Google Haritalar'da Konumu Gör"
+              className="inline-flex items-center gap-2 hover:text-[#F3F0E8] transition-colors group"
+            >
+              <MapPinIcon className="h-4 w-4 shrink-0 text-[#A5AA98] group-hover:text-[#F3F0E8]" />
+              <span className="group-hover:underline underline-offset-4">
+                {auto.shortAddress || "Platform Merter Suites, İstanbul"}
+              </span>
+              <ArrowUpRightIcon className="h-3 w-3 text-[#A5AA98] opacity-75 group-hover:opacity-100" />
+            </a>
             <a
               href={auto.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 uppercase tracking-[0.16em] text-[#F3F0E8] hover:text-[#D8D3C7] transition-colors"
+              aria-label="AutoClub Merter Instagram"
+              className="inline-flex items-center gap-2 uppercase tracking-[0.16em] text-[#F3F0E8] hover:text-[#D8D3C7] transition-colors group"
             >
-              <InstagramIcon className="h-4 w-4" />
-              <span>{auto.instagramHandle}</span>
+              <InstagramIcon className="h-4 w-4 text-[#A5AA98] group-hover:text-[#F3F0E8]" />
+              <span>Instagram</span>
+              <ArrowUpRightIcon className="h-3 w-3 text-[#A5AA98] opacity-75 group-hover:opacity-100" />
             </a>
           </div>
         </div>
@@ -137,12 +150,11 @@ export function AutomotivePageClient() {
               href={auto.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="link-editorial"
+              className="link-editorial inline-flex items-center gap-2"
             >
               <InstagramIcon className="h-4 w-4" />
-              <span>
-                {t.automotivePage.allWorksInstagram}: {auto.instagramHandle}
-              </span>
+              <span>{t.automotivePage.allWorksInstagram}</span>
+              <ArrowUpRightIcon className="h-3.5 w-3.5" />
             </a>
           </div>
 
@@ -267,8 +279,12 @@ export function AutomotivePageClient() {
           </div>
 
           <BeforeAfterSlider />
+
         </div>
       </section>
+
+      {/* Full Interactive Marketing Workshop Location & Map */}
+      <MarketingLocationMap division="automotive" />
 
       {/* Fullscreen Studio Lightbox Inspector */}
       <LuxuryLightboxModal

@@ -1231,7 +1231,7 @@ export const UI_DICTIONARY = {
       galleryLink: "Uygulama Galerisi",
       portfolioOverline: "Atölye Portfolyosu",
       portfolioHeadline: "Tamamlanan Araç Uygulamaları.",
-      allWorksInstagram: "Tüm Çalışmalar",
+      allWorksInstagram: "Instagram Atölye Günlüğü",
       servicesOverline: "Hizmetlerimiz",
       servicesHeadline: "Uzmanlık Alanlarımız.",
       servicesIntro:
@@ -1445,7 +1445,7 @@ export const UI_DICTIONARY = {
       galleryLink: "Application Gallery",
       portfolioOverline: "Atelier Portfolio",
       portfolioHeadline: "Completed Vehicle Applications.",
-      allWorksInstagram: "All Works",
+      allWorksInstagram: "Instagram Atelier Gallery",
       servicesOverline: "Our Services",
       servicesHeadline: "Areas of Specialization.",
       servicesIntro:
@@ -1659,7 +1659,7 @@ export const UI_DICTIONARY = {
       galleryLink: "معرض التطبيقات",
       portfolioOverline: "أعمال الأتلييه",
       portfolioHeadline: "تطبيقات السيارات المنجزة.",
-      allWorksInstagram: "جميع الأعمال",
+      allWorksInstagram: "معرض الأعمال على إنستغرام",
       servicesOverline: "خدماتنا",
       servicesHeadline: "مجالات التخصص.",
       servicesIntro:

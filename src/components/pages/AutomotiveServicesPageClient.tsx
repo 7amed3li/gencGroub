@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon } from "@/components/ui/Icons";
 import { getAutomotiveServices } from "@/content/siteData";
 import { ServiceEditorialBlock } from "@/components/automotive/ServiceEditorialBlock";
+import { MarketingLocationMap } from "@/components/ui/MarketingLocationMap";
 import { useLanguage } from "@/context/LanguageContext";
 import { AUTOMOTIVE_SERVICE_PAGES } from "@/content/automotiveServicePages";
 
@@ -104,6 +105,9 @@ export function AutomotiveServicesPageClient() {
           </Link>
         </div>
       </section>
+
+      {/* Interactive Marketing Atelier Location & Map */}
+      <MarketingLocationMap division="automotive" />
     </div>
   );
 }

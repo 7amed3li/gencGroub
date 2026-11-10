@@ -10,6 +10,8 @@ import {
   InstagramIcon,
   PhoneIcon,
   ArrowRightIcon,
+  ArrowUpRightIcon,
+  MapPinIcon,
   ArrowDownIcon,
   CheckIcon,
   FlagTrIcon,
@@ -347,9 +349,19 @@ export function Navbar() {
                     <h3 className="text-xs font-medium uppercase tracking-[0.18em] text-[#A5AA98]">
                       AutoClub Merter
                     </h3>
-                    <p className="text-sm text-[#D8D3C7] leading-relaxed">
-                      {BRAND_INFO.automotiveDivision.address}
-                    </p>
+                    <a
+                      href={BRAND_INFO.automotiveDivision.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Google Haritalar'da Aç (AutoClub Merter)"
+                      className="group flex items-start gap-2 text-sm text-[#D8D3C7] hover:text-[#F3F0E8] leading-relaxed transition-colors"
+                    >
+                      <MapPinIcon className="h-4 w-4 shrink-0 text-[#A5AA98] mt-1 group-hover:text-[#F3F0E8]" />
+                      <span className="group-hover:underline underline-offset-4">
+                        {BRAND_INFO.automotiveDivision.address}
+                      </span>
+                      <ArrowUpRightIcon className="h-3.5 w-3.5 shrink-0 text-[#A5AA98] mt-1 opacity-70 group-hover:opacity-100" />
+                    </a>
                     <div className="pt-2 flex flex-col gap-2.5 text-sm">
                       <a
                         href={BRAND_INFO.automotiveDivision.phoneHref}
@@ -363,22 +375,34 @@ export function Navbar() {
                         href={BRAND_INFO.automotiveDivision.instagramUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        dir="ltr"
+                        aria-label="AutoClub Merter Instagram"
                         className="inline-flex items-center gap-2 text-[#D8D3C7] hover:text-[#F3F0E8]"
                       >
                         <InstagramIcon className="h-4 w-4 text-[#A5AA98]" />
-                        <span>
-                          {BRAND_INFO.automotiveDivision.instagramHandle}
-                        </span>
+                        <span>Instagram</span>
+                        <ArrowUpRightIcon className="h-3.5 w-3.5 text-[#A5AA98]" />
                       </a>
                     </div>
                   </div>
 
-                  <div className="space-y-2 border-t border-[#A5AA98]/25 pt-8">
+                  <div className="space-y-3 border-t border-[#A5AA98]/25 pt-8">
                     <h3 className="text-xs font-medium uppercase tracking-[0.18em] text-[#A5AA98]">
                       Genç Group İnşaat
                     </h3>
-                    <p className="text-sm text-[#D8D3C7] leading-relaxed">
+                    <a
+                      href={BRAND_INFO.constructionDivision.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Google Haritalar'da Aç (Genç İnşaat)"
+                      className="group flex items-start gap-2 text-sm text-[#D8D3C7] hover:text-[#F3F0E8] leading-relaxed transition-colors"
+                    >
+                      <MapPinIcon className="h-4 w-4 shrink-0 text-[#A5AA98] mt-1 group-hover:text-[#F3F0E8]" />
+                      <span className="group-hover:underline underline-offset-4">
+                        {BRAND_INFO.constructionDivision.address}
+                      </span>
+                      <ArrowUpRightIcon className="h-3.5 w-3.5 shrink-0 text-[#A5AA98] mt-1 opacity-70 group-hover:opacity-100" />
+                    </a>
+                    <p className="text-xs text-[#A5AA98] leading-relaxed pt-1">
                       {t.nav.constructionNote}
                     </p>
                   </div>

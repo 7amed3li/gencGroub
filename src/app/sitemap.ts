@@ -19,6 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     })),
     { path: "/construction", priority: 0.8 },
+    { path: "/construction/projects", priority: 0.8 },
+    { path: "/construction/projects/zeytinburnu-seyitnizam-g33", priority: 0.85 },
     { path: "/about", priority: 0.5 },
     { path: "/contact", priority: 0.7 },
   ];
@@ -28,5 +30,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified,
     changeFrequency: "monthly" as const,
     priority,
+    alternates: {
+      languages: {
+        tr: `${SITE_URL}${path}`,
+        en: `${SITE_URL}${path}`,
+        ar: `${SITE_URL}${path}`,
+      },
+    },
   }));
 }

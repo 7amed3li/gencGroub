@@ -30,13 +30,15 @@ export async function generateMetadata({
     });
   }
 
+  const isVerifiedProject = slug === "zeytinburnu-seyitnizam-g33";
+
   return constructMetadata({
     title: `${project.title} | Genç Group İnşaat`,
     description: project.editorialSummary,
     path: `/construction/projects/${project.slug}`,
     ogImage: project.heroImage,
-    // Concept study (no verified location/year/area) — noindex until real data exists.
-    noIndex: true,
+    // Real verified project is indexed; concept studies remain noindex.
+    noIndex: !isVerifiedProject,
   });
 }
 

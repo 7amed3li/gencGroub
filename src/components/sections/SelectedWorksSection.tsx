@@ -143,7 +143,7 @@ export function SelectedWorksSection() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {constructionProjects.map((project, idx) => (
               <motion.div
                 key={project.slug}
@@ -153,9 +153,9 @@ export function SelectedWorksSection() {
                 transition={{ duration: 0.7, delay: idx * 0.12 }}
                 className="h-full"
               >
-                <CreativePerspectiveCard tiltIntensity={4} className="group bg-[#E8E4DA]/55 border border-[#D8D3C7] p-4 sm:p-6 shadow-sm hover:shadow-xl">
+                <CreativePerspectiveCard tiltIntensity={4} className="group bg-[#E8E4DA]/55 border border-[#D8D3C7] p-4 sm:p-6 shadow-sm hover:shadow-xl flex flex-col justify-between h-full">
                   <Link href={`/construction/projects/${project.slug}`}>
-                    <div className="mb-4 sm:mb-5">
+                    <div className="mb-4 sm:mb-5 relative">
                       <ParallaxImageWindow
                         src={project.heroImage}
                         alt={project.title}
@@ -163,13 +163,18 @@ export function SelectedWorksSection() {
                         parallaxStrength={7}
                       />
                     </div>
-                    <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-[#69715F] mb-1.5">
-                      {project.category}
-                    </p>
-                    <h4 className="font-display-editorial text-2xl sm:text-3xl text-[#45483F] mb-2">
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-[#69715F] font-medium">
+                        {project.category}
+                      </p>
+                      <span className="px-2 py-0.5 bg-[#45483F] text-[#F3F0E8] text-[9px] font-mono uppercase tracking-wider rounded-sm font-semibold">
+                        {project.statusLabel}
+                      </span>
+                    </div>
+                    <h4 className="font-display-editorial text-2xl sm:text-3xl text-[#45483F] mb-2 leading-snug group-hover:text-[#2F322A] transition-colors">
                       {project.title}
                     </h4>
-                    <p className="text-xs sm:text-sm text-[#69715F] leading-relaxed max-w-xl">
+                    <p className="text-xs sm:text-sm text-[#69715F] leading-relaxed line-clamp-3">
                       {project.editorialSummary}
                     </p>
                   </Link>

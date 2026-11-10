@@ -207,7 +207,7 @@ export function ConstructionAssemblyStory() {
                               left: `${c.targetX}%`,
                               top: `${c.targetY}%`,
                             }}
-                            className="absolute -translate-x-1/2 -translate-y-1/2 flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-[#45483F] text-[#F3F0E8] text-[9px] sm:text-[10px] font-semibold shadow-md ring-4 ring-[#F3F0E8]/70"
+                            className="absolute -translate-x-1/2 -translate-y-1/2 flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-sm bg-[#45483F] text-[#F3F0E8] text-[9px] sm:text-[10px] font-mono font-bold shadow-md border border-[#F3F0E8]"
                           >
                             {c.num}
                           </motion.div>
@@ -244,7 +244,7 @@ export function ConstructionAssemblyStory() {
                     key={c.id}
                     className="bg-[#F3F0E8] border border-[#D8D3C7] px-3 py-2 flex items-start gap-2.5"
                   >
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#45483F] text-[#F3F0E8] text-[10px] font-bold">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-sm bg-[#45483F] text-[#F3F0E8] text-[10px] font-mono font-bold">
                       {c.num}
                     </span>
                     <div className="min-w-0 flex-1">
@@ -266,7 +266,7 @@ export function ConstructionAssemblyStory() {
                     key={c.id}
                     className="flex-1 bg-[#F3F0E8] border border-[#D8D3C7] px-2 py-1.5 flex items-center gap-1.5 min-w-0"
                   >
-                    <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#45483F] text-[#F3F0E8] text-[9px] font-bold">
+                    <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-[#45483F] text-[#F3F0E8] text-[9px] font-mono font-bold">
                       {c.num}
                     </span>
                     <p className="text-[10px] font-semibold text-[#45483F] leading-tight truncate">

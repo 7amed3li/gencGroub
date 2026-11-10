@@ -7,6 +7,7 @@ import {
   MapPinIcon,
   PhoneIcon,
   MailIcon,
+  ArrowUpRightIcon,
 } from "@/components/ui/Icons";
 import { BRAND_INFO, getAutomotiveServices } from "@/content/siteData";
 import { useLanguage } from "@/context/LanguageContext";
@@ -29,21 +30,22 @@ export function Footer() {
             <p className="text-sm text-[#D8D3C7] max-w-sm leading-relaxed">
               {t.footer.description}
             </p>
-            <div className="pt-2">
+            <div className="pt-3">
               <a
                 href={auto.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-[#F3F0E8] hover:text-[#D8D3C7] transition-colors"
+                aria-label="Instagram"
+                className="inline-flex items-center gap-2 px-3.5 py-2 bg-[#353830] hover:bg-[#F3F0E8] text-[#D8D3C7] hover:text-[#45483F] border border-[#69715F]/40 text-xs uppercase tracking-[0.16em] font-medium transition-all duration-300 rounded-sm"
               >
-                <InstagramIcon className="h-4 w-4 text-[#A5AA98]" />
-                <span>{auto.instagramHandle}</span>
+                <InstagramIcon className="h-4 w-4" />
+                <span>Instagram</span>
               </a>
             </div>
           </div>
 
           {/* Column 2: Automotive Division */}
-          <div className="lg:col-span-4 space-y-4">
+          <div className="lg:col-span-3 space-y-4">
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-[#A5AA98]">
               AutoClub Merter
             </p>
@@ -60,23 +62,32 @@ export function Footer() {
               ))}
             </ul>
 
-            <div className="pt-4 space-y-2 text-xs text-[#D8D3C7]">
-              <p className="flex items-start gap-2.5">
-                <MapPinIcon className="h-4 w-4 shrink-0 mt-0.5 text-[#A5AA98]" />
-                <span>{auto.address}</span>
-              </p>
-              <p className="flex items-center gap-2.5">
-                <PhoneIcon className="h-4 w-4 shrink-0 text-[#A5AA98]" />
+            <div className="pt-3 space-y-2 text-xs text-[#D8D3C7]">
+              <a
+                href={auto.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Google Haritalar'da Aç (AutoClub Merter)"
+                className="inline-flex items-center gap-1.5 group hover:text-[#F3F0E8] transition-colors"
+              >
+                <MapPinIcon className="h-3.5 w-3.5 shrink-0 text-[#A5AA98] group-hover:text-[#F3F0E8]" />
+                <span className="group-hover:underline underline-offset-4">
+                  {auto.shortAddress || "Platform Merter, İstanbul"}
+                </span>
+                <ArrowUpRightIcon className="h-3 w-3 text-[#A5AA98] opacity-75 group-hover:opacity-100" />
+              </a>
+              <p className="flex items-center gap-2">
+                <PhoneIcon className="h-3.5 w-3.5 shrink-0 text-[#A5AA98]" />
                 <a
                   href={auto.phoneHref}
-                  className="text-[#F3F0E8] hover:text-[#D8D3C7]"
+                  className="text-[#F3F0E8] hover:underline"
                   dir="ltr"
                 >
                   {auto.phoneDisplay}
                 </a>
               </p>
-              <p className="flex items-center gap-2.5">
-                <MailIcon className="h-4 w-4 shrink-0 text-[#A5AA98]" />
+              <p className="flex items-center gap-2">
+                <MailIcon className="h-3.5 w-3.5 shrink-0 text-[#A5AA98]" />
                 <a
                   href={`mailto:${auto.email}`}
                   className="hover:text-[#F3F0E8]"
@@ -88,7 +99,7 @@ export function Footer() {
           </div>
 
           {/* Column 3: Construction Division */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="lg:col-span-3 space-y-4">
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-[#A5AA98]">
               Genç Group İnşaat
             </p>
@@ -109,15 +120,23 @@ export function Footer() {
                   {t.footer.projectPortfolio}
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/construction/case-study"
-                  className="text-[#D8D3C7] hover:text-[#F3F0E8] transition-colors"
-                >
-                  {t.footer.caseStudy}
-                </Link>
-              </li>
             </ul>
+
+            <div className="pt-3 space-y-2 text-xs text-[#D8D3C7]">
+              <a
+                href={BRAND_INFO.constructionDivision.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Google Haritalar'da Aç (Genç İnşaat)"
+                className="inline-flex items-center gap-1.5 group hover:text-[#F3F0E8] transition-colors"
+              >
+                <MapPinIcon className="h-3.5 w-3.5 shrink-0 text-[#A5AA98] group-hover:text-[#F3F0E8]" />
+                <span className="group-hover:underline underline-offset-4">
+                  {BRAND_INFO.constructionDivision.shortAddress || "Zeytinburnu, İstanbul"}
+                </span>
+                <ArrowUpRightIcon className="h-3 w-3 text-[#A5AA98] opacity-75 group-hover:opacity-100" />
+              </a>
+            </div>
           </div>
 
           {/* Column 4: Corporate */}
@@ -147,10 +166,10 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-[#69715F]/40 py-6">
-        <div className="container-editorial flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#A5AA98]">
+      <div className="border-t border-[#69715F]/40 py-6 pb-24 sm:pb-6">
+        <div className="container-editorial flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#A5AA98] text-center md:text-start">
           <p>© {currentYear} Genç Group.</p>
-          <div className="flex items-center gap-8">
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8">
             <Link
               href="/automotive"
               className="hover:text-[#F3F0E8] transition-colors"
@@ -164,10 +183,10 @@ export function Footer() {
               Genç Group İnşaat
             </Link>
           </div>
-          <p className="flex items-center gap-1.5 text-xs text-[#A5AA98]">
+          <p className="flex items-center justify-center gap-1.5 text-xs text-[#A5AA98]">
             <span>{t.footer.devLabel}</span>
             <Link
-              href="/construction/case-study"
+              href="/case-study"
               className="text-[#F3F0E8] hover:text-white underline underline-offset-4 font-medium transition-colors"
             >
               {t.footer.devName}

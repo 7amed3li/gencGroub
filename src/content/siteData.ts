@@ -34,6 +34,18 @@ export interface ConstructionServiceCategory {
   scopeDetails: string;
 }
 
+export interface ProjectTransformationStage {
+  id: string;
+  number: string;
+  progressPercent: number;
+  title: string;
+  badge: string;
+  description: string;
+  image: string;
+  secondaryImage?: string;
+  tags: string[];
+}
+
 export interface ConstructionProjectStudy {
   slug: string;
   code: string;
@@ -48,6 +60,13 @@ export interface ConstructionProjectStudy {
   heroImage: string;
   galleryImages: string[];
   specifications: string[];
+  stages?: ProjectTransformationStage[];
+  beforeAfter?: {
+    beforeImage: string;
+    beforeLabel: string;
+    afterImage: string;
+    afterLabel: string;
+  };
 }
 
 export interface AssemblyCalloutItem {
@@ -87,6 +106,8 @@ export const BRAND_INFO = {
     sectorEn: "Automotive",
     sectorAr: "السيارات",
     region: "Merter / Güngören, İstanbul",
+    districtCity: "Güngören / Merter, İstanbul",
+    shortAddress: "Platform Merter Suites, İstanbul",
     address:
       "Abdurrahman Nafiz Gürman Mah., General Ali Rıza Gürcan Cad., Platform Sitesi Otoparkı / Merter Suites, 34160 Güngören / İstanbul",
     phoneDisplay: "0543 819 30 24",
@@ -94,9 +115,15 @@ export const BRAND_INFO = {
     whatsappHref: "https://wa.me/905438193024",
     email: "merter@autoclub.com.tr",
     mapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=Abdurrahman+Nafiz+G%C3%BCrman+Mahallesi+General+Ali+R%C4%B1za+G%C3%BCrcan+Caddesi+Platform+Sitesi+Merter+%C4%B0stanbul",
+      "https://www.google.com/maps/place/AutoClub+Merter-Platform+Oto+Y%C4%B1kama+Ve+Uygulama+Merkezi/@41.0069954,28.8917124,17z/data=!3m1!4b1!4m6!3m5!1s0x14cabba06557b241:0x1c3d83119614377c!8m2!3d41.0069954!4d28.8942927!16s%2Fg%2F11xnvpb60w",
+    mapsEmbedUrl:
+      "https://maps.google.com/maps?q=AutoClub%20Merter-Platform%20Oto%20Y%C4%B1kama%20Ve%20Uygulama%20Merkezi&t=&z=17&ie=UTF8&iwloc=&output=embed",
+    coordinates: {
+      latitude: 41.0069954,
+      longitude: 28.8942927,
+    },
     instagramUrl: "https://www.instagram.com/autoclubmerter/",
-    instagramHandle: "@autoclubmerter",
+    instagramHandle: "AutoClub Merter",
     heroHeadline: "Aracınız İçin Kusursuz Dokunuş.",
     heroSubheadline:
       "Kaporta onarımı, renk eşleştirmeli oto boya, boyasız göçük düzeltme ve PPF yüzey koruma uygulamalarında milimetrik atölye disiplini.",
@@ -109,10 +136,22 @@ export const BRAND_INFO = {
   },
   constructionDivision: {
     name: "Genç Group İnşaat",
+    officialTitle: "Genç İnşaat",
     sectorTr: "İnşaat & Yapı",
     sectorEn: "Construction & Architecture",
     sectorAr: "العمارة والإنشاءات",
-    region: "İstanbul, Türkiye",
+    region: "Zeytinburnu, İstanbul",
+    districtCity: "Zeytinburnu, İstanbul",
+    shortAddress: "Zeytinburnu, İstanbul",
+    address: "Telsiz Mah., 84. Sok., Zeytinburnu, 34020 İstanbul",
+    mapsUrl:
+      "https://www.google.com/maps/place/Gen%C3%A7+%C4%B0n%C5%9Faat/@40.9977935,28.9094455,17z/data=!3m1!4b1!4m6!3m5!1s0x14cabb07fecb88c7:0x485ba9cffc5ac91!8m2!3d40.9977935!4d28.9120258!16s%2Fg%2F1tq1l4sp",
+    mapsEmbedUrl:
+      "https://maps.google.com/maps?q=40.9977935,28.9120258&hl=tr&z=17&output=embed",
+    coordinates: {
+      latitude: 40.9977935,
+      longitude: 28.9120258,
+    },
     heroHeadline: "Zamansız Yapılar, Kalıcı Değer.",
     heroSubheadline:
       "Doğal malzeme kültürü, mühendislik hassasiyeti ve çağdaş mimari estetikle şekillenen nitelikli yaşam alanları.",
@@ -827,11 +866,339 @@ const CONSTRUCTION_SERVICES_BY_LOCALE: Record<Locale, ConstructionServiceCategor
   ],
 };
 
+const ZEYTINBURNU_GALLERY_IMAGES = [
+  "/images/projects/zeytinburnu-g33/01-facade-hero.webp",
+  "/images/projects/zeytinburnu-g33/02-demolition-rooftop.webp",
+  "/images/projects/zeytinburnu-g33/03-demolition-spray.webp",
+  "/images/projects/zeytinburnu-g33/04-demolition-street.webp",
+  "/images/projects/zeytinburnu-g33/05-excavation.webp",
+  "/images/projects/zeytinburnu-g33/06-grobeton.webp",
+  "/images/projects/zeytinburnu-g33/07-raft-foundation-rebar.webp",
+  "/images/projects/zeytinburnu-g33/08-foundation-pour.webp",
+  "/images/projects/zeytinburnu-g33/09-waterproofing-membrane.webp",
+  "/images/projects/zeytinburnu-g33/10-asmolen-slab.webp",
+  "/images/projects/zeytinburnu-g33/11-engineers-blueprints.webp",
+  "/images/projects/zeytinburnu-g33/12-structure-skeleton.webp",
+];
+
+const ZEYTINBURNU_STAGES_TR: ProjectTransformationStage[] = [
+  {
+    id: "demolition",
+    number: "01",
+    progressPercent: 12,
+    title: "Kontrollü Çatı Yıkımı & Kentsel Dönüşüm",
+    badge: "Aşama 01 · Yıkım & Güvenlik",
+    description:
+      "Bitişik nizam yoğun sokak dokusunda, çevre binaların ve yayaların güvenliği için mini ekskavatör vinçle çatıya çıkarılarak bina kat kat cerrahi hassasiyetle yıkıldı. Toz bastırma su jetiyle çevre rahatsız edilmeden moloz tahliyesi sağlandı.",
+    image: "/images/projects/zeytinburnu-g33/02-demolition-rooftop.webp",
+    secondaryImage: "/images/projects/zeytinburnu-g33/03-demolition-spray.webp",
+    tags: ["Kentsel Dönüşüm", "Çatı Yıkımı", "Toz Bastırma Jeti", "Bitişik Nizam"],
+  },
+  {
+    id: "excavation",
+    number: "02",
+    progressPercent: 24,
+    title: "Derin Hafriyat & Grobeton Zemin Hazırlığı",
+    badge: "Aşama 02 · Zemin & Grobeton",
+    description:
+      "Komşu bina temelleri korunarak temel kotuna kadar hafriyat gerçekleştirildi. Zemin sıkıştırma ve tesviyesinin ardından, su yalıtımı ve temel donatısı için düzgün bir çalışma yüzeyi sağlayan grobeton serimi tamamlandı.",
+    image: "/images/projects/zeytinburnu-g33/05-excavation.webp",
+    secondaryImage: "/images/projects/zeytinburnu-g33/06-grobeton.webp",
+    tags: ["Hafriyat", "Grobeton Serimi", "Zemin İyileştirme"],
+  },
+  {
+    id: "foundation",
+    number: "03",
+    progressPercent: 40,
+    title: "Depreme Dayanıklı Radye Temel Donatısı",
+    badge: "Aşama 03 · Radye Temel & Donatı",
+    description:
+      "Güncel deprem yönetmeliğine uygun olarak yüksek mukavemetli nervürlü demirlerle çift sıra temel donatı ağı örüldü. Kolon ve perde filizleri statik projeye göre milimetrik hassasiyetle sabitlenip hazır beton dökümüne hazırlandı.",
+    image: "/images/projects/zeytinburnu-g33/07-raft-foundation-rebar.webp",
+    secondaryImage: "/images/projects/zeytinburnu-g33/08-foundation-pour.webp",
+    tags: ["Radye Temel", "Çift Donatı", "Deprem Güvenliği", "C30/37 Beton"],
+  },
+  {
+    id: "waterproofing",
+    number: "04",
+    progressPercent: 54,
+    title: "SIM Penguen Membran ile Perde Duvar Yalıtımı",
+    badge: "Aşama 04 · Su & Nem Yalıtımı",
+    description:
+      "Temel ve bodrum perde duvarlarında neme, yer altı sularına ve korozyona karşı SIM Penguen polimerik bitümlü su yalıtım membranları şaloma aleviyle uygulandı; drenaj çakılı ve boru hattıyla temel bohçalama tamamlandı.",
+    image: "/images/projects/zeytinburnu-g33/09-waterproofing-membrane.webp",
+    tags: ["SIM Penguen Membran", "Bohçalama Yalıtım", "Korozyon Kalkanı"],
+  },
+  {
+    id: "asmolen",
+    number: "05",
+    progressPercent: 68,
+    title: "Akustik ve Isı Yalıtımlı Asmolen Döşeme",
+    badge: "Aşama 05 · Tavan & Asmolen Döşeme",
+    description:
+      "Kat aralarında taşıyıcı nervür kirişleri arasına FIXA marka EPS asmolen dolgu blokları yerleştirildi. Bu teknoloji, binanın statik deprem yükünü hafifletirken katlar arasında üst düzey ses ve ısı yalıtımı sunar.",
+    image: "/images/projects/zeytinburnu-g33/10-asmolen-slab.webp",
+    tags: ["Asmolen Döşeme", "FIXA EPS", "Nervürlü Kiriş", "Akustik Yalıtım"],
+  },
+  {
+    id: "supervision",
+    number: "06",
+    progressPercent: 80,
+    title: "Saha Mühendisliği & Statik Pafta Denetimi",
+    badge: "Aşama 06 · Mühendislik & Denetim",
+    description:
+      "Genç Group teknik ekibi ve şantiye şefleri, beton dökümü öncesinde statik donatı paftalarını, kolon-kiriş birleşim bölgelerini ve elektrik/mekanik rezervasyonlarını sahada adım adım kontrol etti.",
+    image: "/images/projects/zeytinburnu-g33/11-engineers-blueprints.webp",
+    tags: ["Saha Mühendisliği", "Statik Pafta Kontrolü", "Kalite Denetimi"],
+  },
+  {
+    id: "structure",
+    number: "07",
+    progressPercent: 88,
+    title: "Betonarme Kaba Yapı & Kat Kat Yükseliş",
+    badge: "Aşama 07 · Kaba Yapı Tamamlandı",
+    description:
+      "Tüm katların kalıp, donatı ve beton döküm döngüleri tamamlanarak betonarme iskelet eksiksiz ayağa kaldırıldı. Şantiye cephe güvenlik perdeleri ve ruhsat tabelası eşliğinde duvar örme ve tesisat aşamasına geçildi.",
+    image: "/images/projects/zeytinburnu-g33/12-structure-skeleton.webp",
+    tags: ["Betonarme Karkas", "Şantiye Güvenliği", "Ruhsatlı Yapı"],
+  },
+  {
+    id: "facade",
+    number: "08",
+    progressPercent: 95,
+    title: "Modern Ahşap Dokulu Metalbond Kompozit Cephe",
+    badge: "Aşama 08 · Teslim Öncesi %95",
+    description:
+      "Metalbond alüminyum kompozit panellerle havalandırmalı cephe montajı tamamlandı. Sıcak ahşap dokulu balkon kaplamaları, antrasit/bronz çerçeveler ve geniş pencerelerle proje anahtar teslime hazır hale getirildi.",
+    image: "/images/projects/zeytinburnu-g33/01-facade-hero.webp",
+    tags: ["Metalbond Kompozit", "Ahşap Doku", "Modern Cephe", "Teslim Aşaması"],
+  },
+];
+
+const ZEYTINBURNU_STAGES_AR: ProjectTransformationStage[] = [
+  {
+    id: "demolition",
+    number: "01",
+    progressPercent: 12,
+    title: "الهدم الآمن من السطح والتحول الحضري",
+    badge: "المرحلة 01 · الهدم والسلامة الميدانية",
+    description:
+      "في شارع سيت نظام الحيوي ذي الأبنية المتلاصقة، رُفع حفار ميكانيكي بالرافعة إلى أعلى سطح المبنى القديم المتهالك، لتفكيكه طابقاً تلو الآخر بأمان ودقة، مع استخدام رشاشات مائية لكبح الغبار وتأمين سلامة الجوار والمشاة.",
+    image: "/images/projects/zeytinburnu-g33/02-demolition-rooftop.webp",
+    secondaryImage: "/images/projects/zeytinburnu-g33/03-demolition-spray.webp",
+    tags: ["التحول الحضري", "هدم آمن من السطح", "كبح الأتربة", "أبنية متلاصقة"],
+  },
+  {
+    id: "excavation",
+    number: "02",
+    progressPercent: 24,
+    title: "الحفريات العميقة وخرسانة النظافة (Grobeton)",
+    badge: "المرحلة 02 · الحفر وتجهيز الأرضية",
+    description:
+      "تنفيذ الحفريات بدقة مع تدعيم الجدران المشتركة للأبنية المجاورة، تلاها تسوية ودك التربة هندسياً وصب طبقة خرسانة النظافة (Grobeton) لتأمين سطح أفقي صلب لاستقبال شبكات العزل المائي وحديد التسليح.",
+    image: "/images/projects/zeytinburnu-g33/05-excavation.webp",
+    secondaryImage: "/images/projects/zeytinburnu-g33/06-grobeton.webp",
+    tags: ["الحفريات", "خرسانة النظافة", "تدعيم الجوار"],
+  },
+  {
+    id: "foundation",
+    number: "03",
+    progressPercent: 40,
+    title: "الأساس الحصيري المسلح المقاوم للزلازل (Radye Temel)",
+    badge: "المرحلة 03 · الأساسات الزلزالية",
+    description:
+      "تنسيق شبكة تسليح حديدية مزدوجة عالية المقاومة وفق كود الزلازل التركي الحديث، وتثبيت أشاير الأعمدة وجدران القص بضبط ميليمتري، تلاها صب الخرسانة الجاهزة عالية المقاومة C30/37 بواسطة المضخات الهيدروليكية.",
+    image: "/images/projects/zeytinburnu-g33/07-raft-foundation-rebar.webp",
+    secondaryImage: "/images/projects/zeytinburnu-g33/08-foundation-pour.webp",
+    tags: ["أساس حصيري Radye", "تسليح مزدوج", "أمان زلزالي", "خرسانة C30/37"],
+  },
+  {
+    id: "waterproofing",
+    number: "04",
+    progressPercent: 54,
+    title: "العزل المائي لجدران القبو بأغشية SIM PENGUEN",
+    badge: "المرحلة 04 · العزل المائي والرطوبي",
+    description:
+      "تطبيق أغشية SIM PENGUEN البيتومينية البوليمرية المعتمدة باللهب على كامل جدران القبو الخرسانية لحماية الهيكل للأبد من المياه الجوفية والرطوبة، مع إنشاء قنوات تصريف الحصى (Drenaj).",
+    image: "/images/projects/zeytinburnu-g33/09-waterproofing-membrane.webp",
+    tags: ["أغشية SIM Penguen", "عزل جدران القبو", "حماية من الرطوبة"],
+  },
+  {
+    id: "asmolen",
+    number: "05",
+    progressPercent: 68,
+    title: "الأسقف الهندسية العازلة للصوت والحرارة (Asmolen)",
+    badge: "المرحلة 05 · أسقف الهوردي العازلة",
+    description:
+      "استخدام بلوكات البوليسترين الخفيف (FIXA EPS) بين الأعصاب الخرسانية المسلحة، مما يخفف الوزن الذاتي للمبنى ويمنحه قدرة استثنائية على امتصاص الصدمات الزلزالية مع توفير عزل صوتي وحراري تام بين الوحدات السكنية.",
+    image: "/images/projects/zeytinburnu-g33/10-asmolen-slab.webp",
+    tags: ["أسقف Asmolen", "بلوكات FIXA EPS", "عزل صوتي فائق", "أعصاب خرسانية"],
+  },
+  {
+    id: "supervision",
+    number: "06",
+    progressPercent: 80,
+    title: "الرقابة الهندسية الميدانية وتدقيق المخططات الإنشائية",
+    badge: "المرحلة 06 · الإشراف الهندسي المباشر",
+    description:
+      "تواجد الفريق الهندسي وإدارة المشروع مباشرة فوق أسطح العمل لمطابقة المخططات الإنشائية والتنفيذية لحديد التسليح والتمديدات قبل كل مرحلة صب، لضمان أعلى معايير الجودة والصلابة الإنشائية.",
+    image: "/images/projects/zeytinburnu-g33/11-engineers-blueprints.webp",
+    tags: ["إشراف ميداني", "تدقيق المخططات", "انضباط هندسي"],
+  },
+  {
+    id: "structure",
+    number: "07",
+    progressPercent: 88,
+    title: "اكتمال الهيكل الخرساني والارتفاع الطابقي الكامل",
+    badge: "المرحلة 07 · الهيكل الإنشائي المكتمل",
+    description:
+      "اكتمال كافة الطوابق الخرسانية وصب الأعمدة والأسقف وتركيب سياج الموقع واللوحة الرسمية للترخيص، والانتقال لأعمال بناء القواطع والتمديدات الكهروميكانيكية والتشطيبات الأولية.",
+    image: "/images/projects/zeytinburnu-g33/12-structure-skeleton.webp",
+    tags: ["هيكل خرساني كامل", "أمان الموقع", "مشروع مرخص"],
+  },
+  {
+    id: "facade",
+    number: "08",
+    progressPercent: 95,
+    title: "الواجهة المعمارية الحديثة بألواح الكومبوزيت الفاخرة",
+    badge: "المرحلة 08 · قيد التسليم (%95)",
+    description:
+      "تكسية الواجهة بنظام الواجهات المهواة من ألواح الألمنيوم المركبة (Metalbond)، بتوليفة متناسقة تجمع بين فخامة تأثير الخشب الطبيعي على الشرفات وإطارات عصرية ونوافذ بانورامية، ليصبح المبنى جاهزاً للتسليم النهائي.",
+    image: "/images/projects/zeytinburnu-g33/01-facade-hero.webp",
+    tags: ["ألواح Metalbond", "تأثير خشب طبيعي", "عمارة حديثة", "تسليم مفتاح"],
+  },
+];
+
+const ZEYTINBURNU_STAGES_EN: ProjectTransformationStage[] = [
+  {
+    id: "demolition",
+    number: "01",
+    progressPercent: 12,
+    title: "Precision Rooftop Demolition & Urban Regeneration",
+    badge: "Stage 01 · Demolition & Safety",
+    description:
+      "In a dense urban street, a mini-excavator was crane-lifted to the rooftop of the aging 5-story building to systematically dismantle it floor-by-floor with surgical care. High-pressure water misting suppressed dust to safeguard neighbors and passersby.",
+    image: "/images/projects/zeytinburnu-g33/02-demolition-rooftop.webp",
+    secondaryImage: "/images/projects/zeytinburnu-g33/03-demolition-spray.webp",
+    tags: ["Urban Regeneration", "Rooftop Demolition", "Dust Suppression", "Party Wall Protection"],
+  },
+  {
+    id: "excavation",
+    number: "02",
+    progressPercent: 24,
+    title: "Deep Excavation & Blinding Concrete Layer",
+    badge: "Stage 02 · Ground & Blinding",
+    description:
+      "Excavation proceeded down to foundation level while shoring adjacent structures. Following precision soil compaction and leveling, a smooth blinding concrete (grobeton) slab was cast to provide a level substrate for tanking and reinforcement.",
+    image: "/images/projects/zeytinburnu-g33/05-excavation.webp",
+    secondaryImage: "/images/projects/zeytinburnu-g33/06-grobeton.webp",
+    tags: ["Excavation", "Blinding Concrete", "Ground Engineering"],
+  },
+  {
+    id: "foundation",
+    number: "03",
+    progressPercent: 40,
+    title: "Seismic Dual-Grid Raft Foundation Reinforcement",
+    badge: "Stage 03 · Raft Foundation",
+    description:
+      "Engineered to stringent Turkish seismic building codes, a dense dual-layer high-tensile rebar grid was tied with precision column starter bars and shear wall anchors prior to high-spec C30/37 ready-mix concrete pouring via mobile boom pump.",
+    image: "/images/projects/zeytinburnu-g33/07-raft-foundation-rebar.webp",
+    secondaryImage: "/images/projects/zeytinburnu-g33/08-foundation-pour.webp",
+    tags: ["Raft Foundation", "Dual Rebar Grid", "Seismic Safety", "C30/37 Concrete"],
+  },
+  {
+    id: "waterproofing",
+    number: "04",
+    progressPercent: 54,
+    title: "Subterranean Tanking with SIM PENGUEN Polymer Membrane",
+    badge: "Stage 04 · Waterproofing Shield",
+    description:
+      "Torch-applied certified SIM PENGUEN polymer bituminous waterproofing membranes were applied seamlessly across basement retaining walls, combined with gravel drainage trenches to ensure permanent hydrostatic protection.",
+    image: "/images/projects/zeytinburnu-g33/09-waterproofing-membrane.webp",
+    tags: ["SIM Penguen Membrane", "Basement Tanking", "Moisture Shield"],
+  },
+  {
+    id: "asmolen",
+    number: "05",
+    progressPercent: 68,
+    title: "Acoustic & Thermal Lightweight Ribbed Slabs (Asmolen)",
+    badge: "Stage 05 · Insulated Floor Slabs",
+    description:
+      "Engineered reinforced concrete joist ribs were paired with FIXA brand EPS lightweight infill blocks. This structural slab configuration reduces building deadweight during seismic events while maximizing acoustic and thermal isolation between residences.",
+    image: "/images/projects/zeytinburnu-g33/10-asmolen-slab.webp",
+    tags: ["Asmolen Slabs", "FIXA EPS Infill", "Acoustic Comfort", "Seismic Weight Reduction"],
+  },
+  {
+    id: "supervision",
+    number: "06",
+    progressPercent: 80,
+    title: "On-Site Structural Blueprint Audit & Field Supervision",
+    badge: "Stage 06 · Engineering Supervision",
+    description:
+      "Genç Group site engineers and project directors conducted rigorous live inspections directly on the construction deck, verifying rebar schedules, beam connections, and MEP sleeves against structural engineering blueprints prior to each pour.",
+    image: "/images/projects/zeytinburnu-g33/11-engineers-blueprints.webp",
+    tags: ["Site Engineering", "Blueprint Verification", "Quality Control"],
+  },
+  {
+    id: "structure",
+    number: "07",
+    progressPercent: 88,
+    title: "Superstructure Skeleton Completion & Hoarding",
+    badge: "Stage 07 · Structural Frame Complete",
+    description:
+      "All reinforced concrete frame cycles were brought to full elevation under strict site safety hoarding and municipal permit signage, transitioning seamlessly into masonry partition walls and MEP rough-ins.",
+    image: "/images/projects/zeytinburnu-g33/12-structure-skeleton.webp",
+    tags: ["Concrete Frame", "Site Safety", "Permitted Build"],
+  },
+  {
+    id: "facade",
+    number: "08",
+    progressPercent: 95,
+    title: "Modern Woodgrain Metalbond Architectural Composite Facade",
+    badge: "Stage 08 · Near Handover (95%)",
+    description:
+      "Installation of the ventilated facade clad in premium Metalbond aluminum composite panels. Rich woodgrain balcony returns, warm architectural framing, and large-format glazed apertures deliver an eye-catching contemporary street presence ready for handover.",
+    image: "/images/projects/zeytinburnu-g33/01-facade-hero.webp",
+    tags: ["Metalbond Composite", "Woodgrain Finish", "Modern Architecture", "Turnkey Handover"],
+  },
+];
+
 const CONSTRUCTION_PROJECTS_BY_LOCALE: Record<Locale, ConstructionProjectStudy[]> = {
   tr: [
     {
-      slug: "modern-konut-ve-yasam-projesi",
+      slug: "zeytinburnu-seyitnizam-g33",
       code: "01",
+      title: "Zeytinburnu Seyitnizam G33 Konut Projesi",
+      category: "Kentsel Dönüşüm & Konut Mimarisi",
+      statusLabel: "TESLİM AŞAMASINDA · %95",
+      location: "Seyitnizam Mah., Zeytinburnu / İstanbul",
+      year: "2025 – 2026",
+      area: "Butik Konut & Zemin Ticari",
+      editorialSummary:
+        "İstanbul Zeytinburnu’nda riskli yapının cerrahi hassasiyetle yıkımıyla başlayan, çift donatılı radye temel ve asmolen döşeme mühendisliğiyle yükselen, ahşap dokulu modern kompozit cephesiyle teslime hazırlanan çağdaş yaşam yapısı.",
+      architecturalBrief:
+        "Genç Group İnşaat’ın kentsel dönüşüm alanındaki anahtar teslim uygulama disiplinini ortaya koyan Seyitnizam G33 Projesi; yoğun sokak dokusunda çevre binaların güvenliğini önceleyen kontrollü çatı yıkımıyla başladı. Ardından zemin iyileştirmesi, grobeton serimi ve C30/37 hazır betonla güçlendirilmiş çift kat donatılı radye temel sistemi tamamlandı. Bodrum perde duvarlarında SIM Penguen polimerik bitümlü membran su yalıtımı uygulanırken, kat döşemelerinde asmolen sistemiyle yüksek ses ve ısı yalıtımı sağlandı. Cephede ahşap dokulu ve modern tonlu Metalbond kompozit kaplama, geniş açıklıklı pencere kurgusu ve şık derz profilleriyle modern kentsel silüete prestijli bir imza atıldı.",
+      heroImage: "/images/projects/zeytinburnu-g33/01-facade-hero.webp",
+      galleryImages: ZEYTINBURNU_GALLERY_IMAGES,
+      specifications: [
+        "Kontrollü Kentsel Dönüşüm ve Toz Bastırma Sistemli Güvenli Yıkım",
+        "Deprem Yönetmeliğine Tam Uyumlu Çift Donatılı Radye Jeneral Temel",
+        "SIM Penguen Membran ile Perde Duvar & Temel Bohçalama Su Yalıtımı",
+        "Hafif, Akustik ve Isı Yalıtımlı Asmolen / Nervürlü Tavan Sistemi",
+        "Metalbond Ahşap Dokulu Havalandırmalı Alüminyum Kompozit Cephe",
+        "Statik Pafta Kontrolleriyle Kesintisiz Saha Mühendislik Denetimi",
+      ],
+      beforeAfter: {
+        beforeImage: "/images/projects/zeytinburnu-g33/02-demolition-rooftop.webp",
+        beforeLabel: "Önceki Riskli Yapı & Yıkım",
+        afterImage: "/images/projects/zeytinburnu-g33/01-facade-hero.webp",
+        afterLabel: "Modern Kompozit Cephe (Teslime Hazır)",
+      },
+      stages: ZEYTINBURNU_STAGES_TR,
+    },
+    {
+      slug: "modern-konut-ve-yasam-projesi",
+      code: "02",
       title: "Çağdaş Konut & Yaşam Alanı Mimarisi",
       category: "Konut & Yaşam",
       statusLabel: "MİMARİ PORTFOLYO",
@@ -853,7 +1220,7 @@ const CONSTRUCTION_PROJECTS_BY_LOCALE: Record<Locale, ConstructionProjectStudy[]
     },
     {
       slug: "ticari-ve-kurumsal-yapi-yaklasimi",
-      code: "02",
+      code: "03",
       title: "Kurumsal & Ticari Yapı Mimarisi",
       category: "Ticari & Kurumsal",
       statusLabel: "MİMARİ PORTFOLYO",
@@ -876,8 +1243,39 @@ const CONSTRUCTION_PROJECTS_BY_LOCALE: Record<Locale, ConstructionProjectStudy[]
   ],
   en: [
     {
-      slug: "modern-konut-ve-yasam-projesi",
+      slug: "zeytinburnu-seyitnizam-g33",
       code: "01",
+      title: "Zeytinburnu Seyitnizam G33 Residential Project",
+      category: "Urban Regeneration & Modern Living",
+      statusLabel: "HANDOVER PHASE · 95% COMPLETE",
+      location: "Seyitnizam, Zeytinburnu / Istanbul",
+      year: "2025 – 2026",
+      area: "Bespoke Residential & Ground Retail",
+      editorialSummary:
+        "A turnkey urban transformation milestone in central Istanbul: from surgical rooftop demolition to seismic-grade raft foundations, insulated ribbed slabs, and a striking timber-accented composite facade.",
+      architecturalBrief:
+        "Demonstrating the full turnkey engineering mastery of Genç Group İnşaat, Seyitnizam G33 replaced an obsolete structure in a dense urban neighborhood. The site team executed precision rooftop demolition with dust suppression water misting between adjacent party walls. Following ground stabilization and blinding concrete, a heavy-duty dual-mesh raft foundation was engineered to strict seismic codes. Below-grade perimeter walls received multi-layer SIM Penguen polymer waterproofing. Upper floors were constructed using lightweight insulated joist (asmolen) slab plates for thermal and acoustic isolation. The project is crowned with a modern rainscreen Metalbond composite facade with woodgrain textures and crisp architectural reveals.",
+      heroImage: "/images/projects/zeytinburnu-g33/01-facade-hero.webp",
+      galleryImages: ZEYTINBURNU_GALLERY_IMAGES,
+      specifications: [
+        "Surgical Top-Down Urban Regeneration Demolition in Dense Setting",
+        "Dual-Grid Seismic Raft Foundation Engineered to Strict Building Codes",
+        "SIM Penguen Subterranean Polymer Bituminous Waterproofing & Drainage",
+        "Lightweight Insulated Joist (Asmolen) Slabs for Acoustic & Thermal Comfort",
+        "Architectural Metalbond Woodgrain & Ochre Aluminum Composite Facade",
+        "Continuous On-Site Engineering Inspection & Blueprint Compliance",
+      ],
+      beforeAfter: {
+        beforeImage: "/images/projects/zeytinburnu-g33/02-demolition-rooftop.webp",
+        beforeLabel: "Obsolete Structure & Demolition",
+        afterImage: "/images/projects/zeytinburnu-g33/01-facade-hero.webp",
+        afterLabel: "Modern Composite Facade (Handover Ready)",
+      },
+      stages: ZEYTINBURNU_STAGES_EN,
+    },
+    {
+      slug: "modern-konut-ve-yasam-projesi",
+      code: "02",
       title: "Contemporary Residential & Living Architecture",
       category: "Residential & Living",
       statusLabel: "ARCHITECTURAL PORTFOLIO",
@@ -899,7 +1297,7 @@ const CONSTRUCTION_PROJECTS_BY_LOCALE: Record<Locale, ConstructionProjectStudy[]
     },
     {
       slug: "ticari-ve-kurumsal-yapi-yaklasimi",
-      code: "02",
+      code: "03",
       title: "Corporate & Commercial Architectural Study",
       category: "Commercial & Corporate",
       statusLabel: "ARCHITECTURAL PORTFOLIO",
@@ -922,8 +1320,39 @@ const CONSTRUCTION_PROJECTS_BY_LOCALE: Record<Locale, ConstructionProjectStudy[]
   ],
   ar: [
     {
-      slug: "modern-konut-ve-yasam-projesi",
+      slug: "zeytinburnu-seyitnizam-g33",
       code: "01",
+      title: "مشروع زيتين بورنو سيت نظام G33 السكني",
+      category: "إعادة إعمار حضري ومبنى سكني عصري",
+      statusLabel: "قيد التسليم · نسبة الإنجاز 95%",
+      location: "حي سيت نظام، زيتين بورنو / إسطنبول",
+      year: "2025 – 2026",
+      area: "سكني وتجاري مستقل",
+      editorialSummary:
+        "صرح سكني حديث في قلب زيتين بورنو بإسطنبول، بدأ بهدم هندسي آمن لمبنى قديم، وشُيّد بأساسات حصيرية زلزالية وأسقف هوردي عازلة، وتُوج بواجهة ألمنيوم مركبة فاخرة بتأثيرات خشبية عصرية.",
+      architecturalBrief:
+        "يجسد مشروع Seyitnizam G33 الكفاءة الهندسية والتنفيذية لشركة Genç Group İnşaat في مشاريع التحول الحضري (Kentsel Dönüşüm). انطلقت الأعمال بعملية هدم دقيقة نُفذت من أعلى السطح باستخدام تقنيات رشاشات المياه لتخميد الأتربة وحماية المباني الملاصقة. تلى ذلك أعمال الحفريات العميقة وصب خرسانة النظافة وتجهيز شبكة حديد تسليح مزدوجة للأساس الحصيري (Radye Temel) بمطابقة كود الزلازل التركي. كما تم عزل جدران القبو بأغشية SIM Penguen البيتومينية المعتمدة، واستخدام أسقف الهوردي الخفيفة (Asmolen EPS) لتحقيق أعلى عزل صوتي وحراري وتقليل أحمال الزلازل، وصولاً لتركيب واجهات الكومبوزيت الفاخرة المقاومة للتقلبات الجوية.",
+      heroImage: "/images/projects/zeytinburnu-g33/01-facade-hero.webp",
+      galleryImages: ZEYTINBURNU_GALLERY_IMAGES,
+      specifications: [
+        "هدم آمن وتحول حضري معتمد (Kentsel Dönüşüm) بحماية كاملة للأبنية المجاورة",
+        "أساس حصيري زلزالي مسلح (Radye Temel) بشبكتي حديد تسليح عالية الإجهاد",
+        "عزل مائي متقدم لجدران القبو والأساسات بأغشية SIM Penguen البوليمرية",
+        "أسقف هوردي خفيفة عازلة (Asmolen Döşeme) لعزل الصوت والحرارة وتخفيف أوزان الزلازل",
+        "واجهات خارجية من الألمنيوم المركب (Metalbond) بتأثير خشبي وفواصل معمارية دقيقة",
+        "رقابة هندسية ميدانية دائمة ومطابقة المخططات الإنشائية قبل كل مرحلة صب",
+      ],
+      beforeAfter: {
+        beforeImage: "/images/projects/zeytinburnu-g33/02-demolition-rooftop.webp",
+        beforeLabel: "المبنى القديم ومرحلة الهدم الآمن",
+        afterImage: "/images/projects/zeytinburnu-g33/01-facade-hero.webp",
+        afterLabel: "الواجهة العصرية المكتملة (جاهز للتسليم)",
+      },
+      stages: ZEYTINBURNU_STAGES_AR,
+    },
+    {
+      slug: "modern-konut-ve-yasam-projesi",
+      code: "02",
       title: "عمارة المساكن ومساحات الحياة المعاصرة",
       category: "سكني ومعيشي",
       statusLabel: "المحفظة المعمارية",
@@ -945,7 +1374,7 @@ const CONSTRUCTION_PROJECTS_BY_LOCALE: Record<Locale, ConstructionProjectStudy[]
     },
     {
       slug: "ticari-ve-kurumsal-yapi-yaklasimi",
-      code: "02",
+      code: "03",
       title: "عمارة المباني التجارية والمؤسسية",
       category: "تجاري ومؤسسي",
       statusLabel: "المحفظة المعمارية",

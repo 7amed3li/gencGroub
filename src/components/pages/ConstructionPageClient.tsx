@@ -3,13 +3,15 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRightIcon, ArrowUpRightIcon } from "@/components/ui/Icons";
+import { ArrowRightIcon, ArrowUpRightIcon, MapPinIcon } from "@/components/ui/Icons";
 import {
   getConstructionServices,
   getConstructionProjects,
+  BRAND_INFO,
 } from "@/content/siteData";
 import { ProjectCard } from "@/components/construction/ProjectCard";
 import { ConstructionAssemblyStory } from "@/components/sections/ConstructionAssemblyStory";
+import { MarketingLocationMap } from "@/components/ui/MarketingLocationMap";
 import { useLanguage } from "@/context/LanguageContext";
 
 export function ConstructionPageClient() {
@@ -70,9 +72,19 @@ export function ConstructionPageClient() {
         <div className="container-editorial relative z-10">
           <div className="flex items-center justify-between border-t border-[#D8D3C7]/20 pt-5 text-[11px] uppercase tracking-[0.18em] text-[#D8D3C7]/85">
             <span>{t.constructionPage.bottomStrip}</span>
-            <span className="hidden sm:inline text-[#A5AA98]">
-              {t.hero.location}
-            </span>
+            <a
+              href={BRAND_INFO.constructionDivision.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Google Haritalar'da Konumu Gör (Genç İnşaat)"
+              className="hidden sm:inline-flex items-center gap-1.5 text-[#D8D3C7]/85 hover:text-[#F3F0E8] transition-colors group"
+            >
+              <MapPinIcon className="h-3.5 w-3.5 text-[#A5AA98] group-hover:text-[#F3F0E8]" />
+              <span className="group-hover:underline underline-offset-4">
+                {BRAND_INFO.constructionDivision.shortAddress || "Zeytinburnu, İstanbul"}
+              </span>
+              <ArrowUpRightIcon className="h-3 w-3 text-[#A5AA98] opacity-75 group-hover:opacity-100" />
+            </a>
           </div>
         </div>
       </section>
@@ -175,13 +187,21 @@ export function ConstructionPageClient() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            {projects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+            {projects.map((project, idx) => (
+              <div
+                key={project.slug}
+                className={idx === 0 ? "lg:col-span-2" : "lg:col-span-1"}
+              >
+                <ProjectCard project={project} />
+              </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Full Interactive Marketing Construction Headquarters & Field Management Map */}
+      <MarketingLocationMap division="construction" />
     </div>
   );
 }

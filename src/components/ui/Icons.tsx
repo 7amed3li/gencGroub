@@ -19,6 +19,8 @@ import {
   RiSendPlaneLine,
   RiLoader4Line,
   RiCheckboxCircleLine,
+  RiPlayLine,
+  RiPauseLine,
 } from "react-icons/ri";
 
 export {
@@ -41,6 +43,8 @@ export {
   RiSendPlaneLine as SendIcon,
   RiLoader4Line as LoaderIcon,
   RiCheckboxCircleLine as SuccessCircleIcon,
+  RiPlayLine as PlayIcon,
+  RiPauseLine as PauseIcon,
 };
 
 /**

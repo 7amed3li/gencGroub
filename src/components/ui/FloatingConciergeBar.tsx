@@ -5,9 +5,11 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRightIcon,
+  ArrowUpRightIcon,
   CloseIcon,
   PhoneIcon,
   WhatsAppIcon,
+  MapPinIcon,
   GencGroupMark,
 } from "@/components/ui/Icons";
 import { BRAND_INFO } from "@/content/siteData";
@@ -19,6 +21,8 @@ const CONCIERGE_COPY = {
     title: "Genç Group Doğrudan Hat",
     autoLabel: "AutoClub Merter WhatsApp",
     autoPhone: "Atölye Telefon",
+    mapsAutoLabel: "AutoClub Merter (Harita)",
+    mapsConsLabel: "Genç İnşaat Zeytinburnu (Harita)",
     consLabel: "Genç Group İnşaat Talebi",
   },
   en: {
@@ -26,6 +30,8 @@ const CONCIERGE_COPY = {
     title: "Genç Group Direct Line",
     autoLabel: "AutoClub Merter WhatsApp",
     autoPhone: "Atelier Direct Call",
+    mapsAutoLabel: "AutoClub Merter (Maps)",
+    mapsConsLabel: "Genç İnşaat Zeytinburnu (Maps)",
     consLabel: "Genç Group İnşaat Inquiry",
   },
   ar: {
@@ -33,6 +39,8 @@ const CONCIERGE_COPY = {
     title: "الخط المباشر — Genç Group",
     autoLabel: "واتساب AutoClub Merter",
     autoPhone: "اتصال هاتفي بالمركز",
+    mapsAutoLabel: "موقع AutoClub Merter",
+    mapsConsLabel: "موقع Genç İnşaat (زيتين بورنو)",
     consLabel: "استشارة Genç Group İnşaat",
   },
 } as const;
@@ -41,6 +49,7 @@ export function FloatingConciergeBar() {
   const { locale } = useLanguage();
   const c = CONCIERGE_COPY[locale];
   const auto = BRAND_INFO.automotiveDivision;
+  const cons = BRAND_INFO.constructionDivision;
 
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
@@ -71,7 +80,7 @@ export function FloatingConciergeBar() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.96 }}
                 transition={{ duration: 0.25 }}
-                className="mb-3 w-72 bg-[#F3F0E8] text-[#45483F] border border-[#D8D3C7] shadow-2xl p-4 space-y-2.5"
+                className="mb-3 max-w-[calc(100vw-2rem)] w-72 bg-[#F3F0E8] text-[#45483F] border border-[#D8D3C7] shadow-2xl p-4 space-y-2.5"
               >
                 <div className="flex items-center justify-between pb-2 border-b border-[#D8D3C7]">
                   <span className="text-[10px] uppercase tracking-[0.18em] text-[#69715F] font-semibold">
@@ -112,6 +121,32 @@ export function FloatingConciergeBar() {
                   </span>
                 </a>
 
+                <a
+                  href={auto.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between px-3.5 py-2.5 bg-[#E8E4DA] text-[#45483F] border border-[#D8D3C7] text-xs hover:bg-[#D8D3C7] transition-colors"
+                >
+                  <span className="inline-flex items-center gap-2 font-medium">
+                    <MapPinIcon className="h-3.5 w-3.5 text-[#69715F]" />
+                    <span>{c.mapsAutoLabel}</span>
+                  </span>
+                  <ArrowUpRightIcon className="h-3.5 w-3.5" />
+                </a>
+
+                <a
+                  href={cons.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between px-3.5 py-2.5 bg-[#E8E4DA] text-[#45483F] border border-[#D8D3C7] text-xs hover:bg-[#D8D3C7] transition-colors"
+                >
+                  <span className="inline-flex items-center gap-2 font-medium">
+                    <MapPinIcon className="h-3.5 w-3.5 text-[#69715F]" />
+                    <span>{c.mapsConsLabel}</span>
+                  </span>
+                  <ArrowUpRightIcon className="h-3.5 w-3.5" />
+                </a>
+
                 <Link
                   href="/contact?division=construction"
                   onClick={() => setOpen(false)}
@@ -124,15 +159,21 @@ export function FloatingConciergeBar() {
             )}
           </AnimatePresence>
 
-          {/* Luxury Monogram Concierge Button (Pure Architectural Identity - Zero AI Generic Dots) */}
+          {/* Luxury Monogram Concierge Button (Sharp architectural button) */}
           <button
             type="button"
             onClick={() => setOpen((prev) => !prev)}
             aria-label={c.pillLabel}
-            className="group inline-flex items-center gap-2.5 bg-[#45483F] hover:bg-[#353830] text-[#F3F0E8] border border-[#D8D3C7]/40 shadow-2xl px-4 py-3 text-[11px] font-medium uppercase tracking-[0.16em] transition-all duration-300"
+            className="group inline-flex items-center justify-center gap-2.5 bg-[#45483F] hover:bg-[#353830] text-[#F3F0E8] border border-[#D8D3C7]/40 shadow-2xl p-3 sm:px-4 sm:py-3 text-[11px] font-medium uppercase tracking-[0.16em] rounded-sm sm:rounded-none transition-all duration-300"
           >
-            <GencGroupMark className="h-4 w-4 text-[#D8D3C7] group-hover:scale-110 transition-transform" />
-            <span className="font-sans font-medium">{c.pillLabel}</span>
+            {open ? (
+              <CloseIcon className="h-4 w-4 text-[#D8D3C7]" />
+            ) : (
+              <GencGroupMark className="h-4 w-4 text-[#D8D3C7] group-hover:scale-110 transition-transform" />
+            )}
+            <span className="font-sans font-medium hidden sm:inline">
+              {c.pillLabel}
+            </span>
           </button>
         </motion.div>
       )}

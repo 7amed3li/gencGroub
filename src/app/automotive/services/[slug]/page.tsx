@@ -22,6 +22,7 @@ import {
   getServiceSchema,
 } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { MarketingLocationMap } from "@/components/ui/MarketingLocationMap";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -217,42 +218,8 @@ export default async function AutomotiveServiceDetailPage({ params }: Props) {
         </div>
       </section>
 
-      {/* CTA + location */}
-      <section className="section-padding border-b border-[#D8D3C7]">
-        <div className="container-editorial grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div className="space-y-5">
-            <h2 className="font-display-editorial text-3xl sm:text-4xl">
-              Ön Değerlendirme ve Randevu
-            </h2>
-            <p className="text-[#69715F] leading-relaxed">
-              Aracınızın fotoğraflarını WhatsApp üzerinden gönderebilir, telefonla
-              randevu alabilir veya iletişim formunu doldurabilirsiniz.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href={contactHref} className="btn-olive-primary">
-                <span>İletişim Formu</span>
-                <ArrowRightIcon className="h-4 w-4" />
-              </Link>
-              <a href={auto.phoneHref} className="btn-stone-outline" dir="ltr">
-                <PhoneIcon className="h-4 w-4" />
-                <span>{auto.phoneDisplay}</span>
-              </a>
-            </div>
-          </div>
-          <address className="not-italic space-y-3 text-sm text-[#45483F]/85 border-l border-[#D8D3C7] pl-6">
-            <p className="font-medium text-[#45483F]">AutoClub Merter</p>
-            <p className="flex items-start gap-2">
-              <MapPinIcon className="h-4 w-4 mt-0.5 shrink-0" />
-              <span>{auto.address}</span>
-            </p>
-            <p>
-              <a href={auto.mapsUrl} target="_blank" rel="noopener noreferrer" className="link-editorial">
-                <span>Yol tarifi al</span>
-              </a>
-            </p>
-          </address>
-        </div>
-      </section>
+      {/* Interactive Marketing Atelier Location & Map */}
+      <MarketingLocationMap division="automotive" />
 
       {/* Related services */}
       <section className="section-padding">

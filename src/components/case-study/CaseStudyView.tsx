@@ -86,7 +86,7 @@ export function CaseStudyView() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.12 }}
           >
-            GENÇ GROUP İNŞAAT <span>·</span> {t.hero.eyebrow}
+            {t.hero.eyebrow}
           </motion.p>
 
           <motion.h1
@@ -158,7 +158,7 @@ export function CaseStudyView() {
           <strong>{t.project.languageValue}</strong>
         </div>
         <div className="project-strip__stamp" aria-hidden="true">
-          GG<span>—</span>01
+          HM<span>—</span>LAB
         </div>
       </section>
 
@@ -438,7 +438,7 @@ export function CaseStudyView() {
         <div className="closing__veil" aria-hidden="true" />
         <div className="closing__content">
           <p className="eyebrow eyebrow--light">
-            GENÇ GROUP İNŞAAT <i /> {t.closing.eyebrow}
+            {t.closing.eyebrow}
           </p>
           <h2 id="closing-title">
             {t.closing.line1}
@@ -447,14 +447,23 @@ export function CaseStudyView() {
             <br />
             {t.closing.line3}
           </h2>
-          <a
-            className="button button--light"
-            href={developerUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span>{t.closing.contact}</span> <ArrowUpRight size={17} />
-          </a>
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              className="button button--light"
+              href={developerUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>{t.closing.contact}</span> <ArrowUpRight size={17} />
+            </a>
+            <a
+              className="button button--light"
+              href="mailto:hamedmohamed22w@gmail.com"
+              style={{ background: "rgba(255, 255, 255, 0.12)", color: "#FFFFFF" }}
+            >
+              <span>hamedmohamed22w@gmail.com</span> <ArrowUpRight size={17} />
+            </a>
+          </div>
         </div>
         <div className="closing__side-note">{t.closing.sideNote}</div>
       </section>
