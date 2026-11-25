@@ -10,7 +10,6 @@ export const metadata: Metadata = constructMetadata({
   path: "/construction/projects",
   // Portfolio items are concept studies, not verified completed projects.
   // Keep out of the index until real project data is supplied by the owner.
-  noIndex: true,
   ogImage: "/images/hero-construction.png",
 });
 
