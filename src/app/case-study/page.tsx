@@ -12,6 +12,38 @@ export const metadata: Metadata = constructMetadata({
 });
 
 export default function RootCaseStudyPage() {
-  return <CaseStudyView />;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: "Genç Group 3D & AI Digital Architecture Case Study — Hamed Mohamed",
+    url: "https://www.gencgroupinsaat.com.tr/case-study",
+    author: {
+      "@type": "Person",
+      "@id": "https://www.hamedmohamed.dev/#person",
+      name: "Hamed Mohamed",
+      jobTitle: "Full-Stack Software Engineer",
+      url: "https://www.hamedmohamed.dev",
+      sameAs: [
+        "https://www.hamedmohamed.dev",
+        "https://www.hamedmohamed.dev/tr/case-studies/genc-group-corporate-platform",
+        "https://www.hamedmohamed.dev/en/case-studies/genc-group-corporate-platform",
+        "https://www.hamedmohamed.dev/ar/case-studies/genc-group-corporate-platform",
+      ],
+    },
+    sameAs: [
+      "https://www.hamedmohamed.dev/tr/case-studies/genc-group-corporate-platform",
+      "https://www.hamedmohamed.dev/en/case-studies/genc-group-corporate-platform",
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <CaseStudyView />
+    </>
+  );
 }
 

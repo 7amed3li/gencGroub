@@ -8,7 +8,7 @@ import { EditorialReveal } from "@/components/ui/StoryScrollArchitecture";
 import { useLanguage } from "@/context/LanguageContext";
 
 export function GroupIntroSection() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -103,6 +103,45 @@ export function GroupIntroSection() {
                 </p>
               </motion.div>
             </div>
+
+            {/* Founder Heritage Strip */}
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{ duration: 0.65, delay: 0.2 }}
+              className="p-4 sm:p-5 bg-[#E8E4DA] border-s-2 border-[#69715F] border-t border-e border-b border-[#D8D3C7] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
+            >
+              <div className="space-y-0.5">
+                <span className="text-[10px] uppercase font-mono tracking-widest text-[#69715F] font-bold block">
+                  {locale === "tr"
+                    ? "30+ Yıllık Esnaflık Mirası"
+                    : locale === "ar"
+                    ? "+30 عاماً من الإرث التجاري"
+                    : "30+ Years of Tradesmanship"}
+                </span>
+                <p className="font-display-editorial text-sm sm:text-base text-[#45483F]">
+                  {locale === "tr"
+                    ? "Kurucumuz Davut Genç'in 1991'de pazar tezgahlarında attığı dürüstlük temelleriyle."
+                    : locale === "ar"
+                    ? "بأصول النزاهة التي أرساها مؤسس المجموعة داوود غينتش عام 1991."
+                    : "Founded on the integrity forged by Davut Genç in 1991."}
+                </p>
+              </div>
+              <Link
+                href="/about#kurucumuz"
+                className="inline-flex items-center gap-1.5 uppercase font-mono tracking-wider text-[11px] font-semibold text-[#45483F] hover:text-[#69715F] shrink-0"
+              >
+                <span>
+                  {locale === "tr"
+                    ? "Kurucu Hikayesi"
+                    : locale === "ar"
+                    ? "قصة المؤسس"
+                    : "Founder's Story"}
+                </span>
+                <ArrowRightIcon className="h-3.5 w-3.5 rtl:rotate-180" />
+              </Link>
+            </motion.div>
 
             <div className="pt-1">
               <Link

@@ -4,9 +4,10 @@ import { constructMetadata } from "@/lib/seo";
 import { AboutPageClient } from "@/components/pages/AboutPageClient";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Hakkımızda — AutoClub Merter ve Genç Group İnşaat | Genç Group",
+  title:
+    "Hakkımızda — Kurucumuz Davut Genç ve Genç Group Mirası | AutoClub Merter & Genç İnşaat",
   description:
-    "Genç Group; otomotiv sektöründe AutoClub Merter ve yapı sektöründe Genç Group İnşaat markalarıyla faaliyet gösteren kurumsal yapıdır.",
+    "1976 Zeytinburnu doğumlu kurucumuz Davut Genç'in 1991'de başlayan esnaflık serüveni, bugün modern inşaat projeleri (Genç Group İnşaat) ve premium araç yüzey uzmanlığı (AutoClub Merter) ile 30+ yıllık güven mirasını sürdürüyor.",
   path: "/about",
 });
 

@@ -1269,9 +1269,25 @@ export const UI_DICTIONARY = {
     aboutPage: {
       overline: "Hakkımızda",
       headline: "Otomotiv ve İnşaat Sektörlerinde Nitelikli Uygulama Kültürü.",
+      heroBadge: "30+ Yıllık Ticari Miras & Liderlik",
+      heroHeadline: "Esnaflık Ahlakından Geleceğe Uzanan Kurumsal Güç.",
+      heroSubheadline:
+        "1991 yılında semt pazarlarında temeli atılan esnaflık disiplini; bugün depreme dayanıklı modern yapılar üreten Genç Group İnşaat ve araç yüzey sanatında lider AutoClub Merter çatısı altında yaşamaya devam ediyor.",
       leadPart1: "otomotiv karoser ve boya uzmanlığını temsil eden",
       leadPart2: "ile modern yapı ve inşaat alanında faaliyet gösteren",
       leadPart3: "markalarını aynı kalite çatısı altında buluşturur.",
+      founderSectionBadge: "Kurucumuz & Liderlik",
+      founderTitle: "Pazar Tezgahından Holding Vizyonuna: Davut Genç",
+      founderBadge: "KURUCU & YÖNETİM KURULU BAŞKANI",
+      timelineBadge: "Tarihsel Yolculuk",
+      timelineTitle: "1991'den Günümüze: Adım Adım Büyüme Hikayesi",
+      timelineSubtitle:
+        "30 yılı aşkın süreçte pazarcılıktan toptan ticarete, inşaat müteahhitliğinden otomotiv yüzey uzmanlığına uzanan başarı serüveni.",
+      galleryBadge: "Yönetim Merkezi",
+      galleryTitle: "Zeytinburnu Genel Müdürlüğü & Çalışma Alanları",
+      gallerySubtitle:
+        "Davut Genç'in liderliğinde stratejik kararların alındığı, mühendislik ve atölye disiplininin koordine edildiği yönetim merkezi.",
+      divisionsBadge: "İki Stratejik Güç",
       twoDomainsTitle: "İki Uzmanlık Alanı",
       twoDomainsDesc:
         "Grup bünyesindeki her iki bölüm, kendi sektörünün teknik standartlarına uygun bağımsız operasyonel uzmanlıkla yönetilir.",
@@ -1279,6 +1295,10 @@ export const UI_DICTIONARY = {
         "İstanbul Merter bölgesinde faaliyet gösteren AutoClub Merter, araç dış yüzey ve karoser onarımında uzmanlaşmıştır:",
       consDesc:
         "Modern yapı anlayışı, kaliteli işçilik ve profesyonel uygulama yönetimi odağıyla inşaat ve mimari projeler geliştirir.",
+      contactBadge: "Merkez Ofis Ziyareti",
+      contactTitle: "Projenizi veya Aracınızı Konuşmak İçin Bekliyoruz",
+      contactDesc:
+        "Zeytinburnu'ndaki yönetim merkezimizde kurucumuz ve uzman ekibimizle yüz yüze tanışın; kentsel dönüşüm veya otomotiv yatırımlarınızı birlikte planlayalım.",
     },
     contactPage: {
       overline: "İletişim",
@@ -1483,9 +1503,25 @@ export const UI_DICTIONARY = {
     aboutPage: {
       overline: "About Us",
       headline: "A Culture of High-Craft Execution in Automotive & Construction.",
+      heroBadge: "30+ Years of Commercial Heritage & Leadership",
+      heroHeadline: "From Market Craft to Future-Focused Corporate Power.",
+      heroSubheadline:
+        "The tradesmanship ethos forged in 1991 in Istanbul's markets continues to thrive today under Genç Group İnşaat, delivering seismic-grade residences, and AutoClub Merter, leading the automotive surface arts.",
       leadPart1: "unites",
       leadPart2: "representing automotive bodywork and surface mastery, with",
       leadPart3: "operating in contemporary architecture and construction under one corporate standard.",
+      founderSectionBadge: "Founder & Leadership",
+      founderTitle: "From Market Floors to Holding-Scale Vision: Davut Genç",
+      founderBadge: "FOUNDER & CHAIRMAN",
+      timelineBadge: "Historical Journey",
+      timelineTitle: "1991 to Present: A Step-by-Step Growth Story",
+      timelineSubtitle:
+        "A 30-year journey scaling from local produce trading to agricultural wholesale, and into specialized construction contracting and premium automotive care.",
+      galleryBadge: "Headquarters",
+      galleryTitle: "Zeytinburnu Corporate Offices & Executive Spaces",
+      gallerySubtitle:
+        "The leadership center where strategic decisions are steered and engineering disciplines are coordinated under Davut Genç.",
+      divisionsBadge: "Two Strategic Pillars",
       twoDomainsTitle: "Two Specialized Divisions",
       twoDomainsDesc:
         "Each division within the Group is managed with dedicated operational expertise tailored to the technical standards of its sector.",
@@ -1493,6 +1529,10 @@ export const UI_DICTIONARY = {
         "Operating in Merter, Istanbul, AutoClub Merter specializes in exterior automotive surface restoration and bodywork engineering:",
       consDesc:
         "Develops architectural and construction projects focused on contemporary building standards, refined craftsmanship, and professional site management.",
+      contactBadge: "Visit Our Headquarters",
+      contactTitle: "Let's Discuss Your Project or Vehicle in Person",
+      contactDesc:
+        "Meet our founder and engineering team face-to-face at our Zeytinburnu headquarters to plan your urban regeneration or automotive investments together.",
     },
     contactPage: {
       overline: "Contact",
@@ -1697,9 +1737,25 @@ export const UI_DICTIONARY = {
     aboutPage: {
       overline: "من نحن",
       headline: "ثقافة التنفيذ المتقن في قطاعي السيارات والإنشاءات.",
+      heroBadge: "أكثر من 30 عاماً من الإرث التجاري والقيادة",
+      heroHeadline: "من أصول التجارة الصادقة إلى قوة مؤسسية تصنع المستقبل.",
+      heroSubheadline:
+        "الانضباط الميداني الذي انطلق عام 1991 في أسواق إسطنبول يواصل ازدهاره اليوم تحت مظلة Genç Group İnşaat للمباني السكنية المقاومة للزلازل، ومركز AutoClub Merter الرائد في فنون وحماية هياكل السيارات.",
       leadPart1: "تجمع بين",
       leadPart2: "الرائدة في هندسة هياكل وطلاء السيارات، و",
       leadPart3: "المتخصصة في العمارة الحديثة والمشاريع الإنشائية تحت مظلة جودة واحدة.",
+      founderSectionBadge: "المؤسس والقيادة",
+      founderTitle: "من الأسواق الميدانية إلى رؤية المجموعات القابضة: داوود غينتش",
+      founderBadge: "المؤسس ورئيس مجلس الإدارة",
+      timelineBadge: "المسيرة التاريخية",
+      timelineTitle: "منذ 1991 وحتى اليوم: قصة نمو وبناء متواصل",
+      timelineSubtitle:
+        "رحلة نجاح امتدت لأكثر من 3 عقود، تدرجت من التجارة الميدانية وتجارة الجملة إلى مقاولات البناء الحديثة والعناية الفائقة بالسيارات.",
+      galleryBadge: "المقر الإداري",
+      galleryTitle: "مقر إدارة زيتين بورنو ومكاتب الإدارة العليا",
+      gallerySubtitle:
+        "مركز القيادة الاستراتيجية حيث تُتخذ القرارات الكبرى وتُنسق الأعمال الهندسية تحت إشراف داوود غينتش.",
+      divisionsBadge: "ركيزتان استراتيجيتان",
       twoDomainsTitle: "قطاعان من التخصص الدقيق",
       twoDomainsDesc:
         "يُدار كل قطاع داخل المجموعة باستقلالية تشغيلية وخبرة فنية متخصصة تواكب أعلى المعايير المهنية في مجاله.",
@@ -1707,6 +1763,10 @@ export const UI_DICTIONARY = {
         "يتخصص مركز AutoClub Merter في منطقة مرتر بإسطنبول في ترميم وحماية الهياكل والأسطح الخارجية للسيارات:",
       consDesc:
         "تطور مشاريع معمارية وإنشائية تركز على معايير البناء الحديثة، وجودة التنفيذ، والإدارة الهندسية المتكاملة.",
+      contactBadge: "زيارة المقر الإداري",
+      contactTitle: "يسعدنا لقاؤكم لمناقشة مشروعكم الإنشائي أو سيارتكم",
+      contactDesc:
+        "تفضل بزيارة مقرنا الإداري في زيتين بورنو للقاء مؤسس المجموعة والفريق الهندسي وجهاً لوجه والتخطيط لمشاريعكم المشتركة.",
     },
     contactPage: {
       overline: "تواصل معنا",

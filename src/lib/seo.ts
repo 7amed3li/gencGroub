@@ -96,6 +96,17 @@ export function getOrganizationSchema() {
         url: `${SITE_URL}/`,
         description:
           "Otomotiv (AutoClub Merter) ve inşaat (Genç Group İnşaat) alanlarında faaliyet gösteren kurumsal grup.",
+        founder: {
+          "@type": "Person",
+          name: "Davut Genç",
+          jobTitle: "Kurucu & Yönetim Kurulu Başkanı",
+          birthDate: "1976",
+          birthPlace: {
+            "@type": "Place",
+            name: "Zeytinburnu, İstanbul",
+          },
+          image: `${SITE_URL}/images/leadership/davut-genc-portrait-standing.jpg`,
+        },
         sameAs: [
           "https://www.instagram.com/autoclubmerter/",
           AUTOCLUB_MAPS_PLACE_URL,

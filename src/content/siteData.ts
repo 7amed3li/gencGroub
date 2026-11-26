@@ -92,8 +92,228 @@ export interface AssemblyStageData {
   callouts: AssemblyCalloutItem[];
 }
 
+export interface LeadershipMilestone {
+  year: string;
+  badge: string;
+  title: string;
+  description: string;
+}
+
+export interface FounderData {
+  name: string;
+  titleTr: string;
+  titleEn: string;
+  titleAr: string;
+  birthYear: number;
+  birthPlace: string;
+  careerStartYear: number;
+  experienceYears: string;
+  images: {
+    standing: string;
+    seated: string;
+    leaning: string;
+    deskOffice: string;
+    deskWork: string;
+    officeEmblem: string;
+  };
+  quoteTr: string;
+  quoteEn: string;
+  quoteAr: string;
+  bioTr: {
+    heroLead: string;
+    lead: string;
+    paragraphs: string[];
+  };
+  bioEn: {
+    heroLead: string;
+    lead: string;
+    paragraphs: string[];
+  };
+  bioAr: {
+    heroLead: string;
+    lead: string;
+    paragraphs: string[];
+  };
+  milestonesTr: LeadershipMilestone[];
+  milestonesEn: LeadershipMilestone[];
+  milestonesAr: LeadershipMilestone[];
+}
+
+export const FOUNDER_INFO: FounderData = {
+  name: "Davut Genç",
+  titleTr: "Kurucu & Yönetim Kurulu Başkanı",
+  titleEn: "Founder & Chairman",
+  titleAr: "المؤسس ورئيس مجلس الإدارة",
+  birthYear: 1976,
+  birthPlace: "Zeytinburnu, İstanbul",
+  careerStartYear: 1991,
+  experienceYears: "30+",
+  images: {
+    standing: "/images/leadership/davut-genc-portrait-standing.jpg",
+    seated: "/images/leadership/davut-genc-portrait-seated.jpg",
+    leaning: "/images/leadership/davut-genc-portrait-leaning.jpg",
+    deskOffice: "/images/leadership/davut-genc-desk-office.jpg",
+    deskWork: "/images/leadership/davut-genc-desk-work.jpg",
+    officeEmblem: "/images/leadership/davut-genc-office-emblem.jpg",
+  },
+  quoteTr:
+    "1991 yılında pazar tezgahında öğrendiğim en kıymetli ders şuydu: Gerçek sermaye para değil; verilen söz, ardında durulan iş ve insanlara bırakılan sarsılmaz güvendir. Bugün çelik karkasından radye temeline bir bina yükseltirken de, bir aracın karoserini mikron mikron yenilerken de aynı esnaflık ahlakıyla çalışıyoruz.",
+  quoteEn:
+    "The greatest lesson I learned on the market floor in 1991 was simple: true capital is never money—it is keeping your word, standing behind your craftsmanship, and building unshakeable trust. Whether raising a seismic-grade building from its raft foundation or restoring a vehicle's bodywork micron by micron, we operate with that same unwavering tradesman code.",
+  quoteAr:
+    "أعظم درس تعلمته في أسواق التجارة عام 1991 هو أن رأس المال الحقيقي ليس المال، بل هو الالتزام بالكلمة، وإتقان العمل، وبناء ثقة راسخة تدوم عبر الأجيال. واليوم، سواء كنا نشيد مبنى مقاوماً للزلازل من أساساته الحصيرية أو نجدد هيكل سيارة بدقة الميكرون، فإننا نعمل بنفس الانضباط وأخلاق التجارة الصادقة.",
+  bioTr: {
+    heroLead:
+      "1976 İstanbul Zeytinburnu doğumlu olan Davut Genç; 1991'de semt pazar tezgahlarında başlayan ticaret serüvenini, bugün modern inşaat projeleri ve premium otomotiv servis merkezini buluşturan köklü bir kurumsal vizyona dönüştürdü.",
+    lead:
+      "30 yılı aşkın sahadan gelen esnaflık tecrübesi, ticari dürüstlük ve tavizsiz kalite anlayışıyla Genç Group'un temel taşlarını inşa eden Davut Genç; inşaat ve otomotiv sektörlerinde güvenin simgesi haline gelen bir yönetim kültürüne liderlik etmektedir.",
+    paragraphs: [
+      "1976 yılında İstanbul'un kadim ticaret ve sanayi merkezlerinden Zeytinburnu'nda dünyaya gelen Davut Genç, iş hayatına henüz 15 yaşındayken 1991 yılında semt pazarlarında sebze ve meyve esnaflığı yaparak adım attı. Pazarın zorlu dinamiklerinde insan ilişkilerini, sözün değerini, dürüst tartmayı ve alın teriyle kazanılan itibarın ticaretteki en sağlam sermaye olduğunu erken yaşta bizzat sahada özümsedi.",
+      "1999 yılında toptan sebze ve meyve ticaretine geçiş yaparak ticari hacmini ve lojistik kabiliyetlerini büyüten Davut Genç; eş zamanlı olarak gayrimenkul, inşaat, otomotiv ve tekstil sektörlerine adım atarak faaliyetlerini çok yönlü bir yapıya kavuşturdu. Bu dönem, sahadaki esnaflık reflekslerinin kurumsal organizasyon ve yatırım vizyonuyla harmanlandığı kritik bir eşik oldu.",
+      "2007 yılından itibaren tüm odak noktasını inşaat, gayrimenkul geliştirme ve otomotiv sektörlerine yoğunlaştıran Davut Genç; Zeytinburnu ve çevresinde kentsel dönüşüm, depreme dayanıklı radye temel konut projeleri üretirken, Merter'de kurduğu AutoClub Merter tesisiyle otomotiv karoser onarımı, fırın oto boya ve PPF koruma alanlarında sektör standardı belirleyen bir hizmet kalitesine imza attı.",
+      "Bugün Genç Group; kurucusu Davut Genç'in 'önce güven, tavizsiz işçilik ve kalıcı eser' felsefesiyle, İstanbul'un kalbinde hem modern yaşam alanları inşa etmekte hem de seçkin araç sahiplerine milimetrik atölye disiplini sunmaktadır.",
+    ],
+  },
+  bioEn: {
+    heroLead:
+      "Born in Zeytinburnu, Istanbul in 1976, Davut Genç transformed a trading journey that began in 1991 at local markets into an enduring corporate powerhouse spanning modern construction and premium automotive care.",
+    lead:
+      "Building the foundations of Genç Group on more than three decades of hands-on market experience, uncompromising integrity, and disciplined execution, Davut Genç directs a leadership culture synonymous with long-term trust.",
+    paragraphs: [
+      "Born in 1976 in Zeytinburnu, an iconic commercial district of Istanbul, Davut Genç entered the world of commerce in 1991 at the age of 15, working in neighborhood produce markets. In the fast-paced and exacting environment of open markets, he learned firsthand that keeping promises, genuine human connection, and earned reputation form the strongest foundation in business.",
+      "In 1999, he expanded into agricultural wholesale trading and strategically broadened his operations into real estate, construction, automotive trade, and textiles. This era marked a transformative milestone where field-tested commercial instincts merged with larger-scale organizational investments.",
+      "From 2007 onward, Davut Genç concentrated his core capital and operational expertise exclusively into construction contracting, urban regeneration, and specialized automotive services. Under his leadership, Genç Group İnşaat has delivered robust residential developments engineered to stringent seismic codes, while AutoClub Merter became a recognized benchmark for precision automotive bodywork and advanced surface protection.",
+      "Today, Genç Group stands as a testament to Davut Genç’s core ethos: genuine trust, uncompromising craftsmanship, and generational value created across two essential industries.",
+    ],
+  },
+  bioAr: {
+    heroLead:
+      "ولد داوود غينتش عام 1976 في زيتين بورنو بإسطنبول، وحوّل مسيرة تجارية بدأت عام 1991 في الأسواق الشعبية إلى صرح مؤسسي يجمع بين الإنشاءات المعمارية الحديثة وخدمات السيارات المتميزة.",
+    lead:
+      "انطلاقاً من أكثر من ثلاثة عقود من الخبرة الميدانية العميقة والنزاهة التجارية، أرسى داوود غينتش قواعد مجموعة Genç Group ليقود ثقافة مؤسسية تقوم على بناء الثقة المستدامة والاتقان التام.",
+    paragraphs: [
+      "ولد داوود غينتش في عام 1976 في منطقة زيتين بورنو بإسطنبول، ودخل معترك العمل التجاري عام 1991 في سن الخامسة عشرة من خلال تجارة الخضار والفواكه في أسواق إسطنبول. وهناك، في قلب السوق الميداني الحقيقي، تعلم قيمة الكلمة الصادقة، وأهمية العلاقات الإنسانية المباشرة، وأن السمعة الطيبة هي رأس المال الأعظم في التجارة.",
+      "في عام 1999، انتقل إلى تجارة الجملة موسعاً نشاطه اللوجستي والتجاري، ومتوسعاً في الوقت ذاته في قطاعات العقارات، والمقاولات الإنشائية، والسيارات، والمنسوجات. وشكلت هذه المرحلة نقطة تحول جوهرية دمجت بين حنكة السوق الواقعية والقدرات المؤسسية الاستثمارية الواسعة.",
+      "واعتباراً من عام 2007، ركز داوود غينتش كافة موارده وخبراته على قطاعين استراتيجيين: المقاولات الإنشائية وتطوير العقارات، وتجارة وصيانة السيارات المتخصصة. فأطلقت المجموعة مشاريع سكنية مقاومة للزلازل بنظام تسليم المفتاح عبر Genç Group İnşaat، إلى جانب تأسيس مركز AutoClub Merter المتخصص في إصلاح هياكل السيارات الفاخرة والطلاء الحراري وحماية الأسطح.",
+      "واليوم، تواصل Genç Group مسيرتها بثبات مسترشدة برؤية مؤسسها: 'الثقة أولاً، والاتقان بلا مساومة، وتقديم أعمال تدوم عبر الأجيال'.",
+    ],
+  },
+  milestonesTr: [
+    {
+      year: "1976",
+      badge: "Kökler",
+      title: "Zeytinburnu'nda Başlayan Hayat",
+      description:
+        "İstanbul'un kadim ticaret, emek ve sanayi merkezi Zeytinburnu'nda dünyaya geldi; semtin üretim ve esnaflık kültürüyle yetişti.",
+    },
+    {
+      year: "1991",
+      badge: "İlk Adım",
+      title: "Pazar Esnaflığı ve Ticaret Ahlakı",
+      description:
+        "Henüz 15 yaşındayken semt pazarlarında sebze-meyve esnaflığına başladı. Alın teri, sözüne sadakat ve insan ilişkilerinin ticaretteki en büyük sermaye olduğunu sahada öğrendi.",
+    },
+    {
+      year: "1999",
+      badge: "Büyüme",
+      title: "Toptan Ticaret & Sektörel Genişleme",
+      description:
+        "Toptan sebze-meyve ticaretine geçiş yaparak hacmini büyüttü; eş zamanlı olarak emlak, inşaat, otomotiv ve tekstil sektörlerinde ilk stratejik yatırımlarını gerçekleştirdi.",
+    },
+    {
+      year: "2007",
+      badge: "İhtisas",
+      title: "İnşaat ve Otomotivde Stratejik Odak",
+      description:
+        "Tüm operasyonel birikimini inşaat müteahhitliği, kentsel dönüşüm konut projeleri ve otomotiv alım-satım ile yetkili servis alanlarında yoğunlaştırdı.",
+    },
+    {
+      year: "Günümüz",
+      badge: "Kurumsal Güç",
+      title: "Genç Group: İki Sektörde Tavizsiz Kalite",
+      description:
+        "Genç Group İnşaat ile depreme dayanıklı çağdaş yapılar inşa ederken; AutoClub Merter ile araç yüzey uzmanlığında lider atölye disiplinini yönetiyor.",
+    },
+  ],
+  milestonesEn: [
+    {
+      year: "1976",
+      badge: "Origins",
+      title: "Roots in Zeytinburnu, Istanbul",
+      description:
+        "Born in Zeytinburnu, a storied hub of Istanbul's trade and craftsmanship; shaped by its culture of genuine commerce and perseverance.",
+    },
+    {
+      year: "1991",
+      badge: "First Step",
+      title: "Market Tradesmanship & Core Ethics",
+      description:
+        "Began trading produce at neighborhood markets at age 15. Learned directly on the floor that honesty, hard work, and earned trust are the true capital of business.",
+    },
+    {
+      year: "1999",
+      badge: "Expansion",
+      title: "Wholesale Trade & Sectoral Growth",
+      description:
+        "Scaled into wholesale food distribution while making foundational investments across real estate, construction, automotive, and textiles.",
+    },
+    {
+      year: "2007",
+      badge: "Focus",
+      title: "Strategic Focus on Construction & Automotive",
+      description:
+        "Concentrated all operational focus into turnkey residential construction, seismic-grade urban regeneration, and specialized automotive sales & atelier service.",
+    },
+    {
+      year: "Present",
+      badge: "Leadership",
+      title: "Genç Group: Corporate Excellence Across Two Domains",
+      description:
+        "Leading Genç Group İnşaat in delivering high-specification living structures while establishing AutoClub Merter as an atelier benchmark for automotive care.",
+    },
+  ],
+  milestonesAr: [
+    {
+      year: "1976",
+      badge: "البدايات",
+      title: "النشأة في زيتين بورنو، إسطنبول",
+      description:
+        "ولد في قلب حي زيتين بورنو العريق بإسطنبول، وتشرب ثقافة العمل الجاد والإنتاج والتجارة المتوارثة في المنطقة.",
+    },
+    {
+      year: "1991",
+      badge: "الخطوة الأولى",
+      title: "العمل الميداني وأخلاقيات التجارة الصادقة",
+      description:
+        "انطلق في التجارة وهو في الخامسة عشرة من عمره في أسواق إسطنبول الشعبية، واكتسب أصول التجارة الصادقة وبناء الثقة الشخصية مع العملاء.",
+    },
+    {
+      year: "1999",
+      badge: "التوسع",
+      title: "تجارة الجملة وتنويع القطاعات الاستثمارية",
+      description:
+        "توسع إلى تجارة الجملة ونقل بضائعها، مع الدخول الاستراتيجي في مجالات العقارات، والإنشاءات، وتجارة السيارات، وصناعة النسيج.",
+    },
+    {
+      year: "2007",
+      badge: "التخصص",
+      title: "التركيز الاستراتيجي على المقاولات والسيارات",
+      description:
+        "كرّس كافة موارده لتطوير المشاريع السكنية الحضرية المقاومة للزلازل وخدمات صيانة وتجديد هياكل السيارات المعتمدة.",
+    },
+    {
+      year: "اليوم",
+      badge: "القوة المؤسسية",
+      title: "مجموعة Genç Group: تميز قيادي في قطاعين حيويين",
+      description:
+        "يقود Genç Group İnşaat لتشييد مبانٍ معمارية حديثة، ومركز AutoClub Merter كعلامة فارقة في العناية الدقيقة بالسيارات.",
+    },
+  ],
+};
+
 export const BRAND_INFO = {
   name: "GENÇ GROUP",
+  founder: FOUNDER_INFO,
   descriptorTr: "Otomotiv & İnşaat",
   descriptorEn: "Automotive & Construction",
   descriptorAr: "السيارات والإنشاءات المعمارية",
