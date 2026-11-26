@@ -63,6 +63,7 @@ export function AboutPageClient() {
   );
 
   const [activePortraitIndex, setActivePortraitIndex] = useState(0);
+  const [showFullBio, setShowFullBio] = useState(false);
 
   const portraits = [
     {
@@ -98,33 +99,33 @@ export function AboutPageClient() {
   ];
 
   return (
-    <div className="bg-[#F3F0E8] text-[#45483F] pt-28">
+    <div className="bg-[#F3F0E8] text-[#45483F] pt-24 sm:pt-28">
       {/* 1. ARCHITECTURAL HERO SECTION */}
-      <section className="py-16 sm:py-24 lg:py-28 border-b border-[#D8D3C7] bg-[#E8E4DA] relative overflow-hidden">
+      <section className="py-12 sm:py-20 lg:py-28 border-b border-[#D8D3C7] bg-[#E8E4DA] relative overflow-hidden">
         <div className="container-editorial relative z-10">
-          <div className="max-w-4xl space-y-5">
-            <div className="inline-block border-s-2 border-[#69715F] ps-3.5 py-0.5">
-              <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] text-[#69715F] font-bold">
+          <div className="max-w-4xl space-y-4 sm:space-y-5">
+            <div className="inline-block border-s-2 border-[#69715F] ps-3 py-0.5">
+              <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.22em] text-[#69715F] font-bold">
                 {t.aboutPage.heroBadge}
               </span>
             </div>
 
-            <h1 className="font-display-editorial text-4xl sm:text-6xl lg:text-7xl text-[#45483F] leading-[1.04] tracking-tight">
+            <h1 className="font-display-editorial text-3xl sm:text-5xl lg:text-7xl text-[#45483F] leading-[1.08] sm:leading-[1.04] tracking-tight">
               {t.aboutPage.heroHeadline}
             </h1>
 
-            <p className="text-base sm:text-xl text-[#69715F] max-w-3xl font-light leading-relaxed pt-2">
+            <p className="text-sm sm:text-lg lg:text-xl text-[#69715F] max-w-3xl font-light leading-relaxed pt-1 sm:pt-2">
               {t.aboutPage.heroSubheadline}
             </p>
           </div>
 
           {/* Quick Metrics Strip */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-12 sm:mt-16 pt-8 border-t border-[#D8D3C7]">
-            <div className="space-y-1">
-              <p className="font-display-editorial text-3xl sm:text-4xl text-[#45483F] font-medium">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 mt-8 sm:mt-16 pt-6 sm:pt-8 border-t border-[#D8D3C7]">
+            <div className="space-y-0.5 sm:space-y-1">
+              <p className="font-display-editorial text-2xl sm:text-4xl text-[#45483F] font-medium">
                 1976
               </p>
-              <p className="text-[11px] sm:text-xs text-[#69715F] uppercase tracking-[0.14em]">
+              <p className="text-[10px] sm:text-xs text-[#69715F] uppercase tracking-[0.14em]">
                 {locale === "tr"
                   ? "Zeytinburnu Doğumlu"
                   : locale === "ar"
@@ -133,11 +134,11 @@ export function AboutPageClient() {
               </p>
             </div>
 
-            <div className="space-y-1">
-              <p className="font-display-editorial text-3xl sm:text-4xl text-[#45483F] font-medium">
+            <div className="space-y-0.5 sm:space-y-1">
+              <p className="font-display-editorial text-2xl sm:text-4xl text-[#45483F] font-medium">
                 1991
               </p>
-              <p className="text-[11px] sm:text-xs text-[#69715F] uppercase tracking-[0.14em]">
+              <p className="text-[10px] sm:text-xs text-[#69715F] uppercase tracking-[0.14em]">
                 {locale === "tr"
                   ? "Ticari Başlangıç (30+ Yıl)"
                   : locale === "ar"
@@ -146,11 +147,11 @@ export function AboutPageClient() {
               </p>
             </div>
 
-            <div className="space-y-1">
-              <p className="font-display-editorial text-3xl sm:text-4xl text-[#45483F] font-medium">
+            <div className="space-y-0.5 sm:space-y-1">
+              <p className="font-display-editorial text-2xl sm:text-4xl text-[#45483F] font-medium">
                 2007
               </p>
-              <p className="text-[11px] sm:text-xs text-[#69715F] uppercase tracking-[0.14em]">
+              <p className="text-[10px] sm:text-xs text-[#69715F] uppercase tracking-[0.14em]">
                 {locale === "tr"
                   ? "İnşaat & Otomotiv İhtisası"
                   : locale === "ar"
@@ -159,11 +160,11 @@ export function AboutPageClient() {
               </p>
             </div>
 
-            <div className="space-y-1">
-              <p className="font-display-editorial text-3xl sm:text-4xl text-[#45483F] font-medium">
+            <div className="space-y-0.5 sm:space-y-1">
+              <p className="font-display-editorial text-2xl sm:text-4xl text-[#45483F] font-medium">
                 2
               </p>
-              <p className="text-[11px] sm:text-xs text-[#69715F] uppercase tracking-[0.14em]">
+              <p className="text-[10px] sm:text-xs text-[#69715F] uppercase tracking-[0.14em]">
                 {locale === "tr"
                   ? "Kurumsal Sektör Gücü"
                   : locale === "ar"
@@ -184,7 +185,7 @@ export function AboutPageClient() {
         <div className="container-editorial">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             {/* Left Column: Authentic Executive Portrait with Switcher */}
-            <div className="lg:col-span-5 relative space-y-3">
+            <div className="lg:col-span-5 relative space-y-3 max-w-sm sm:max-w-md mx-auto lg:max-w-none w-full">
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#D8D3C7] border-2 border-[#D8D3C7] shadow-2xl">
                 <ArchitecturalCornerTicks />
                 <AnimatePresence mode="wait">
@@ -292,14 +293,51 @@ export function AboutPageClient() {
                 </p>
               </div>
 
-              {/* Lead & Narrative Paragraphs */}
+              {/* Lead & Narrative Paragraphs (Airy and comfortable on mobile) */}
               <div className="space-y-4 text-xs sm:text-sm text-[#45483F]/85 leading-relaxed font-light">
                 <p className="text-sm sm:text-base font-normal text-[#353830] leading-relaxed">
                   {bio.lead}
                 </p>
-                {bio.paragraphs.map((para, idx) => (
-                  <p key={idx}>{para}</p>
-                ))}
+
+                {/* Desktop: Show All Paragraphs */}
+                <div className="hidden lg:block space-y-4">
+                  {bio.paragraphs.map((para, idx) => (
+                    <p key={idx}>{para}</p>
+                  ))}
+                </div>
+
+                {/* Mobile: Show First Paragraph + Clean Expandable Toggle */}
+                <div className="lg:hidden space-y-3">
+                  <p>{bio.paragraphs[0]}</p>
+
+                  {showFullBio && (
+                    <div className="space-y-3 pt-1">
+                      {bio.paragraphs.slice(1).map((para, idx) => (
+                        <p key={idx}>{para}</p>
+                      ))}
+                    </div>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={() => setShowFullBio((prev) => !prev)}
+                    className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#45483F] font-semibold underline underline-offset-4 hover:text-[#69715F] pt-1"
+                  >
+                    <span>
+                      {showFullBio
+                        ? locale === "tr"
+                          ? "Daha Az Göster ↑"
+                          : locale === "ar"
+                          ? "عرض أقل ↑"
+                          : "Show Less ↑"
+                        : locale === "tr"
+                        ? "Biyografinin Devamını Oku ↓"
+                        : locale === "ar"
+                        ? "قراءة المزيد من السيرة الذاتية ↓"
+                        : "Read More Biography ↓"}
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
