@@ -96,6 +96,9 @@ export interface LeadershipMilestone {
   year: string;
   badge: string;
   title: string;
+  location: string;
+  scope: string;
+  keyLesson: string;
   description: string;
 }
 
@@ -203,6 +206,9 @@ export const FOUNDER_INFO: FounderData = {
       year: "1976",
       badge: "Kökler",
       title: "Zeytinburnu'nda Başlayan Hayat",
+      location: "Zeytinburnu · İstanbul",
+      scope: "Kökler & Çocukluk Yılları",
+      keyLesson: "Emek, Üretim ve Esnaflık Kültürü",
       description:
         "İstanbul'un kadim ticaret, emek ve sanayi merkezi Zeytinburnu'nda dünyaya geldi; semtin üretim ve esnaflık kültürüyle yetişti.",
     },
@@ -210,6 +216,9 @@ export const FOUNDER_INFO: FounderData = {
       year: "1991",
       badge: "İlk Adım",
       title: "Pazar Esnaflığı ve Ticaret Ahlakı",
+      location: "Zeytinburnu & İstanbul Semt Pazarları",
+      scope: "Pazarcılık ve İlk Ticari Adım",
+      keyLesson: "Alın Teri, Sözün Değeri ve Müşteri Güveni",
       description:
         "Henüz 15 yaşındayken semt pazarlarında sebze-meyve esnaflığına başladı. Alın teri, sözüne sadakat ve insan ilişkilerinin ticaretteki en büyük sermaye olduğunu sahada öğrendi.",
     },
@@ -217,6 +226,9 @@ export const FOUNDER_INFO: FounderData = {
       year: "1999",
       badge: "Büyüme",
       title: "Toptan Ticaret & Sektörel Genişleme",
+      location: "İstanbul Toptancı Hali & Çoklu Sektör",
+      scope: "Toptancılık, Emlak, İnşaat, Otomotiv, Tekstil",
+      keyLesson: "Lojistik Hacim ve Girişimci Vizyon",
       description:
         "Toptan sebze-meyve ticaretine geçiş yaparak hacmini büyüttü; eş zamanlı olarak emlak, inşaat, otomotiv ve tekstil sektörlerinde ilk stratejik yatırımlarını gerçekleştirdi.",
     },
@@ -224,6 +236,9 @@ export const FOUNDER_INFO: FounderData = {
       year: "2007",
       badge: "İhtisas",
       title: "İnşaat ve Otomotivde Stratejik Odak",
+      location: "Merter & Zeytinburnu Merkezleri",
+      scope: "Depreme Dayanıklı Konut & Yetkili Otomotiv Servisi",
+      keyLesson: "Derinlemesine Uzmanlaşma ve Mühendislik",
       description:
         "Tüm operasyonel birikimini inşaat müteahhitliği, kentsel dönüşüm konut projeleri ve otomotiv alım-satım ile yetkili servis alanlarında yoğunlaştırdı.",
     },
@@ -231,6 +246,9 @@ export const FOUNDER_INFO: FounderData = {
       year: "Günümüz",
       badge: "Kurumsal Güç",
       title: "Genç Group: İki Sektörde Tavizsiz Kalite",
+      location: "Genç Group Genel Merkez (İstanbul)",
+      scope: "Holding Vizyonu: AutoClub Merter & Genç Group İnşaat",
+      keyLesson: "Kalıcı Eserler ve Geleceğe Güven Mirası",
       description:
         "Genç Group İnşaat ile depreme dayanıklı çağdaş yapılar inşa ederken; AutoClub Merter ile araç yüzey uzmanlığında lider atölye disiplinini yönetiyor.",
     },
@@ -240,6 +258,9 @@ export const FOUNDER_INFO: FounderData = {
       year: "1976",
       badge: "Origins",
       title: "Roots in Zeytinburnu, Istanbul",
+      location: "Zeytinburnu · Istanbul",
+      scope: "Foundations & Childhood Years",
+      keyLesson: "Culture of Honest Labor & Industry",
       description:
         "Born in Zeytinburnu, a storied hub of Istanbul's trade and craftsmanship; shaped by its culture of genuine commerce and perseverance.",
     },
@@ -247,6 +268,9 @@ export const FOUNDER_INFO: FounderData = {
       year: "1991",
       badge: "First Step",
       title: "Market Tradesmanship & Core Ethics",
+      location: "Neighborhood Markets · Istanbul",
+      scope: "Produce Trading & Practical Commerce",
+      keyLesson: "Sanctity of Promises & Hard-Won Trust",
       description:
         "Began trading produce at neighborhood markets at age 15. Learned directly on the floor that honesty, hard work, and earned trust are the true capital of business.",
     },
@@ -254,6 +278,9 @@ export const FOUNDER_INFO: FounderData = {
       year: "1999",
       badge: "Expansion",
       title: "Wholesale Trade & Sectoral Growth",
+      location: "Wholesale Hub & Multi-Industry Ventures",
+      scope: "Distribution, Real Estate, Construction, Automotive",
+      keyLesson: "Scale Logistics & Strategic Agility",
       description:
         "Scaled into wholesale food distribution while making foundational investments across real estate, construction, automotive, and textiles.",
     },
@@ -261,6 +288,9 @@ export const FOUNDER_INFO: FounderData = {
       year: "2007",
       badge: "Focus",
       title: "Strategic Focus on Construction & Automotive",
+      location: "Merter & Zeytinburnu Operating Centers",
+      scope: "Seismic Residential Builds & Atelier Automotive Care",
+      keyLesson: "Deep Industrial Specialization & Standards",
       description:
         "Concentrated all operational focus into turnkey residential construction, seismic-grade urban regeneration, and specialized automotive sales & atelier service.",
     },
@@ -268,6 +298,9 @@ export const FOUNDER_INFO: FounderData = {
       year: "Present",
       badge: "Leadership",
       title: "Genç Group: Corporate Excellence Across Two Domains",
+      location: "Genç Group Headquarters · Istanbul",
+      scope: "Dual Powerhouse: AutoClub Merter & Genç Group İnşaat",
+      keyLesson: "Generational Trust & Future-Proof Vision",
       description:
         "Leading Genç Group İnşaat in delivering high-specification living structures while establishing AutoClub Merter as an atelier benchmark for automotive care.",
     },
@@ -277,6 +310,9 @@ export const FOUNDER_INFO: FounderData = {
       year: "1976",
       badge: "البدايات",
       title: "النشأة في زيتين بورنو، إسطنبول",
+      location: "زيتين بورنو · إسطنبول",
+      scope: "الجذور وسنوات الطفولة الأولى",
+      keyLesson: "ثقافة الإنتاج والعمل الجاد والنزاهة",
       description:
         "ولد في قلب حي زيتين بورنو العريق بإسطنبول، وتشرب ثقافة العمل الجاد والإنتاج والتجارة المتوارثة في المنطقة.",
     },
@@ -284,6 +320,9 @@ export const FOUNDER_INFO: FounderData = {
       year: "1991",
       badge: "الخطوة الأولى",
       title: "العمل الميداني وأخلاقيات التجارة الصادقة",
+      location: "أسواق إسطنبول الشعبية الميدانية",
+      scope: "تجارة الخضار والفواكه وأصول البيع",
+      keyLesson: "الالتزام بالكلمة، وعرق الجبين، والسمعة الطيبة",
       description:
         "انطلق في التجارة وهو في الخامسة عشرة من عمره في أسواق إسطنبول الشعبية، واكتسب أصول التجارة الصادقة وبناء الثقة الشخصية مع العملاء.",
     },
@@ -291,6 +330,9 @@ export const FOUNDER_INFO: FounderData = {
       year: "1999",
       badge: "التوسع",
       title: "تجارة الجملة وتنويع القطاعات الاستثمارية",
+      location: "سوق الجملة المركزي والاستثمارات المتعددة",
+      scope: "تجارة الجملة، العقارات، المقاولات، السيارات، النسيج",
+      keyLesson: "توسيع النطاق اللوجستي وإدارة الاستثمار المتنوع",
       description:
         "توسع إلى تجارة الجملة ونقل بضائعها، مع الدخول الاستراتيجي في مجالات العقارات، والإنشاءات، وتجارة السيارات، وصناعة النسيج.",
     },
@@ -298,6 +340,9 @@ export const FOUNDER_INFO: FounderData = {
       year: "2007",
       badge: "التخصص",
       title: "التركيز الاستراتيجي على المقاولات والسيارات",
+      location: "مراكز التشغيل في مرتر وزيتين بورنو",
+      scope: "المباني السكنية المقاومة للزلازل والعناية بالسيارات",
+      keyLesson: "التخصص المهني العميق وضبط معايير الجودة",
       description:
         "كرّس كافة موارده لتطوير المشاريع السكنية الحضرية المقاومة للزلازل وخدمات صيانة وتجديد هياكل السيارات المعتمدة.",
     },
@@ -305,6 +350,9 @@ export const FOUNDER_INFO: FounderData = {
       year: "اليوم",
       badge: "القوة المؤسسية",
       title: "مجموعة Genç Group: تميز قيادي في قطاعين حيويين",
+      location: "المقر العام لمجموعة Genç Group (إسطنبول)",
+      scope: "صرح مؤسسي: AutoClub Merter و Genç Group İnşaat",
+      keyLesson: "مشاريع معمارية خالدة وثقة راسخة تدوم لأجيال",
       description:
         "يقود Genç Group İnşaat لتشييد مبانٍ معمارية حديثة، ومركز AutoClub Merter كعلامة فارقة في العناية الدقيقة بالسيارات.",
     },

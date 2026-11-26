@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRightIcon,
   ArrowUpRightIcon,
@@ -17,6 +18,7 @@ import {
 } from "@/content/siteData";
 import { ArchitecturalCornerTicks } from "@/components/ui/StoryScrollArchitecture";
 import { useLanguage } from "@/context/LanguageContext";
+import { FounderJourneyMap } from "@/components/about/FounderJourneyMap";
 
 export function AboutPageClient() {
   const { locale, t } = useLanguage();
@@ -59,6 +61,41 @@ export function AboutPageClient() {
       ? "مرحباً Genç Group، أود زيارة مقركم الرئيسي في زيتين بورنو والاطلاع على مشاريعكم."
       : "Hello Genç Group, I would like to visit your Zeytinburnu head office and learn more about your operations."
   );
+
+  const [activePortraitIndex, setActivePortraitIndex] = useState(0);
+
+  const portraits = [
+    {
+      id: "officeEmblem",
+      src: founder.images.officeEmblem,
+      labelTr: "Resmi Ofis & Şirket Amblemi",
+      labelEn: "Headquarters & Official Emblem",
+      labelAr: "المقر العام والشعار الرسمي",
+      tagTr: "Genel Merkez",
+      tagEn: "Head Office",
+      tagAr: "المقر العام",
+    },
+    {
+      id: "standing",
+      src: founder.images.standing,
+      labelTr: "Yönetim Duruşu (Ayakta)",
+      labelEn: "Executive Standing Portrait",
+      labelAr: "إطلالة القيادة والإدارة (وقوفاً)",
+      tagTr: "Yönetim Duruşu",
+      tagEn: "Executive Standing",
+      tagAr: "إطلالة قيادية",
+    },
+    {
+      id: "seated",
+      src: founder.images.seated,
+      labelTr: "Stratejik Yönetim Portresi",
+      labelEn: "Strategic Governance Portrait",
+      labelAr: "التخطيط الاستراتيجي ومتابعة العمل",
+      tagTr: "Stratejik Portre",
+      tagEn: "Strategic Portrait",
+      tagAr: "التخطيط الإداري",
+    },
+  ];
 
   return (
     <div className="bg-[#F3F0E8] text-[#45483F] pt-28">
@@ -146,21 +183,38 @@ export function AboutPageClient() {
       >
         <div className="container-editorial">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-            {/* Left Column: Authentic Executive Portrait with Official Emblem */}
-            <div className="lg:col-span-5 relative">
+            {/* Left Column: Authentic Executive Portrait with Switcher */}
+            <div className="lg:col-span-5 relative space-y-3">
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#D8D3C7] border-2 border-[#D8D3C7] shadow-2xl">
                 <ArchitecturalCornerTicks />
-                <Image
-                  src={founder.images.officeEmblem}
-                  alt="Davut Genç — Genç Group Kurucusu ve Yönetim Kurulu Başkanı"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover object-center"
-                  priority
-                />
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activePortraitIndex}
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.02 }}
+                    transition={{ duration: 0.35 }}
+                    className="relative w-full h-full"
+                  >
+                    <Image
+                      src={portraits[activePortraitIndex].src}
+                      alt={`Davut Genç — ${
+                        locale === "tr"
+                          ? portraits[activePortraitIndex].labelTr
+                          : locale === "ar"
+                          ? portraits[activePortraitIndex].labelAr
+                          : portraits[activePortraitIndex].labelEn
+                      }`}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 40vw"
+                      className="object-cover object-center"
+                      priority
+                    />
+                  </motion.div>
+                </AnimatePresence>
 
                 {/* Overlaid Editorial Badge */}
-                <div className="absolute bottom-4 start-4 end-4 bg-[#2C2F28]/90 backdrop-blur-md text-[#F3F0E8] p-3.5 border border-[#F3F0E8]/20 shadow-xl">
+                <div className="absolute bottom-4 start-4 end-4 bg-[#2C2F28]/90 backdrop-blur-md text-[#F3F0E8] p-3.5 border border-[#F3F0E8]/20 shadow-xl z-10">
                   <span className="text-[10px] uppercase font-mono tracking-[0.2em] text-[#A5AA98] block">
                     {title}
                   </span>
@@ -170,9 +224,36 @@ export function AboutPageClient() {
                 </div>
               </div>
 
+              {/* Portrait Switcher Buttons (Official Tailored Suit Photos) */}
+              <div className="grid grid-cols-3 gap-2">
+                {portraits.map((p, idx) => {
+                  const isSelected = idx === activePortraitIndex;
+                  const label =
+                    locale === "tr"
+                      ? p.tagTr
+                      : locale === "ar"
+                      ? p.tagAr
+                      : p.tagEn;
+                  return (
+                    <button
+                      key={p.id}
+                      onClick={() => setActivePortraitIndex(idx)}
+                      type="button"
+                      className={`px-2 py-2 text-center text-[10px] sm:text-xs font-mono uppercase tracking-wider transition-all duration-200 border ${
+                        isSelected
+                          ? "bg-[#45483F] text-[#F3F0E8] border-[#45483F] font-bold shadow-sm"
+                          : "bg-[#E8E4DA] text-[#69715F] border-[#D8D3C7] hover:bg-[#F3F0E8] hover:text-[#45483F]"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
+              </div>
+
               {/* Secondary Detail Note */}
-              <div className="mt-4 p-4 bg-[#E8E4DA] border border-[#D8D3C7] flex items-center justify-between text-xs text-[#69715F]">
-                <span className="font-mono uppercase tracking-wider">
+              <div className="p-3 sm:p-4 bg-[#E8E4DA] border border-[#D8D3C7] flex items-center justify-between text-xs text-[#69715F]">
+                <span className="font-mono uppercase tracking-wider text-[11px]">
                   {locale === "tr"
                     ? "Genç Group Genel Merkez"
                     : locale === "ar"
@@ -225,63 +306,14 @@ export function AboutPageClient() {
         </div>
       </section>
 
-      {/* 3. CHRONOLOGICAL MILESTONES (1976 → 1991 → 1999 → 2007 → GÜNÜMÜZ) */}
+      {/* 3. CHRONOLOGICAL MILESTONES & INTERACTIVE JOURNEY MAP */}
       <section
         id="tarihce"
         aria-labelledby="timeline-heading"
         className="section-padding bg-[#E8E4DA] border-b border-[#D8D3C7]"
       >
         <div className="container-editorial">
-          <div className="max-w-3xl mb-12 lg:mb-16 space-y-3">
-            <div className="inline-block border-s-2 border-[#69715F] ps-3.5 py-0.5">
-              <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-[#69715F] font-bold">
-                {t.aboutPage.timelineBadge}
-              </span>
-            </div>
-            <h2
-              id="timeline-heading"
-              className="font-display-editorial text-3xl sm:text-5xl text-[#45483F]"
-            >
-              {t.aboutPage.timelineTitle}
-            </h2>
-            <p className="text-sm text-[#69715F] font-light leading-relaxed">
-              {t.aboutPage.timelineSubtitle}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-            {milestones.map((item, idx) => (
-              <div
-                key={item.year}
-                className="bg-[#F3F0E8] border border-[#D8D3C7] p-5 sm:p-6 flex flex-col justify-between space-y-4 shadow-sm hover:border-[#45483F] transition-colors"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between border-b border-[#D8D3C7] pb-3">
-                    <span className="font-display-editorial text-2xl sm:text-3xl font-medium text-[#45483F]">
-                      {item.year}
-                    </span>
-                    <span className="px-2 py-0.5 bg-[#45483F] text-[#F3F0E8] text-[10px] uppercase font-mono tracking-wider font-semibold">
-                      {item.badge}
-                    </span>
-                  </div>
-                  <h3 className="font-display-editorial text-lg text-[#45483F] leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-[#69715F] leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-
-                <div className="pt-2 text-[10px] font-mono uppercase text-[#A5AA98] tracking-widest border-t border-[#D8D3C7]/60">
-                  {locale === "tr"
-                    ? `Aşama 0${idx + 1}`
-                    : locale === "ar"
-                    ? `المرحلة 0${idx + 1}`
-                    : `Phase 0${idx + 1}`}
-                </div>
-              </div>
-            ))}
-          </div>
+          <FounderJourneyMap milestones={milestones} />
         </div>
       </section>
 
