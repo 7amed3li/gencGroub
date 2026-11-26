@@ -21,6 +21,8 @@ const CONCIERGE_COPY = {
     title: "Genç Group Doğrudan Hat",
     autoLabel: "AutoClub Merter WhatsApp",
     autoPhone: "Atölye Telefon",
+    consWhatsappLabel: "Genç Group İnşaat WhatsApp",
+    consPhone: "İnşaat Telefon",
     mapsAutoLabel: "AutoClub Merter (Harita)",
     mapsConsLabel: "Genç İnşaat Zeytinburnu (Harita)",
     consLabel: "Genç Group İnşaat Talebi",
@@ -30,6 +32,8 @@ const CONCIERGE_COPY = {
     title: "Genç Group Direct Line",
     autoLabel: "AutoClub Merter WhatsApp",
     autoPhone: "Atelier Direct Call",
+    consWhatsappLabel: "Genç Group İnşaat WhatsApp",
+    consPhone: "Construction Direct Call",
     mapsAutoLabel: "AutoClub Merter (Maps)",
     mapsConsLabel: "Genç İnşaat Zeytinburnu (Maps)",
     consLabel: "Genç Group İnşaat Inquiry",
@@ -39,6 +43,8 @@ const CONCIERGE_COPY = {
     title: "الخط المباشر — Genç Group",
     autoLabel: "واتساب AutoClub Merter",
     autoPhone: "اتصال هاتفي بالمركز",
+    consWhatsappLabel: "واتساب Genç Group İnşaat",
+    consPhone: "اتصال هاتفي بالإنشاءات",
     mapsAutoLabel: "موقع AutoClub Merter",
     mapsConsLabel: "موقع Genç İnşaat (زيتين بورنو)",
     consLabel: "استشارة Genç Group İnşaat",
@@ -117,6 +123,31 @@ export function FloatingConciergeBar() {
                     <PhoneIcon className="h-3.5 w-3.5 text-[#69715F]" />
                     <span>
                       {c.autoPhone}: {auto.phoneDisplay}
+                    </span>
+                  </span>
+                </a>
+
+                <a
+                  href={cons.whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between px-3.5 py-2.5 bg-[#E8E4DA] text-[#45483F] border border-[#D8D3C7] text-xs hover:bg-[#D8D3C7] transition-colors"
+                >
+                  <span className="inline-flex items-center gap-2 font-medium">
+                    <WhatsAppIcon className="h-4 w-4" />
+                    <span>{c.consWhatsappLabel}</span>
+                  </span>
+                  <ArrowRightIcon className="h-3.5 w-3.5 rtl:rotate-180" />
+                </a>
+
+                <a
+                  href={cons.phoneHref}
+                  className="flex items-center justify-between px-3.5 py-2.5 bg-[#E8E4DA] text-[#45483F] border border-[#D8D3C7] text-xs hover:bg-[#D8D3C7] transition-colors"
+                >
+                  <span className="inline-flex items-center gap-2 font-medium">
+                    <PhoneIcon className="h-3.5 w-3.5 text-[#69715F]" />
+                    <span>
+                      {c.consPhone}: {cons.phoneDisplay}
                     </span>
                   </span>
                 </a>
