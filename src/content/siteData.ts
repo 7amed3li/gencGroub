@@ -412,6 +412,9 @@ export const BRAND_INFO = {
     districtCity: "Zeytinburnu, İstanbul",
     shortAddress: "Zeytinburnu, İstanbul",
     address: "Telsiz Mah., 84. Sok., Zeytinburnu, 34020 İstanbul",
+    phoneDisplay: "0532 600 95 61",
+    phoneHref: "tel:+905326009561",
+    whatsappHref: "https://wa.me/905326009561",
     mapsUrl:
       "https://www.google.com/maps/place/Gen%C3%A7+%C4%B0n%C5%9Faat/@40.9977935,28.9094455,17z/data=!3m1!4b1!4m6!3m5!1s0x14cabb07fecb88c7:0x485ba9cffc5ac91!8m2!3d40.9977935!4d28.9120258!16s%2Fg%2F1tq1l4sp",
     mapsEmbedUrl:

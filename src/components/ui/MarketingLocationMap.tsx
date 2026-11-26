@@ -203,7 +203,7 @@ export function MarketingLocationMap({
               </a>
 
               <a
-                href={`https://wa.me/905438193024?text=${whatsappMessage}`}
+                href={`${entity.whatsappHref}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 title={`${entity.name} WhatsApp`}

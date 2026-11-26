@@ -527,7 +527,7 @@ export function AboutPageClient() {
 
               <div className="lg:col-span-4 flex flex-col gap-3.5">
                 <a
-                  href={`https://wa.me/905438193024?text=${whatsappMessage}`}
+                  href={`${BRAND_INFO.constructionDivision.whatsappHref}?text=${whatsappMessage}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-between gap-3 px-6 py-4 bg-[#8E9A7C] hover:bg-[#A1AF8E] text-[#1E201A] font-bold text-xs uppercase tracking-[0.14em] transition-colors shadow-lg"

@@ -125,6 +125,7 @@ export function ProjectTransformationStory({
   const c = COPY[locale];
   const stages = project.stages || [];
   const auto = BRAND_INFO.automotiveDivision;
+  const cons = BRAND_INFO.constructionDivision;
 
   // Active stage tracked via scroll / auto-play
   const [activeStageId, setActiveStageId] = useState<string>(stages[0]?.id || "");
@@ -590,7 +591,7 @@ export function ProjectTransformationStory({
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-4 border-t border-[#3E4336]">
             <a
-              href="https://wa.me/905438193024?text=Merhaba%2C%20Zeytinburnu%20Seyitnizam%20G33%20projenizi%20inceledim.%20Kendi%20yap%C4%B1m%C4%B1z%20i%C3%A7in%20bilgi%20almak%20istiyorum."
+              href="https://wa.me/905326009561?text=Merhaba%2C%20Zeytinburnu%20Seyitnizam%20G33%20projenizi%20inceledim.%20Kendi%20yap%C4%B1m%C4%B1z%20i%C3%A7in%20bilgi%20almak%20istiyorum."
               target="_blank"
               rel="noopener noreferrer"
               className="py-3.5 px-6 bg-[#8E9A7C] hover:bg-[#A1AF8E] text-[#1E201A] font-bold text-xs uppercase tracking-[0.16em] flex items-center justify-center gap-2.5 transition-colors shadow-lg"
@@ -600,7 +601,7 @@ export function ProjectTransformationStory({
             </a>
 
             <a
-              href={auto.phoneHref}
+              href={cons.phoneHref}
               className="py-3.5 px-6 bg-[#1E201A] hover:bg-[#383C30] text-[#F3F0E8] border border-[#3E4336] text-xs font-medium uppercase tracking-[0.16em] flex items-center justify-center gap-2.5 transition-colors"
             >
               <PhoneIcon className="h-4 w-4 text-[#8E9A7C]" />

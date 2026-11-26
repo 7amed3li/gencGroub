@@ -228,7 +228,30 @@ export function ContactPageClient({
                       </a>
                     </div>
                   </li>
+
+                  <li className="flex items-center gap-3">
+                    <PhoneIcon className="h-4 w-4 text-[#45483F] shrink-0" />
+                    <a
+                      href={cons.phoneHref}
+                      dir="ltr"
+                      className="text-base font-medium text-[#45483F] hover:text-[#69715F]"
+                    >
+                      {cons.phoneDisplay}
+                    </a>
+                  </li>
                 </ul>
+
+                <div className="pt-2 flex flex-wrap gap-4">
+                  <a
+                    href={cons.whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-olive-primary"
+                  >
+                    <WhatsAppIcon className="h-4 w-4" />
+                    <span>{t.contactPage.whatsappBtn}</span>
+                  </a>
+                </div>
               </div>
             </div>
 
