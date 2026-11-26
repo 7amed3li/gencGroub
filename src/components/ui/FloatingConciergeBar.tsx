@@ -5,7 +5,6 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRightIcon,
-  ArrowUpRightIcon,
   CloseIcon,
   PhoneIcon,
   WhatsAppIcon,
@@ -19,10 +18,7 @@ const CONCIERGE_COPY = {
   tr: {
     pillLabel: "Danışmanlık & İletişim",
     title: "Genç Group Doğrudan Hat",
-    autoLabel: "AutoClub Merter WhatsApp",
-    autoPhone: "Atölye Telefon",
-    consWhatsappLabel: "Genç Group İnşaat WhatsApp",
-    consPhone: "İnşaat Telefon",
+    whatsappLabel: "WhatsApp",
     mapsAutoLabel: "AutoClub Merter (Harita)",
     mapsConsLabel: "Genç İnşaat Zeytinburnu (Harita)",
     consLabel: "Genç Group İnşaat Talebi",
@@ -30,10 +26,7 @@ const CONCIERGE_COPY = {
   en: {
     pillLabel: "Concierge & Direct Line",
     title: "Genç Group Direct Line",
-    autoLabel: "AutoClub Merter WhatsApp",
-    autoPhone: "Atelier Direct Call",
-    consWhatsappLabel: "Genç Group İnşaat WhatsApp",
-    consPhone: "Construction Direct Call",
+    whatsappLabel: "WhatsApp",
     mapsAutoLabel: "AutoClub Merter (Maps)",
     mapsConsLabel: "Genç İnşaat Zeytinburnu (Maps)",
     consLabel: "Genç Group İnşaat Inquiry",
@@ -41,15 +34,75 @@ const CONCIERGE_COPY = {
   ar: {
     pillLabel: "الخط المباشر والاستشارة",
     title: "الخط المباشر — Genç Group",
-    autoLabel: "واتساب AutoClub Merter",
-    autoPhone: "اتصال هاتفي بالمركز",
-    consWhatsappLabel: "واتساب Genç Group İnşaat",
-    consPhone: "اتصال هاتفي بالإنشاءات",
+    whatsappLabel: "واتساب",
     mapsAutoLabel: "موقع AutoClub Merter",
     mapsConsLabel: "موقع Genç İnşaat (زيتين بورنو)",
     consLabel: "استشارة Genç Group İnşaat",
   },
 } as const;
+
+type Division = {
+  name: string;
+  phoneDisplay: string;
+  phoneHref: string;
+  whatsappHref: string;
+  mapsUrl: string;
+};
+
+/**
+ * One compact card per division: the number appears exactly once, as the
+ * call button, with WhatsApp merged beside it and the map as a pin icon —
+ * instead of separate stacked rows for WhatsApp / phone / map per brand.
+ */
+function DivisionBlock({
+  division,
+  mapsLabel,
+  whatsappLabel,
+}: {
+  division: Division;
+  mapsLabel: string;
+  whatsappLabel: string;
+}) {
+  return (
+    <div className="border border-[#D8D3C7] bg-[#E8E4DA] p-3 space-y-2.5">
+      <div className="flex items-center justify-between gap-2">
+        <span className="text-xs font-semibold tracking-wide text-[#45483F]">
+          {division.name}
+        </span>
+        <a
+          href={division.mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={mapsLabel}
+          aria-label={mapsLabel}
+          className="text-[#69715F] hover:text-[#45483F] transition-colors shrink-0"
+        >
+          <MapPinIcon className="h-4 w-4" />
+        </a>
+      </div>
+
+      <div className="grid grid-cols-2 gap-2">
+        <a
+          href={division.whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-1.5 px-2 py-2 bg-[#45483F] text-[#F3F0E8] text-[11px] font-medium hover:bg-[#353830] transition-colors"
+        >
+          <WhatsAppIcon className="h-3.5 w-3.5" />
+          <span>{whatsappLabel}</span>
+        </a>
+        <a
+          href={division.phoneHref}
+          dir="ltr"
+          className="flex items-center justify-center gap-1.5 px-2 py-2 bg-[#F3F0E8] border border-[#D8D3C7] text-[#45483F] text-[11px] font-medium hover:bg-[#D8D3C7] transition-colors"
+        >
+          <PhoneIcon className="h-3.5 w-3.5 text-[#69715F]" />
+          <span>{division.phoneDisplay}</span>
+        </a>
+      </div>
+    </div>
+  );
+}
 
 export function FloatingConciergeBar() {
   const { locale } = useLanguage();
@@ -102,81 +155,17 @@ export function FloatingConciergeBar() {
                   </button>
                 </div>
 
-                <a
-                  href={auto.whatsappHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between px-3.5 py-2.5 bg-[#45483F] text-[#F3F0E8] text-xs hover:bg-[#353830] transition-colors"
-                >
-                  <span className="inline-flex items-center gap-2 font-medium">
-                    <WhatsAppIcon className="h-4 w-4" />
-                    <span>{c.autoLabel}</span>
-                  </span>
-                  <ArrowRightIcon className="h-3.5 w-3.5 rtl:rotate-180" />
-                </a>
+                <DivisionBlock
+                  division={auto}
+                  mapsLabel={c.mapsAutoLabel}
+                  whatsappLabel={c.whatsappLabel}
+                />
 
-                <a
-                  href={auto.phoneHref}
-                  className="flex items-center justify-between px-3.5 py-2.5 bg-[#E8E4DA] text-[#45483F] border border-[#D8D3C7] text-xs hover:bg-[#D8D3C7] transition-colors"
-                >
-                  <span className="inline-flex items-center gap-2 font-medium">
-                    <PhoneIcon className="h-3.5 w-3.5 text-[#69715F]" />
-                    <span>
-                      {c.autoPhone}: {auto.phoneDisplay}
-                    </span>
-                  </span>
-                </a>
-
-                <a
-                  href={cons.whatsappHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between px-3.5 py-2.5 bg-[#E8E4DA] text-[#45483F] border border-[#D8D3C7] text-xs hover:bg-[#D8D3C7] transition-colors"
-                >
-                  <span className="inline-flex items-center gap-2 font-medium">
-                    <WhatsAppIcon className="h-4 w-4" />
-                    <span>{c.consWhatsappLabel}</span>
-                  </span>
-                  <ArrowRightIcon className="h-3.5 w-3.5 rtl:rotate-180" />
-                </a>
-
-                <a
-                  href={cons.phoneHref}
-                  className="flex items-center justify-between px-3.5 py-2.5 bg-[#E8E4DA] text-[#45483F] border border-[#D8D3C7] text-xs hover:bg-[#D8D3C7] transition-colors"
-                >
-                  <span className="inline-flex items-center gap-2 font-medium">
-                    <PhoneIcon className="h-3.5 w-3.5 text-[#69715F]" />
-                    <span>
-                      {c.consPhone}: {cons.phoneDisplay}
-                    </span>
-                  </span>
-                </a>
-
-                <a
-                  href={auto.mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between px-3.5 py-2.5 bg-[#E8E4DA] text-[#45483F] border border-[#D8D3C7] text-xs hover:bg-[#D8D3C7] transition-colors"
-                >
-                  <span className="inline-flex items-center gap-2 font-medium">
-                    <MapPinIcon className="h-3.5 w-3.5 text-[#69715F]" />
-                    <span>{c.mapsAutoLabel}</span>
-                  </span>
-                  <ArrowUpRightIcon className="h-3.5 w-3.5" />
-                </a>
-
-                <a
-                  href={cons.mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between px-3.5 py-2.5 bg-[#E8E4DA] text-[#45483F] border border-[#D8D3C7] text-xs hover:bg-[#D8D3C7] transition-colors"
-                >
-                  <span className="inline-flex items-center gap-2 font-medium">
-                    <MapPinIcon className="h-3.5 w-3.5 text-[#69715F]" />
-                    <span>{c.mapsConsLabel}</span>
-                  </span>
-                  <ArrowUpRightIcon className="h-3.5 w-3.5" />
-                </a>
+                <DivisionBlock
+                  division={cons}
+                  mapsLabel={c.mapsConsLabel}
+                  whatsappLabel={c.whatsappLabel}
+                />
 
                 <Link
                   href="/contact?division=construction"
