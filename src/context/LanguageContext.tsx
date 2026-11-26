@@ -1277,16 +1277,12 @@ export const UI_DICTIONARY = {
       leadPart2: "ile modern yapı ve inşaat alanında faaliyet gösteren",
       leadPart3: "markalarını aynı kalite çatısı altında buluşturur.",
       founderSectionBadge: "Kurucumuz & Liderlik",
-      founderTitle: "Pazar Tezgahından Holding Vizyonuna: Davut Genç",
+      founderTitle: "30+ Yıllık Esnaflık Mirası: Davut Genç",
       founderBadge: "KURUCU & YÖNETİM KURULU BAŞKANI",
       timelineBadge: "Tarihsel Yolculuk",
       timelineTitle: "1991'den Günümüze: Adım Adım Büyüme Hikayesi",
       timelineSubtitle:
         "30 yılı aşkın süreçte pazarcılıktan toptan ticarete, inşaat müteahhitliğinden otomotiv yüzey uzmanlığına uzanan başarı serüveni.",
-      galleryBadge: "Yönetim Merkezi",
-      galleryTitle: "Zeytinburnu Genel Müdürlüğü & Çalışma Alanları",
-      gallerySubtitle:
-        "Davut Genç'in liderliğinde stratejik kararların alındığı, mühendislik ve atölye disiplininin koordine edildiği yönetim merkezi.",
       divisionsBadge: "İki Stratejik Güç",
       twoDomainsTitle: "İki Uzmanlık Alanı",
       twoDomainsDesc:
@@ -1511,16 +1507,12 @@ export const UI_DICTIONARY = {
       leadPart2: "representing automotive bodywork and surface mastery, with",
       leadPart3: "operating in contemporary architecture and construction under one corporate standard.",
       founderSectionBadge: "Founder & Leadership",
-      founderTitle: "From Market Floors to Holding-Scale Vision: Davut Genç",
+      founderTitle: "30+ Years of Commercial Heritage: Davut Genç",
       founderBadge: "FOUNDER & CHAIRMAN",
       timelineBadge: "Historical Journey",
       timelineTitle: "1991 to Present: A Step-by-Step Growth Story",
       timelineSubtitle:
         "A 30-year journey scaling from local produce trading to agricultural wholesale, and into specialized construction contracting and premium automotive care.",
-      galleryBadge: "Headquarters",
-      galleryTitle: "Zeytinburnu Corporate Offices & Executive Spaces",
-      gallerySubtitle:
-        "The leadership center where strategic decisions are steered and engineering disciplines are coordinated under Davut Genç.",
       divisionsBadge: "Two Strategic Pillars",
       twoDomainsTitle: "Two Specialized Divisions",
       twoDomainsDesc:
@@ -1745,16 +1737,12 @@ export const UI_DICTIONARY = {
       leadPart2: "الرائدة في هندسة هياكل وطلاء السيارات، و",
       leadPart3: "المتخصصة في العمارة الحديثة والمشاريع الإنشائية تحت مظلة جودة واحدة.",
       founderSectionBadge: "المؤسس والقيادة",
-      founderTitle: "من الأسواق الميدانية إلى رؤية المجموعات القابضة: داوود غينتش",
+      founderTitle: "أكثر من 30 عاماً من الإرث التجاري: داوود غينتش",
       founderBadge: "المؤسس ورئيس مجلس الإدارة",
       timelineBadge: "المسيرة التاريخية",
       timelineTitle: "منذ 1991 وحتى اليوم: قصة نمو وبناء متواصل",
       timelineSubtitle:
         "رحلة نجاح امتدت لأكثر من 3 عقود، تدرجت من التجارة الميدانية وتجارة الجملة إلى مقاولات البناء الحديثة والعناية الفائقة بالسيارات.",
-      galleryBadge: "المقر الإداري",
-      galleryTitle: "مقر إدارة زيتين بورنو ومكاتب الإدارة العليا",
-      gallerySubtitle:
-        "مركز القيادة الاستراتيجية حيث تُتخذ القرارات الكبرى وتُنسق الأعمال الهندسية تحت إشراف داوود غينتش.",
       divisionsBadge: "ركيزتان استراتيجيتان",
       twoDomainsTitle: "قطاعان من التخصص الدقيق",
       twoDomainsDesc:

@@ -3,13 +3,11 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
   ArrowRightIcon,
   ArrowUpRightIcon,
   CheckIcon,
   MapPinIcon,
-  PhoneIcon,
   WhatsAppIcon,
 } from "@/components/ui/Icons";
 import {
@@ -132,7 +130,7 @@ export function AboutPageClient() {
                 {locale === "tr"
                   ? "Kurumsal Sektör Gücü"
                   : locale === "ar"
-                  ? "قطاعان تحت مظلة واحدة"
+                  ? "قطاعان استراتيجيان"
                   : "Specialized Divisions"}
               </p>
             </div>
@@ -148,16 +146,16 @@ export function AboutPageClient() {
       >
         <div className="container-editorial">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-            {/* Left Column: Authentic Executive Portrait */}
+            {/* Left Column: Authentic Executive Portrait with Official Emblem */}
             <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#D8D3C7] border-2 border-[#D8D3C7] shadow-2xl">
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#D8D3C7] border-2 border-[#D8D3C7] shadow-2xl">
                 <ArchitecturalCornerTicks />
                 <Image
-                  src={founder.images.standing}
+                  src={founder.images.officeEmblem}
                   alt="Davut Genç — Genç Group Kurucusu ve Yönetim Kurulu Başkanı"
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover object-top"
+                  className="object-cover object-center"
                   priority
                 />
 
@@ -275,7 +273,11 @@ export function AboutPageClient() {
                 </div>
 
                 <div className="pt-2 text-[10px] font-mono uppercase text-[#A5AA98] tracking-widest border-t border-[#D8D3C7]/60">
-                  Aşama 0{idx + 1}
+                  {locale === "tr"
+                    ? `Aşama 0${idx + 1}`
+                    : locale === "ar"
+                    ? `المرحلة 0${idx + 1}`
+                    : `Phase 0${idx + 1}`}
                 </div>
               </div>
             ))}
@@ -283,155 +285,48 @@ export function AboutPageClient() {
         </div>
       </section>
 
-      {/* 4. EXECUTIVE OFFICE & HEADQUARTERS GALLERY */}
-      <section
-        id="galeri"
-        aria-labelledby="gallery-heading"
-        className="section-padding bg-[#F3F0E8] border-b border-[#D8D3C7]"
-      >
+      {/* 4. TWO OPERATIONAL DIVISIONS WITH REAL FACILITY & PROJECT IMAGERY */}
+      <section className="section-padding bg-[#F3F0E8] border-b border-[#D8D3C7]">
         <div className="container-editorial">
-          <div className="max-w-3xl mb-10 lg:mb-14 space-y-3">
+          <div className="max-w-3xl mb-12 space-y-3">
             <div className="inline-block border-s-2 border-[#69715F] ps-3.5 py-0.5">
               <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-[#69715F] font-bold">
-                {t.aboutPage.galleryBadge}
+                {t.aboutPage.divisionsBadge}
               </span>
             </div>
-            <h2
-              id="gallery-heading"
-              className="font-display-editorial text-3xl sm:text-5xl text-[#45483F]"
-            >
-              {t.aboutPage.galleryTitle}
+            <h2 className="font-display-editorial text-3xl sm:text-5xl text-[#45483F]">
+              {t.aboutPage.twoDomainsTitle}
             </h2>
-            <p className="text-sm text-[#69715F] font-light leading-relaxed">
-              {t.aboutPage.gallerySubtitle}
+            <p className="text-sm text-[#69715F] leading-relaxed font-light">
+              {t.aboutPage.twoDomainsDesc}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {/* Photo 1: Office Desk & Executive Presence */}
-            <div className="group relative flex flex-col bg-[#E8E4DA] border border-[#D8D3C7] overflow-hidden shadow-md">
-              <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#D8D3C7]">
-                <Image
-                  src={founder.images.deskOffice}
-                  alt="Davut Genç — Yönetim Ofisi Masasında"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-4 sm:p-5 border-t border-[#D8D3C7] space-y-1">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-[#69715F] block">
-                  {locale === "tr"
-                    ? "Stratejik Yönetim"
-                    : locale === "ar"
-                    ? "الإدارة الاستراتيجية"
-                    : "Executive Strategy"}
-                </span>
-                <p className="font-display-editorial text-base text-[#45483F]">
-                  {locale === "tr"
-                    ? "Genel Müdürlük Yönetim Masası"
-                    : locale === "ar"
-                    ? "مكتب الإدارة العامة"
-                    : "Headquarters Executive Suite"}
-                </p>
-              </div>
-            </div>
-
-            {/* Photo 2: Emblem & Corporate Identity */}
-            <div className="group relative flex flex-col bg-[#E8E4DA] border border-[#D8D3C7] overflow-hidden shadow-md">
-              <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#D8D3C7]">
-                <Image
-                  src={founder.images.officeEmblem}
-                  alt="Genç Group Kurumsal Ofis ve Amblem"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-4 sm:p-5 border-t border-[#D8D3C7] space-y-1">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-[#69715F] block">
-                  {locale === "tr"
-                    ? "Kurumsal Temsil"
-                    : locale === "ar"
-                    ? "الهوية المؤسسية"
-                    : "Corporate Identity"}
-                </span>
-                <p className="font-display-editorial text-base text-[#45483F]">
-                  {locale === "tr"
-                    ? "Genç Group Kurumsal Amblemi"
-                    : locale === "ar"
-                    ? "شعار ومكاتب Genç Group"
-                    : "Genç Group Emblem & Offices"}
-                </p>
-              </div>
-            </div>
-
-            {/* Photo 3: Hands-on Work & Coordination */}
-            <div className="group relative flex flex-col bg-[#E8E4DA] border border-[#D8D3C7] overflow-hidden shadow-md">
-              <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#D8D3C7]">
-                <Image
-                  src={founder.images.deskWork}
-                  alt="Davut Genç — Operasyonel Planlama ve Çalışma Anı"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-4 sm:p-5 border-t border-[#D8D3C7] space-y-1">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-[#69715F] block">
-                  {locale === "tr"
-                    ? "Birebir Yönetim"
-                    : locale === "ar"
-                    ? "المتابعة المباشرة"
-                    : "Hands-on Coordination"}
-                </span>
-                <p className="font-display-editorial text-base text-[#45483F]">
-                  {locale === "tr"
-                    ? "Proje & Saha Koordinasyonu"
-                    : locale === "ar"
-                    ? "تنسيق ومتابعة المشاريع"
-                    : "Project & Site Coordination"}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. TWO OPERATIONAL DIVISIONS */}
-      <section className="section-padding bg-[#E8E4DA] border-b border-[#D8D3C7]">
-        <div className="container-editorial">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-4 space-y-4">
-              <div className="inline-block border-s-2 border-[#69715F] ps-3.5 py-0.5">
-                <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-[#69715F] font-bold">
-                  {t.aboutPage.divisionsBadge}
-                </span>
-              </div>
-              <h2 className="font-display-editorial text-3xl sm:text-4xl text-[#45483F]">
-                {t.aboutPage.twoDomainsTitle}
-              </h2>
-              <p className="text-sm text-[#69715F] leading-relaxed">
-                {t.aboutPage.twoDomainsDesc}
-              </p>
-            </div>
-
-            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8 border-t lg:border-t-0 lg:border-s border-[#D8D3C7] pt-8 lg:pt-0 lg:ps-12">
-              {/* AutoClub Merter */}
-              <div className="bg-[#F3F0E8] border border-[#D8D3C7] p-6 sm:p-8 flex flex-col justify-between space-y-6 shadow-sm">
-                <div className="space-y-4">
-                  <div className="inline-block border-s-2 border-[#69715F] ps-2.5 py-0.5">
-                    <span className="text-[10px] uppercase font-mono tracking-widest text-[#69715F] font-semibold">
-                      Otomotiv Yüzey Uzmanlığı
-                    </span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            {/* Division 1: AutoClub Merter */}
+            <div className="group bg-[#E8E4DA] border border-[#D8D3C7] overflow-hidden flex flex-col justify-between shadow-md">
+              <div>
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#D8D3C7]">
+                  <Image
+                    src="/images/atelier-daylight.jpg"
+                    alt="AutoClub Merter — Yüzey ve Karoser Atölyesi"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute top-4 start-4 bg-[#2C2F28]/90 backdrop-blur-sm text-[#F3F0E8] px-3 py-1 text-[11px] uppercase font-mono tracking-widest">
+                    AutoClub Merter · Platform Suites
                   </div>
+                </div>
+
+                <div className="p-6 sm:p-8 space-y-4">
                   <h3 className="font-display-editorial text-2xl sm:text-3xl text-[#45483F]">
                     AutoClub Merter
                   </h3>
                   <p className="text-xs sm:text-sm text-[#69715F] leading-relaxed">
                     {t.aboutPage.autoDesc}
                   </p>
-                  <ul className="space-y-2 text-xs sm:text-sm text-[#45483F] pt-2">
+                  <ul className="space-y-2 text-xs sm:text-sm text-[#45483F] pt-2 border-t border-[#D8D3C7]">
                     {services.map((s) => (
                       <li key={s.id} className="flex items-center gap-2.5">
                         <CheckIcon className="h-4 w-4 text-[#69715F] shrink-0" />
@@ -440,52 +335,96 @@ export function AboutPageClient() {
                     ))}
                   </ul>
                 </div>
-
-                <Link
-                  href="/automotive"
-                  className="group inline-flex items-center justify-between gap-2 px-5 py-3.5 bg-[#45483F] hover:bg-[#353830] text-[#F3F0E8] text-xs font-semibold uppercase tracking-[0.14em] transition-colors"
-                >
-                  <span>AutoClub Merter</span>
-                  <ArrowRightIcon className="h-4 w-4 rtl:rotate-180 transition-transform group-hover:translate-x-1" />
-                </Link>
               </div>
 
-              {/* Genç Group İnşaat */}
-              <div className="bg-[#F3F0E8] border border-[#D8D3C7] p-6 sm:p-8 flex flex-col justify-between space-y-6 shadow-sm">
-                <div className="space-y-4">
-                  <div className="inline-block border-s-2 border-[#69715F] ps-2.5 py-0.5">
-                    <span className="text-[10px] uppercase font-mono tracking-widest text-[#69715F] font-semibold">
-                      Modern Mimari & Kentsel Dönüşüm
-                    </span>
+              <div className="p-6 sm:p-8 pt-0">
+                <Link
+                  href="/automotive"
+                  className="group/btn w-full inline-flex items-center justify-between gap-2 px-6 py-4 bg-[#45483F] hover:bg-[#353830] text-[#F3F0E8] text-xs font-semibold uppercase tracking-[0.14em] transition-colors shadow-sm"
+                >
+                  <span>
+                    {locale === "tr"
+                      ? "AutoClub Merter'i İnceleyin"
+                      : locale === "ar"
+                      ? "استكشف خدمات AutoClub Merter"
+                      : "Explore AutoClub Merter"}
+                  </span>
+                  <ArrowRightIcon className="h-4 w-4 rtl:rotate-180 transition-transform group-hover/btn:translate-x-1" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Division 2: Genç Group İnşaat */}
+            <div className="group bg-[#E8E4DA] border border-[#D8D3C7] overflow-hidden flex flex-col justify-between shadow-md">
+              <div>
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#D8D3C7]">
+                  <Image
+                    src="/images/projects/zeytinburnu-g33/01-facade-hero.webp"
+                    alt="Genç Group İnşaat — Zeytinburnu Seyitnizam Projesi"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute top-4 start-4 bg-[#2C2F28]/90 backdrop-blur-sm text-[#F3F0E8] px-3 py-1 text-[11px] uppercase font-mono tracking-widest">
+                    Genç Group İnşaat · Zeytinburnu
                   </div>
+                </div>
+
+                <div className="p-6 sm:p-8 space-y-4">
                   <h3 className="font-display-editorial text-2xl sm:text-3xl text-[#45483F]">
                     Genç Group İnşaat
                   </h3>
                   <p className="text-xs sm:text-sm text-[#69715F] leading-relaxed">
                     {t.aboutPage.consDesc}
                   </p>
-                  <ul className="space-y-2 text-xs sm:text-sm text-[#45483F] pt-2">
+                  <ul className="space-y-2 text-xs sm:text-sm text-[#45483F] pt-2 border-t border-[#D8D3C7]">
                     <li className="flex items-center gap-2.5">
                       <CheckIcon className="h-4 w-4 text-[#69715F] shrink-0" />
-                      <span>Depreme Dayanıklı Radye Temel & Statik Güvenlik</span>
+                      <span>
+                        {locale === "tr"
+                          ? "Depreme Dayanıklı Radye Temel ve Statik Güvenlik"
+                          : locale === "ar"
+                          ? "أساسات حصيرية مقاومة للزلازل بأعلى معايير الأمان"
+                          : "Seismic Raft Foundation & Structural Rigor"}
+                      </span>
                     </li>
                     <li className="flex items-center gap-2.5">
                       <CheckIcon className="h-4 w-4 text-[#69715F] shrink-0" />
-                      <span>Zeytinburnu & İstanbul Kentsel Dönüşüm Liderliği</span>
+                      <span>
+                        {locale === "tr"
+                          ? "Zeytinburnu & İstanbul Kentsel Dönüşüm Uzmanlığı"
+                          : locale === "ar"
+                          ? "خبرة متخصصة في التحول الحضري بزيتين بورنو وإسطنبول"
+                          : "Urban Regeneration Leadership in Zeytinburnu"}
+                      </span>
                     </li>
                     <li className="flex items-center gap-2.5">
                       <CheckIcon className="h-4 w-4 text-[#69715F] shrink-0" />
-                      <span>Anahtar Teslim İnşaat & Mimari Proje Yönetimi</span>
+                      <span>
+                        {locale === "tr"
+                          ? "Anahtar Teslim İnşaat & Mimari Proje Yönetimi"
+                          : locale === "ar"
+                          ? "مشاريع تسليم المفتاح وإدارة معمارية متكاملة"
+                          : "Turnkey Contracting & Architectural Project Delivery"}
+                      </span>
                     </li>
                   </ul>
                 </div>
+              </div>
 
+              <div className="p-6 sm:p-8 pt-0">
                 <Link
                   href="/construction"
-                  className="group inline-flex items-center justify-between gap-2 px-5 py-3.5 bg-[#45483F] hover:bg-[#353830] text-[#F3F0E8] text-xs font-semibold uppercase tracking-[0.14em] transition-colors"
+                  className="group/btn w-full inline-flex items-center justify-between gap-2 px-6 py-4 bg-[#45483F] hover:bg-[#353830] text-[#F3F0E8] text-xs font-semibold uppercase tracking-[0.14em] transition-colors shadow-sm"
                 >
-                  <span>Genç Group İnşaat</span>
-                  <ArrowRightIcon className="h-4 w-4 rtl:rotate-180 transition-transform group-hover:translate-x-1" />
+                  <span>
+                    {locale === "tr"
+                      ? "Genç Group İnşaat'ı İnceleyin"
+                      : locale === "ar"
+                      ? "استكشف مشاريع Genç Group İnşaat"
+                      : "Explore Genç Group İnşaat"}
+                  </span>
+                  <ArrowRightIcon className="h-4 w-4 rtl:rotate-180 transition-transform group-hover/btn:translate-x-1" />
                 </Link>
               </div>
             </div>
@@ -493,7 +432,7 @@ export function AboutPageClient() {
         </div>
       </section>
 
-      {/* 6. ZEYTİNBURNU HEAD OFFICE CONSULTATION CARD */}
+      {/* 5. ZEYTİNBURNU HEAD OFFICE CONSULTATION CARD */}
       <section className="section-padding bg-[#F3F0E8]">
         <div className="container-editorial">
           <div className="bg-[#45483F] text-[#F3F0E8] p-8 sm:p-12 lg:p-16 border border-[#69715F]/40 shadow-2xl relative overflow-hidden">
@@ -512,9 +451,7 @@ export function AboutPageClient() {
 
                 <div className="pt-2 flex items-center gap-2 text-xs text-[#A5AA98]">
                   <MapPinIcon className="h-4 w-4 shrink-0 text-[#8E9A7C]" />
-                  <span>
-                    {BRAND_INFO.constructionDivision.address}
-                  </span>
+                  <span>{BRAND_INFO.constructionDivision.address}</span>
                 </div>
               </div>
 
